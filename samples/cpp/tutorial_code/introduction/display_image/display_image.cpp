@@ -1,16 +1,28 @@
 // error in this file could be caught while do make in ~/opencv-2.4.11/build
+// since path is set within vim, thus gf is working.
 
-#include <opencv2/core/core.hpp>
-#include <opencv2/highgui/highgui.hpp>
+// case 2. Include file for specific function for fast compile time
+// full path ~/opencv-2.4.11/modules/core/include/opencv2/core/core.hpp
+//#include <opencv2/core/core.hpp>   
+//#include <opencv2/highgui/highgui.hpp>
+
+// case 1. Include file for every supported OpenCV function 
+#include <opencv2/opencv.hpp>  // full path ~/opencv-2.4.11/include/opencv2/opencv.hpp
 #include <iostream>
 
 using namespace cv;
 using namespace std;
 
+#define aaa cout << "MO: [aaaaaaaaa] FILE=%s " <<  __FILE__  <<  " FUNCTION=%s " <<  __FUNCTION__ <<  " LINE=%d" <<  __LINE__ << endl ;
+
 int main( int argc, char** argv )
 {
     if( argc != 2)
     {
+	aaa
+	aaa
+     cout <<" xxxxx " << endl;
+	aaa
      cout <<" Usage: display_image ImageToLoadAndDisplay" << endl;
      return -1;
     }
