@@ -1,3 +1,5 @@
+// error in this file could be caught while do make in ~/opencv-2.4.11/build
+
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <iostream>
