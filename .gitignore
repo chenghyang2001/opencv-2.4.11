@@ -2,5 +2,6 @@
 
 # do all cmake in build to avoid polluting codebase
 build/
+build2/
 modules/python/src2/hdr_parser.pyc
 tags
