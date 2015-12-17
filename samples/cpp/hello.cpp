@@ -10,6 +10,11 @@ using namespace std;
 int main( int argc, char** argv )
 {
 
-    cout <<" hello 3 1 " << endl;
+
+    cout <<" hello 3 1 1" << endl;
+    cout <<" hello 3 2 " << endl;
+
+
+
     return 0;
 }
