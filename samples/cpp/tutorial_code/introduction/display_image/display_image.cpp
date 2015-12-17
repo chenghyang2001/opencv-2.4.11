@@ -13,22 +13,27 @@
 using namespace cv;
 using namespace std;
 
-#define aaa cout << "MO: [aaaaaaaaa] FILE=%s " <<  __FILE__  <<  " FUNCTION=%s " <<  __FUNCTION__ <<  " LINE=%d" <<  __LINE__ << endl ;
+//#define aaa cout << "MO: [aaaaaaaaa] FILE= " <<  __FILE__  <<  " FUNCTION= " <<  __FUNCTION__ <<  " LINE=" <<  __LINE__ << endl ;
+#define aaa cout << "MO: [aaaaaaaaa]  " <<    " FUNCTION= " <<  __FUNCTION__ <<  " LINE=" <<  __LINE__ << endl ;
 
 int main( int argc, char** argv )
 {
+
+#if 0
     if( argc != 2)
     {
-	aaa
-	aaa
-     cout <<" xxxxx " << endl;
-	aaa
-     cout <<" Usage: display_image ImageToLoadAndDisplay" << endl;
-     return -1;
+	aaa;
+	aaa;
+	cout <<" Usage: display_image ImageToLoadAndDisplay" << endl;
+	return -1;
     }
-
     Mat image;
     image = imread(argv[1], CV_LOAD_IMAGE_COLOR);	// Read the file
+#endif
+
+//  Peter. 20151217  for quickly testing
+    Mat image;
+    image = imread("./lena.jpg", CV_LOAD_IMAGE_COLOR);	// Read the file
 
     if(! image.data )                              // Check for invalid input
     {
@@ -36,9 +41,10 @@ int main( int argc, char** argv )
         return -1;
     }
 
-    namedWindow( "Display window", WINDOW_AUTOSIZE );// Create a window for display.
-    imshow( "Display window", image );                   // Show our image inside it.
+    namedWindow( "1111 Display window", WINDOW_AUTOSIZE );// Create a window for display.
+    imshow( "22222 Display window", image );                   // Show our image inside it.
 
-    waitKey(0);											 // Wait for a keystroke in the window
+    waitKey(0);   // Wait for a keystroke in the window
+//    waitKey(5000);  // Wait for 5 seconds
     return 0;
 }
