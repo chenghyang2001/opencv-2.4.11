@@ -26,8 +26,8 @@ void onTrackbarSlide( int pos, void *) {
 int main( int argc, char** argv )
 {
 
-#if 1
-    cout <<" example 2-1" << endl;
+#if 0
+    cout <<" example 2-1 and example 2-2" << endl;
 
     // must use absolute path, can not use relative path ~/lena.jpg. will not work.
     // Mat img = imread( "~/lena.jpg", -1 ); 
@@ -53,6 +53,26 @@ int main( int argc, char** argv )
 
     destroyWindow( "Example2" ); 
 #endif 
+
+
+#if 1
+    cv::namedWindow( "example 2-3", cv::WINDOW_AUTOSIZE ); 
+    cv::VideoCapture cap; 
+    cap.open( "/home/peter/cube4.avi"  ); 
+    cv::Mat frame; 
+    while( 1 ) { 
+
+	cap >> frame; 
+
+	if( !frame.data ) break; // Ran out of film 
+
+	cv::imshow( "example 2-3", frame ); 
+
+	if( cv::waitKey(33) >= 0 ) break; 
+    }
+
+#endif 
+
 
 
 #if 0
@@ -88,24 +108,6 @@ int main( int argc, char** argv )
  }
 #endif 
 
-#if 0
-    cv::namedWindow( "Example3", cv::WINDOW_AUTOSIZE ); 
-    cv::VideoCapture cap; 
-    // cap.open( string(argv[1]) ); 
-    cap.open( "cube4.avi"  ); 
-    cv::Mat frame; 
-    while( 1 ) { 
-
-	cap >> frame; 
-
-	if( !frame.data ) break; // Ran out of film 
-
-	cv::imshow( "Example3", frame ); 
-
-	if( cv::waitKey(33) >= 0 ) break; 
-    }
-
-#endif 
 
 
 #if 0
