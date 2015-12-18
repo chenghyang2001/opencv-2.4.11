@@ -96,8 +96,8 @@ int main( int argc, char** argv )
     destroyWindow( "Example2" ); 
 #endif 
 
-#if 1
-    cout <<" hello 3 1 1" << endl;
+#if 0
+    cout <<" Example2_5 and 2_6" << endl;
     namedWindow( "Example2_5-in", cv::WINDOW_AUTOSIZE ); 
     namedWindow( "Example2_5-out", cv::WINDOW_AUTOSIZE ); 
 
@@ -127,6 +127,33 @@ int main( int argc, char** argv )
     destroyWindow( "Example2_5-in" ); 
     destroyWindow( "Example2_5-out" ); 
 #endif 
+
+#if 1
+    // comment out to try "Example 2-7"
+    cout <<" Example2 7 " << endl;
+
+    Mat img_rgb = cv::imread("lena.jpg"); 
+
+    if( img_rgb.empty() ) {
+	cout << " missing parameter. " << endl;
+	return -1; 
+    }
+
+    Mat img_gry, img_cny; 
+    cvtColor( img_rgb, img_gry, CV_BGR2GRAY); 
+
+    namedWindow( "Example Gray", cv::WINDOW_AUTOSIZE ); 
+    namedWindow( "Example Canny", cv::WINDOW_AUTOSIZE ); 
+    imshow( "Example Gray", img_gry ); 
+    Canny( img_gry, img_cny, 10, 100, 3, true ); 
+    imshow( "Example Canny", img_cny ); 
+    waitKey(0); 
+    destroyWindow( "Example Gray" ); 
+    destroyWindow( "Example Canny" ); 
+
+#endif 
+
+
 
     return 0;
 }
