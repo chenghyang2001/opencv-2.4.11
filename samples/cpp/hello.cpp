@@ -255,6 +255,8 @@ int main( int argc, char** argv )
 	  cmake -D WITH_QT=ON ..
 	  make -j8
 	  
+3. try drawing api and code in 
+    ~/opencv-2.4.11/samples/cpp/drawing.cpp
  
  
  */
