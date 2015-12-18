@@ -142,10 +142,19 @@ int main( int argc, char** argv )
     Mat img_gry, img_cny; 
     cvtColor( img_rgb, img_gry, CV_BGR2GRAY); 
 
+    Mat img_pyr; 
+    pyrDown( img_gry, img_pyr ); 
+
+    Mat img_pyr2; 
+    pyrDown( img_pyr, img_pyr2 ); 
+
     namedWindow( "Example Gray", cv::WINDOW_AUTOSIZE ); 
     namedWindow( "Example Canny", cv::WINDOW_AUTOSIZE ); 
     imshow( "Example Gray", img_gry ); 
-    Canny( img_gry, img_cny, 10, 100, 3, true ); 
+
+//    Canny( img_gry, img_cny, 10, 100, 3, true ); 
+    Canny( img_pyr2, img_cny, 10, 100, 3, true ); 
+
     imshow( "Example Canny", img_cny ); 
     waitKey(0); 
     destroyWindow( "Example Gray" ); 
