@@ -111,8 +111,16 @@ int main( int argc, char** argv )
     imshow( "Example2_5-in", img ); 
 
     Mat out; 
-    GaussianBlur( img, out, cv::Size(5,5), 3, 3); 
-    GaussianBlur( out, out, cv::Size(5,5), 3, 3); 
+
+    out = img ; 
+
+    // comment out to try "A Not-So-Simple Transformation"
+    pyrDown( img, out ); 
+
+    // comment out to try "A Simple Transformation" 
+//    GaussianBlur( img, out, cv::Size(5,5), 3, 3); 
+//    GaussianBlur( out, out, cv::Size(5,5), 3, 3); 
+
     imshow( "Example2_5-out", out ); 
 
     waitKey( 0 ); 
