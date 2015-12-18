@@ -25,15 +25,39 @@ int main()
     const int NUMBER = 4;
     const int DELAY = 5;
     int lineType = CV_AA; // change it to 8 to see non-antialiased graphics
-    int i, width = 1000, height = 700;
+
+//    int i, width = 1000, height = 700;
+    int i, width = 400, height = 400;
+//    int i, width = 1024, height = 720;
+
     int x1 = -width/2, x2 = width*3/2, y1 = -height/2, y2 = height*3/2;
-//    RNG rng(0xFF000000);
     RNG rng(0xFFFFFFFF);
 
     //  step 1: create a window with specified width and height (1000,700) and title name
     Mat image = Mat::zeros(height, width, CV_8UC3);
     imshow(wndname, image);
     waitKey(DELAY);
+
+#if 1
+//    Size textsize = getTextSize("OpenCV forever!", FONT_HERSHEY_COMPLEX, 3, 5, 0);
+    Size textsize = getTextSize("forever!", CV_FONT_HERSHEY_COMPLEX, 3, 5, 0);
+    Point org((width - textsize.width)/2, (height - textsize.height)/2);
+
+    Mat image2;
+    for( i = 0; i < 255; i += 2 )
+    {
+//        image2 = image - Scalar::all(i);
+        image2 = image ; 
+//        putText(image2, "Ya OpenCV forever!", org, FONT_HERSHEY_COMPLEX, 3, Scalar(i, i, 255), 5, lineType);
+        putText(image2, "Ya !", org, FONT_HERSHEY_COMPLEX, 3, Scalar(i, i, 255), 5, lineType);
+
+	imshow(wndname, image2);
+        if(waitKey(DELAY) >= 0)
+            return 0;
+    }
+
+#endif 
+
 
 #if 0
     for (i = 0; i < NUMBER; i++)
@@ -176,22 +200,6 @@ int main()
     }
 #endif 
 
-#if 1
-    Size textsize = getTextSize("OpenCV forever!", FONT_HERSHEY_COMPLEX, 3, 5, 0);
-    Point org((width - textsize.width)/2, (height - textsize.height)/2);
-
-    Mat image2;
-    for( i = 0; i < 255; i += 2 )
-    {
-        image2 = image - Scalar::all(i);
-        putText(image2, "Ya OpenCV forever!", org, FONT_HERSHEY_COMPLEX, 3, Scalar(i, i, 255), 5, lineType);
-
-        imshow(wndname, image2);
-        if(waitKey(DELAY) >= 0)
-            return 0;
-    }
-
-#endif 
     waitKey();
     return 0;
 }

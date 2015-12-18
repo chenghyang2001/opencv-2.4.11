@@ -27,13 +27,8 @@ int main( int argc, char** argv )
 #if 1
     cout <<" example 2-1 and example 2-2" << endl;
 
-    int width = 100, height = 100;
-    Mat img = Mat::zeros(height, width, CV_8UC3);
-
     // must use absolute path, can not use relative path ~/lena.jpg. will not work.
-    img = imread( "/home/peter/lena.jpg", -1 ); 
-
-//    Mat img = imread( "/home/peter/lena.jpg", -1 ); 
+    Mat img = imread( "/home/peter/lena.jpg", -1 ); 
 
     if( img.empty() ) {
 
@@ -46,7 +41,31 @@ int main( int argc, char** argv )
 //    namedWindow( "Example2", WINDOW_OPENGL ); 
     imshow( "Example2", img ); 
 
-    moveWindow( "Example2", 100, 100 ); 
+//    moveWindow( "Example2", 100, 100 ); 
+//    waitKey( 0 ); 
+
+    resizeWindow( "Example2", 500, 200 ); 
+    waitKey( 0 ); 
+
+    resizeWindow( "Example2", 1024, 720 ); 
+    waitKey( 0 ); 
+
+    resizeWindow( "Example2", 500, 200 ); 
+    waitKey( 0 ); 
+
+    resizeWindow( "Example2", 1024, 720 ); 
+    waitKey( 0 ); 
+
+    resizeWindow( "Example2", 500, 200 ); 
+    waitKey( 0 ); 
+
+    resizeWindow( "Example2", 1024, 720 ); 
+    waitKey( 0 ); 
+
+    resizeWindow( "Example2", 500, 200 ); 
+    waitKey( 0 ); 
+
+    resizeWindow( "Example2", 1024, 720 ); 
     waitKey( 0 ); 
 
 //    moveWindow( "Example2", 300, 300 ); 
@@ -60,10 +79,17 @@ int main( int argc, char** argv )
 
 
 #if 0
-    cv::namedWindow( "example 2-3", cv::WINDOW_AUTOSIZE ); 
+//    cv::namedWindow( "example 2-3", cv::WINDOW_AUTOSIZE ); 
+//
+    cv::namedWindow( "example 2-3" ); 
+
+
+
     cv::VideoCapture cap; 
     cap.open( "/home/peter/cube4.avi"  ); 
-    cv::Mat frame; 
+
+    int width = 100, height = 100;
+    cv::Mat frame = Mat::zeros(height, width, CV_8UC3);
     while( 1 ) { 
 
 	cap >> frame; 
