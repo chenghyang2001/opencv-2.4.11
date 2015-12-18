@@ -13,25 +13,27 @@ int g_slider_position = 0;
 int g_run = 1, g_dontset = 0; //start out in single step mode 
 cv::VideoCapture g_cap; 
 
-#if 1
 void onTrackbarSlide( int pos, void *) { 
  g_cap.set( CV_CAP_PROP_POS_FRAMES, pos ); 
  if( !g_dontset ) 
  g_run = 1; 
  g_dontset = 0; 
 } 
-#endif 
 
 
 int main( int argc, char** argv )
 {
 
-#if 0
+#if 1
     cout <<" example 2-1 and example 2-2" << endl;
 
+    int width = 100, height = 100;
+    Mat img = Mat::zeros(height, width, CV_8UC3);
+
     // must use absolute path, can not use relative path ~/lena.jpg. will not work.
-    // Mat img = imread( "~/lena.jpg", -1 ); 
-    Mat img = imread( "/home/peter/lena.jpg", -1 ); 
+    img = imread( "/home/peter/lena.jpg", -1 ); 
+
+//    Mat img = imread( "/home/peter/lena.jpg", -1 ); 
 
     if( img.empty() ) {
 
@@ -40,16 +42,18 @@ int main( int argc, char** argv )
     }
 
     namedWindow( "Example2", WINDOW_AUTOSIZE ); 
+//    namedWindow( "Example2", WINDOW_NORMAL ); 
+//    namedWindow( "Example2", WINDOW_OPENGL ); 
     imshow( "Example2", img ); 
 
     moveWindow( "Example2", 100, 100 ); 
     waitKey( 0 ); 
 
-    moveWindow( "Example2", 300, 300 ); 
-    waitKey( 0 ); 
+//    moveWindow( "Example2", 300, 300 ); 
+//    waitKey( 0 ); 
 
-    moveWindow( "Example2", 700, 300 ); 
-    waitKey( 0 ); 
+//    moveWindow( "Example2", 700, 300 ); 
+//    waitKey( 0 ); 
 
     destroyWindow( "Example2" ); 
 #endif 
@@ -74,7 +78,7 @@ int main( int argc, char** argv )
 #endif 
 
 
-#if 1
+#if 0
  cv::namedWindow( "Example2_4", cv::WINDOW_AUTOSIZE ); 
 // g_cap.open( "cube4.avi"  ); 
  g_cap.open( "/home/peter/cube4.avi"  ); 
