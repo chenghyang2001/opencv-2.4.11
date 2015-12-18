@@ -26,6 +26,35 @@ void onTrackbarSlide( int pos, void *) {
 int main( int argc, char** argv )
 {
 
+#if 1
+    cout <<" example 2-1" << endl;
+
+    // must use absolute path, can not use relative path ~/lena.jpg. will not work.
+    // Mat img = imread( "~/lena.jpg", -1 ); 
+    Mat img = imread( "/home/peter/lena.jpg", -1 ); 
+
+    if( img.empty() ) {
+
+	cout << " missing parameter. " << endl;
+	return -1; 
+    }
+
+    namedWindow( "Example2", WINDOW_AUTOSIZE ); 
+    imshow( "Example2", img ); 
+
+    moveWindow( "Example2", 100, 100 ); 
+    waitKey( 0 ); 
+
+    moveWindow( "Example2", 300, 300 ); 
+    waitKey( 0 ); 
+
+    moveWindow( "Example2", 700, 300 ); 
+    waitKey( 0 ); 
+
+    destroyWindow( "Example2" ); 
+#endif 
+
+
 #if 0
  cv::namedWindow( "Example2_4", cv::WINDOW_AUTOSIZE ); 
  g_cap.open( "cube4.avi"  ); 
@@ -78,23 +107,6 @@ int main( int argc, char** argv )
 
 #endif 
 
-#if 0
-    cout <<" hello 3 1 1" << endl;
-
-    Mat img = imread( "lena.jpg", -1 ); 
-
-    if( img.empty() ) {
-
-	cout << " missing parameter. " << endl;
-	return -1; 
-    }
-
-    namedWindow( "Example2", WINDOW_AUTOSIZE ); 
-    imshow( "Example2", img ); 
-
-    waitKey( 0 ); 
-    destroyWindow( "Example2" ); 
-#endif 
 
 #if 0
     cout <<" Example2_5 and 2_6" << endl;
@@ -182,7 +194,7 @@ int main( int argc, char** argv )
 
 #endif 
 
-#if 1
+#if 0
     // Example 2-10
     cout <<" Example2-10 " << endl;
 
