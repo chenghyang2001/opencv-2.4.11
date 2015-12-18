@@ -530,7 +530,8 @@ int main(void)
 
 #ifdef USE_VIDEO
 //        CvCapture *input_video = cvCreateFileCapture("MOV_07.AVI");
-        CvCapture *input_video = cvCreateFileCapture("cube4.avi");
+//        CvCapture *input_video = cvCreateFileCapture("cube4.avi");
+        CvCapture *input_video = cvCreateFileCapture("/home/peter/cube4.avi");
 #else
         CvCapture *input_video = cvCaptureFromCAM(0);
 #endif
