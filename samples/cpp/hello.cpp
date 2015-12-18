@@ -128,7 +128,7 @@ int main( int argc, char** argv )
     destroyWindow( "Example2_5-out" ); 
 #endif 
 
-#if 1
+#if 0
     // comment out to try "Example 2-7"
     cout <<" Example2 7 " << endl;
 
@@ -179,6 +179,46 @@ int main( int argc, char** argv )
     waitKey(0); 
     destroyWindow( "Example Gray" ); 
     destroyWindow( "Example Canny" ); 
+
+#endif 
+
+#if 1
+    // Example 2-10
+    cout <<" Example2-10 " << endl;
+
+    namedWindow( "Example2_10", cv::WINDOW_AUTOSIZE ); 
+    VideoCapture cap; 
+
+    if (argc==1) { 
+	cout <<" open the default camera " << endl;
+	cap.open(0); // open the default camera 
+
+    } else { 
+	cout <<" open the non-default camera " << endl;
+	cap.open(argv[1]); 
+    } 
+
+    if( !cap.isOpened() ) { // check if we succeeded 
+
+	std::cerr << "Couldn't open capture." << std::endl; 
+	cout <<" Couldn't open capture. " << endl;
+	return -1; 
+    } 
+    else {
+	cout <<" Succeed in opening capture. " << endl;
+    }
+
+    cv::Mat frame; 
+    while( 1 ) { 
+
+	cap >> frame; 
+
+	if( !frame.data ) break; // Ran out of film 
+
+	cv::imshow( "Example3", frame ); 
+
+	if( cv::waitKey(33) >= 0 ) break; 
+    }
 
 #endif 
 
