@@ -13,18 +13,20 @@ int g_slider_position = 0;
 int g_run = 1, g_dontset = 0; //start out in single step mode 
 cv::VideoCapture g_cap; 
 
+#if 0
 void onTrackbarSlide( int pos, void *) { 
  g_cap.set( CV_CAP_PROP_POS_FRAMES, pos ); 
  if( !g_dontset ) 
  g_run = 1; 
  g_dontset = 0; 
 } 
-
+#endif 
 
 
 int main( int argc, char** argv )
 {
 
+#if 0
  cv::namedWindow( "Example2_4", cv::WINDOW_AUTOSIZE ); 
  g_cap.open( "cube4.avi"  ); 
 
@@ -54,11 +56,8 @@ int main( int argc, char** argv )
      {g_run = -1; cout << "Run mode, run = " << g_run <<endl;} 
      if( c == 27 ) // ESC key
 	 break; 
-
  }
-
-
-
+#endif 
 
 #if 0
     cv::namedWindow( "Example3", cv::WINDOW_AUTOSIZE ); 
@@ -79,11 +78,9 @@ int main( int argc, char** argv )
 
 #endif 
 
-
 #if 0
     cout <<" hello 3 1 1" << endl;
 
-    // Mat img = imread( argv[1], -1 ); 
     Mat img = imread( "lena.jpg", -1 ); 
 
     if( img.empty() ) {
@@ -97,6 +94,30 @@ int main( int argc, char** argv )
 
     waitKey( 0 ); 
     destroyWindow( "Example2" ); 
+#endif 
+
+#if 1
+    cout <<" hello 3 1 1" << endl;
+    namedWindow( "Example2_5-in", cv::WINDOW_AUTOSIZE ); 
+    namedWindow( "Example2_5-out", cv::WINDOW_AUTOSIZE ); 
+
+    Mat img = imread( "lena.jpg", -1 ); 
+
+    if( img.empty() ) {
+	cout << " missing parameter. " << endl;
+	return -1; 
+    }
+
+    imshow( "Example2_5-in", img ); 
+
+    Mat out; 
+    GaussianBlur( img, out, cv::Size(5,5), 3, 3); 
+    GaussianBlur( out, out, cv::Size(5,5), 3, 3); 
+    imshow( "Example2_5-out", out ); 
+
+    waitKey( 0 ); 
+    destroyWindow( "Example2_5-in" ); 
+    destroyWindow( "Example2_5-out" ); 
 #endif 
 
     return 0;
