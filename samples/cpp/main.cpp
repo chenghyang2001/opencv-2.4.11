@@ -12,50 +12,46 @@
 #define MAX(a,b) ((a)<(b)?(b):(a))
 #define MIN(a,b) ((a)>(b)?(b):(a))
 
-#define GREEN CV_RGB(0,255,0)
-#define RED CV_RGB(255,0,0)
-#define BLUE CV_RGB(255,0,255)
+#define GREEN  CV_RGB(0,255,0)
+#define RED    CV_RGB(255,0,0)
+#define BLUE   CV_RGB(255,0,255)
 #define PURPLE CV_RGB(255,0,255)
+
+#define K_VARY_FACTOR   0.2f
+#define B_VARY_FACTOR   20
+#define MAX_LOST_FRAMES 30
 
 Status laneR, laneL;
 std::vector<Vehicle> vehicles;
 std::vector<VehicleSample> samples;
 
 enum{
-    SCAN_STEP = 5,                // in pixels
-    LINE_REJECT_DEGREES = 10, // in degrees
-    BW_TRESHOLD = 250,            // edge response strength to recognize for 'WHITE'
-    BORDERX = 10,                 // px, skip this much from left & right borders
-    MAX_RESPONSE_DIST = 5,    // px
-
-    CANNY_MIN_TRESHOLD = 1,   // edge detector minimum hysteresis threshold
-    CANNY_MAX_TRESHOLD = 100, // edge detector maximum hysteresis threshold
-
-    HOUGH_TRESHOLD = 50,            // line approval vote threshold
-    HOUGH_MIN_LINE_LENGTH = 50,     // remove lines shorter than this treshold
-    HOUGH_MAX_LINE_GAP = 100,       // join lines to one with smaller than this gaps
-
-    CAR_DETECT_LINES = 4,    // minimum lines for a region to pass validation as a 'CAR'
-    CAR_H_LINE_LENGTH = 10,  // minimum horizontal line length from car body in px
-
-    MAX_VEHICLE_SAMPLES = 30,                             // max vehicle detection sampling history
+    SCAN_STEP             = 5,              // in pixels
+    LINE_REJECT_DEGREES   = 10,             // in degrees
+    BW_TRESHOLD           = 250,            // edge response strength to recognize for 'WHITE'
+    BORDERX               = 10,             // px, skip this much from left & right borders
+    MAX_RESPONSE_DIST     = 5,              // px
+    CANNY_MIN_TRESHOLD    = 1,              // edge detector minimum hysteresis threshold
+    CANNY_MAX_TRESHOLD    = 100,            // edge detector maximum hysteresis threshold
+    HOUGH_TRESHOLD        = 50,             // line approval vote threshold
+    HOUGH_MIN_LINE_LENGTH = 50,             // remove lines shorter than this treshold
+    HOUGH_MAX_LINE_GAP    = 100,            // join lines to one with smaller than this gaps
+    CAR_DETECT_LINES      = 4,              // minimum lines for a region to pass validation as a 'CAR'
+    CAR_H_LINE_LENGTH     = 10,             // minimum horizontal line length from car body in px
+    MAX_VEHICLE_SAMPLES   = 30,             // max vehicle detection sampling history
     CAR_DETECT_POSITIVE_SAMPLES = MAX_VEHICLE_SAMPLES-2,  // probability positive matches for valid car
     MAX_VEHICLE_NO_UPDATE_FREQ = 15                       // remove car after this much no update frames
 };
-
-#define K_VARY_FACTOR 0.2f
-#define B_VARY_FACTOR 20
-#define MAX_LOST_FRAMES 30
 
 
 void FindResponses(IplImage *img, int startX, int endX, int y, std::vector<int>& list)
 {
     // scans for single response: /^\_
 
-    const int row = y * img->width * img->nChannels;
+    const int row      = y * img->width * img->nChannels;
     unsigned char* ptr = (unsigned char*)img->imageData;
 
-    int step = (endX < startX) ? -1: 1;
+    int step  = (endX < startX) ? -1: 1;
     int range = (endX > startX) ? endX-startX+1 : startX-endX+1;
 
     for(int x = startX; range>0; x += step, range--)
@@ -87,7 +83,7 @@ unsigned char pixel(IplImage* img, int x, int y) {
 int findSymmetryAxisX(IplImage* half_frame, CvPoint bmin, CvPoint bmax) {
 
     float value = 0;
-    int axisX = -1; // not found
+    int   axisX = -1; // not found
 
     int xmin = bmin.x;
     int ymin = bmin.y;
@@ -508,11 +504,11 @@ int main(void)
 
     CvSize video_size;
     video_size.height = (int) cvGetCaptureProperty(input_video, CV_CAP_PROP_FRAME_HEIGHT);
-    video_size.width = (int) cvGetCaptureProperty(input_video, CV_CAP_PROP_FRAME_WIDTH);
+    video_size.width  = (int) cvGetCaptureProperty(input_video, CV_CAP_PROP_FRAME_WIDTH);
 
     long current_frame = 0;
-    int key_pressed = 0;
-    IplImage *frame = NULL;
+    int    key_pressed = 0;
+    IplImage *frame    = NULL;
 
     CvSize frame_size    = cvSize(video_size.width, video_size.height/2);
     IplImage *temp_frame = cvCreateImage(frame_size, IPL_DEPTH_8U, 3);
@@ -560,11 +556,11 @@ int main(void)
 	// show middle line
 	cvLine(temp_frame, cvPoint(frame_size.width/2,0), cvPoint(frame_size.width/2,frame_size.height), CV_RGB(255, 255, 0), 1);
 
-	cvShowImage("Grey", grey);
+	cvShowImage("Grey",  grey);
 	cvShowImage("Edges", edges);
 	cvShowImage("Color", temp_frame);
 
-	cvMoveWindow("Grey", 0, 0); 
+	cvMoveWindow("Grey",  0, 0); 
 	cvMoveWindow("Edges", 0, frame_size.height+25);
 	cvMoveWindow("Color", 0, 2*(frame_size.height+25)); 
 
