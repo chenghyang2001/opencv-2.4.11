@@ -23,14 +23,29 @@ static void help()
 int main(int,char**)
 {
     help();
+
     // create by using the constructor
     Mat M(2,2, CV_8UC3, Scalar(0,0,255));
     cout << "M = " << endl << " " << M << endl << endl;
 
+#if 0
+    Mat M2(2,1, CV_8UC3, Scalar(0,0,255));
+    cout << "M2 = " << endl << " " << M2 << endl << endl;
+
+    Mat M3(1,1, CV_8UC3, Scalar(0,0,255));
+    cout << "M3 = " << endl << " " << M3 << endl << endl;
+
+    Mat M4(1,1, CV_8UC3, Scalar(10,20,30));
+    cout << "M4 = " << endl << " " << M4 << endl << endl;
+#endif 
+
+#if 0
     // create by using the create function()
     M.create(4,4, CV_8UC(2));
     cout << "M = "<< endl << " "  << M << endl << endl;
+#endif 
 
+#if 0
     // create multidimensional matrices
     int sz[3] = {2,2,2};
     Mat L(3,sz, CV_8UC(1), Scalar::all(0));
@@ -39,20 +54,26 @@ int main(int,char**)
     // Create using MATLAB style eye, ones or zero matrix
     Mat E = Mat::eye(4, 4, CV_64F);
     cout << "E = " << endl << " " << E << endl << endl;
+#endif 
 
+#if 0
     Mat O = Mat::ones(2, 2, CV_32F);
     cout << "O = " << endl << " " << O << endl << endl;
 
     Mat Z = Mat::zeros(3,3, CV_8UC1);
     cout << "Z = " << endl << " " << Z << endl << endl;
+#endif 
 
+#if 0
     // create a 3x3 double-precision identity matrix
     Mat C = (Mat_<double>(3,3) << 0, -1, 0, -1, 5, -1, 0, -1, 0);
     cout << "C = " << endl << " " << C << endl << endl;
+#endif 
 
     Mat RowClone = C.row(1).clone();
     cout << "RowClone = " << endl << " " << RowClone << endl << endl;
 
+#if 0
     // Fill a matrix with random values
     Mat R = Mat(3, 2, CV_8UC3);
     randu(R, Scalar::all(0), Scalar::all(255));
@@ -81,5 +102,8 @@ int main(int,char**)
         vPoints[i] = Point2f((float)(i * 5), (float)(i % 7));
 
     cout << "A vector of 2D Points = " << vPoints << endl << endl;
+
+#endif 
+
     return 0;
 }

@@ -1,4 +1,4 @@
-/**
+/** 
  * @file LinearTransforms.cpp
  * @brief Simple program to change contrast and brightness
  * @date Mon, June 6, 2011
@@ -42,7 +42,8 @@ static void on_trackbar( int, void* )
 int main( int, char** argv )
 {
    /// Read image given by user
-   image = imread( argv[1] );
+//   image = imread( argv[1] );
+   image = imread( "/home/peter/lena.jpg" );
 
    /// Initialize values
    alpha = 1;

@@ -43,8 +43,11 @@ static void on_trackbar( int, void* )
 int main( void )
 {
    /// Read image ( same size, same type )
-   src1 = imread("../images/LinuxLogo.jpg");
-   src2 = imread("../images/WindowsLogo.jpg");
+   src1 = imread("/home/peter/LinuxLogo.jpg");
+   src2 = imread("/home/peter/WindowsLogo.jpg");
+
+//   src1 = imread("../images/LinuxLogo.jpg");
+//   src2 = imread("../images/WindowsLogo.jpg");
 
    if( !src1.data ) { printf("Error loading src1 \n"); return -1; }
    if( !src2.data ) { printf("Error loading src2 \n"); return -1; }
