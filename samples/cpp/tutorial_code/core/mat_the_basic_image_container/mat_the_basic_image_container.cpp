@@ -24,14 +24,18 @@ int main(int,char**)
 {
     help();
 
+#if 0
     // create by using the constructor
     Mat M(2,2, CV_8UC3, Scalar(0,0,255));
     cout << "M = " << endl << " " << M << endl << endl;
+#endif
 
 #if 0
     Mat M2(2,1, CV_8UC3, Scalar(0,0,255));
     cout << "M2 = " << endl << " " << M2 << endl << endl;
+#endif
 
+#if 0
     Mat M3(1,1, CV_8UC3, Scalar(0,0,255));
     cout << "M3 = " << endl << " " << M3 << endl << endl;
 
@@ -69,9 +73,10 @@ int main(int,char**)
     Mat C = (Mat_<double>(3,3) << 0, -1, 0, -1, 5, -1, 0, -1, 0);
     cout << "C = " << endl << " " << C << endl << endl;
 #endif 
-
+#if 0
     Mat RowClone = C.row(1).clone();
     cout << "RowClone = " << endl << " " << RowClone << endl << endl;
+#endif
 
 #if 0
     // Fill a matrix with random values
@@ -85,18 +90,25 @@ int main(int,char**)
     cout << "R (csv)     = " << endl << format(R,"csv"   ) << endl << endl;
     cout << "R (c)       = " << endl << format(R,"C"     ) << endl << endl;
 
+#endif
+
+#if 0
     Point2f P(5, 1);
     cout << "Point (2D) = " << P << endl << endl;
 
     Point3f P3f(2, 6, 7);
     cout << "Point (3D) = " << P3f << endl << endl;
+#endif
 
 
+#if 0
     vector<float> v;
     v.push_back( (float)CV_PI);   v.push_back(2);    v.push_back(3.01f);
 
     cout << "Vector of floats via Mat = " << Mat(v) << endl << endl;
+#endif
 
+#if 0
     vector<Point2f> vPoints(20);
     for (size_t i = 0; i < vPoints.size(); ++i)
         vPoints[i] = Point2f((float)(i * 5), (float)(i % 7));
