@@ -2,6 +2,9 @@
 #include <opencv2/opencv.hpp>  // full path ~/opencv-2.4.11/include/opencv2/opencv.hpp
 #include <iostream>
 #include <fstream> 
+#include <sys/timeb.h>
+#include <sys/time.h>
+
 
 #define aaa cout << "MO: [aaaaaaaaa] FILE=%s " <<  __FILE__  <<  " FUNCTION=%s " <<  __FUNCTION__ <<  " LINE=%d" <<  __LINE__ << endl ;
 
@@ -20,9 +23,66 @@ void onTrackbarSlide( int pos, void *) {
  g_dontset = 0; 
 } 
 
+int getMilliCount(){
+    timeb tb;
+    ftime(&tb);
+    int nCount = tb.millitm + (tb.time & 0xfffff) * 1000;
+    return nCount;
+}
+
+int getMilliSpan(int nTimeStart){
+    int nSpan = getMilliCount() - nTimeStart;
+    if(nSpan < 0)
+	nSpan += 0x100000 * 1000;
+    return nSpan;
+}
+
+
+long long getMilliCount2(){
+    struct timeval tp;
+    gettimeofday(&tp, NULL);
+    long long mslong = (long long) tp.tv_sec * 1000L + tp.tv_usec / 1000; //get current timestamp in milliseconds
+    return mslong ;
+}
+
+
+
 
 int main( int argc, char** argv )
 {
+
+#if 1
+
+    struct timeval tp;
+    gettimeofday(&tp, NULL);
+    long long mslong = (long long) tp.tv_sec * 1000L + tp.tv_usec / 1000; //get current timestamp in milliseconds
+    
+    long long ms_start = getMilliCount2() ;    
+
+    std::cout << "ms_start = "  << ms_start << std::endl;
+
+
+    cout <<" try milliseconds example " << endl;
+
+    printf("\n\nStarting timer...");
+
+
+    // CODE YOU WANT TO TIME
+    for(int i = 0; i < 1000000; i++){
+	int a = 55/16 ;
+    }
+
+
+    long long ms_end = getMilliCount2() ;    
+
+    std::cout << "ms_end = "  << ms_end << std::endl;
+
+    printf("\n\nElapsed time = %u milliseconds", ms_end - ms_start);
+
+    printf("\n\n");
+
+
+#endif 
 
 #if 0
     cout <<" example 2-1 and example 2-2" << endl;
@@ -78,7 +138,7 @@ int main( int argc, char** argv )
 #endif 
 
 
-#if 1
+#if 0
 //    cv::namedWindow( "example 2-3", cv::WINDOW_AUTOSIZE ); 
 //
 //    namedWindow( "Example3", WINDOW_AUTOSIZE ); 
