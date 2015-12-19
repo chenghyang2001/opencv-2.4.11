@@ -1,3 +1,4 @@
+//file:    /home/peter/opencv-2.4.11/samples/cpp/hello.cpp   03:26  20151220 
 
 #include <opencv2/opencv.hpp>  // full path ~/opencv-2.4.11/include/opencv2/opencv.hpp
 #include <iostream>
@@ -336,6 +337,13 @@ int main( int argc, char** argv )
 
 
 /* 
+ * ===============================================================
+   20151220
+
+   1. Say create a new souce file example2.cpp, 
+      then in build, enter "cmake .." -> "make -j8". 
+      example2.cpp will be built and generate cpp-example-example2
+   
  * ===============================================================
    20151219 
    
