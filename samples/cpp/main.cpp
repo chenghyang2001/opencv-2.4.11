@@ -397,8 +397,7 @@ void processSide(std::vector<Lane> lanes, IplImage *edges, bool right) {
 
 	bool update_ok = (k_diff <= K_VARY_FACTOR && b_diff <= B_VARY_FACTOR) || side->reset;
 
-	printf("side: %s, k vary: %.4f, b vary: %.4f, lost: %s\n", 
-		(right?"RIGHT":"LEFT"), k_diff, b_diff, (update_ok?"no":"yes"));
+//        printf("side: %s, k vary: %.4f, b vary: %.4f, lost: %s\n", (right?"RIGHT":"LEFT"), k_diff, b_diff, (update_ok?"no":"yes"));
 
 	if (update_ok) {
 	    // update is in valid bounds
@@ -415,7 +414,7 @@ void processSide(std::vector<Lane> lanes, IplImage *edges, bool right) {
 	}
 
     } else {
-	printf("no lanes detected - lane tracking lost! counter increased\n");
+//        printf("no lanes detected - lane tracking lost! counter increased\n");
 	side->lost++;
 	if (side->lost >= MAX_LOST_FRAMES && !side->reset) {
 	    // do full reset when lost for more than N frames
@@ -483,6 +482,23 @@ void processLanes(CvSeq* lines, IplImage* edges, IplImage* temp_frame) {
 	    cvPoint(x2, laneL.k.get() * x2 + laneL.b.get()), CV_RGB(255, 0, 255), 2);
 }
 
+
+
+// Get current date/time, format is YYYY-MM-DD.HH:mm:ss
+const std::string currentDateTime() {
+    time_t     now = time(0);
+    struct tm  tstruct;
+    char       buf[80];
+    tstruct = *localtime(&now);
+    // Visit http://en.cppreference.com/w/cpp/chrono/c/strftime
+    // for more information about date/time format
+    strftime(buf, sizeof(buf), "%Y-%m-%d.%X", &tstruct);
+
+    return buf;
+}
+
+
+
 int main(void)
 {
 
@@ -506,6 +522,10 @@ int main(void)
     video_size.height = (int) cvGetCaptureProperty(input_video, CV_CAP_PROP_FRAME_HEIGHT);
     video_size.width  = (int) cvGetCaptureProperty(input_video, CV_CAP_PROP_FRAME_WIDTH);
 
+    printf("video height = %d \n", video_size.height );
+    printf("video width = %d \n", video_size.width );
+
+
     long current_frame = 0;
     int    key_pressed = 0;
     IplImage *frame    = NULL;
@@ -520,8 +540,13 @@ int main(void)
     CvMemStorage* haarStorage        = cvCreateMemStorage(0);
     CvHaarClassifierCascade* cascade = (CvHaarClassifierCascade*)cvLoad("cars3.xml");
 
+    static int count = 0 ;
     //cvSetCaptureProperty(input_video, CV_CAP_PROP_POS_FRAMES, current_frame);
     while(key_pressed != 27) {
+
+	count = count + 1; 
+	printf("count  = %d \n", count );
+	std::cout << "currentDateTime() = " << currentDateTime() << std::endl;
 
 	frame = cvQueryFrame(input_video);
 	if (frame == NULL) {
@@ -557,12 +582,13 @@ int main(void)
 	cvLine(temp_frame, cvPoint(frame_size.width/2,0), cvPoint(frame_size.width/2,frame_size.height), CV_RGB(255, 255, 0), 1);
 
 	cvShowImage("Grey",  grey);
-	cvShowImage("Edges", edges);
-	cvShowImage("Color", temp_frame);
-
 	cvMoveWindow("Grey",  0, 0); 
-	cvMoveWindow("Edges", 0, frame_size.height+25);
-	cvMoveWindow("Color", 0, 2*(frame_size.height+25)); 
+
+//        cvShowImage("Edges", edges);
+//        cvMoveWindow("Edges", 0, frame_size.height+25);
+
+//        cvShowImage("Color", temp_frame);
+//        cvMoveWindow("Color", 0, 2*(frame_size.height+25)); 
 
 	key_pressed = cvWaitKey(15);
     }
