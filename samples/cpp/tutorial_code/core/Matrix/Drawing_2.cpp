@@ -1,4 +1,4 @@
-/**
+/** 
  * @file Drawing_2.cpp
  * @brief Simple sample code
  */
@@ -11,7 +11,8 @@
 using namespace cv;
 
 /// Global Variables
-const int NUMBER = 100;
+//const int NUMBER = 100;
+const int NUMBER = 4;
 const int DELAY = 5;
 
 const int window_width = 900;
@@ -52,6 +53,7 @@ int main( void )
   imshow( window_name, image );
   waitKey( DELAY );
 
+#if 0
   /// Now, let's draw some lines
   c = Drawing_Random_Lines(image, window_name, rng);
   if( c != 0 ) return 0;
@@ -80,6 +82,7 @@ int main( void )
   c = Displaying_Random_Text( image, window_name, rng );
   if( c != 0 ) return 0;
 
+#endif 
   /// Displaying the big end!
   c = Displaying_Big_End( image, window_name, rng );
   if( c != 0 ) return 0;
@@ -288,8 +291,7 @@ int Displaying_Random_Text( Mat image, char* window_name, RNG rng )
     org.x = rng.uniform(x_1, x_2);
     org.y = rng.uniform(y_1, y_2);
 
-    putText( image, "Testing text rendering", org, rng.uniform(0,8),
-             rng.uniform(0,100)*0.05+0.1, randomColor(rng), rng.uniform(1, 10), lineType);
+    putText( image, "Testing text rendering", org, rng.uniform(0,8), rng.uniform(0,100)*0.05+0.1, randomColor(rng), rng.uniform(1, 10), lineType);
 
     imshow( window_name, image );
     if( waitKey(DELAY) >= 0 )
