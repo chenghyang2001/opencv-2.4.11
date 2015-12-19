@@ -1,4 +1,4 @@
-/*  For description look into the help() function. */
+/*  For description look into the help() function. */ 
 
 #include "opencv2/core/core.hpp"
 #include <iostream>

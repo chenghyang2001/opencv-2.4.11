@@ -21,7 +21,8 @@ void Sharpen(const Mat& myImage,Mat& Result);
 int main( int argc, char* argv[])
 {
     help(argv[0]);
-    const char* filename = argc >=2 ? argv[1] : "lena.jpg";
+//    const char* filename = argc >=2 ? argv[1] : "lena.jpg";
+    const char* filename = argc >=2 ? argv[1] : "/home/peter/lena.jpg";
 
     Mat I, J, K;
 
