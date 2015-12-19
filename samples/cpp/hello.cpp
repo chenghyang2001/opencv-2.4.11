@@ -343,7 +343,18 @@ int main( int argc, char** argv )
    1. Say create a new souce file example2.cpp, 
       then in build, enter "cmake .." -> "make -j8". 
       example2.cpp will be built and generate cpp-example-example2
-   
+
+   2. there is time esclipsed calculation sample code in file 
+       /home/peter/opencv-2.4.11/samples/cpp/tutorial_code/core/how_to_scan_images/how_to_scan_images.cpp
+
+	t = (double)getTickCount();
+	for (int i = 0; i < times; ++i) {
+	    LUT(I, lookUpTable, J);
+	}
+	t = 1000*((double)getTickCount() - t)/getTickFrequency();
+	t /= times;
+	cout << "Time of reducing with the LUT function (averaged for " << times << " runs): " << t << " milliseconds."<< endl;
+
  * ===============================================================
    20151219 
    

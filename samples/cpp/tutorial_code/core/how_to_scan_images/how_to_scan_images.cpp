@@ -115,6 +115,10 @@ int main( int argc, char* argv[])
         LUT(I, lookUpTable, J);
 
     t = 1000*((double)getTickCount() - t)/getTickFrequency();
+
+    double t_total = t ;
+    cout << "total time : " << t_total << " milliseconds."<< endl;
+
     t /= times;
 
     cout << "Time of reducing with the LUT function (averaged for "
