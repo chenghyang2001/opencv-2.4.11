@@ -42,6 +42,9 @@ long long getMilliCount2(){
 int main( int argc, char** argv )
 {
 
+    double t;
+    t = (double)getTickCount();
+
 #if 1
 
     struct timeval tp;

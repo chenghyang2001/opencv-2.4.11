@@ -1,10 +1,16 @@
-﻿#include <stdio.h>
+﻿#include <opencv2/opencv.hpp>  // full path ~/opencv-2.4.11/include/opencv2/opencv.hpp
+#include <iostream>
+#include <fstream> 
+#include <sys/timeb.h>
+#include <sys/time.h>
+
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/opencv.hpp>
 #include <math.h>
 #include <sys/time.h>
 #include "utils.h"
+#include <stdio.h>
 
 #define USE_VIDEO 1
 
@@ -21,6 +27,9 @@
 #define K_VARY_FACTOR   0.2f
 #define B_VARY_FACTOR   20
 #define MAX_LOST_FRAMES 30
+
+using namespace cv; 
+using namespace std;
 
 Status laneR, laneL;
 std::vector<Vehicle> vehicles;
@@ -554,6 +563,9 @@ int main(void)
     //cvSetCaptureProperty(input_video, CV_CAP_PROP_POS_FRAMES, current_frame);
     while(key_pressed != 27) {
 
+	double t;
+	t = (double)getTickCount();
+
 	count = count + 1; 
 
 	ms_start = getMilliCount2() ;    
@@ -606,7 +618,10 @@ int main(void)
 	key_pressed = cvWaitKey(15);
 
 	ms_end = getMilliCount2() ;    
-	std::cout << " count = " << count << " start = "  << ms_start <<  " end = " << ms_end << " eclipsed = "  << (ms_end - ms_start)  << std::endl;
+	t = 1000*((double)getTickCount() - t)/getTickFrequency();
+//        std::cout << " count = " << count << " start = "  << ms_start <<  " end = " << ms_end << " eclipsed = "  << (ms_end - ms_start)  << std::endl;
+	std::cout << " count = " << count << " t  = "  << t  << " milliseconds."  << std::endl;
+
     }
 
     cvReleaseHaarClassifierCascade(&cascade);
