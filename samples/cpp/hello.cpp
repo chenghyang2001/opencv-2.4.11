@@ -75,17 +75,11 @@ int main( int argc, char** argv )
 
 #endif 
 
-    // 1. load image example, see /home/peter/opencv-2.4.11/samples/cpp/example2.cpp
-
-
-
-
-
-
-
- 
-
-
+    // 1. load image example,    see /home/peter/opencv-2.4.11/samples/cpp/example2.cpp
+    // 2. load video example,    see /home/peter/opencv-2.4.11/samples/cpp/example3.cpp
+    // 3. add trackbar  example, see /home/peter/opencv-2.4.11/samples/cpp/example4.cpp
+    // 4. image process example, see /home/peter/opencv-2.4.11/samples/cpp/example5.cpp
+    // 5. image process example, see /home/peter/opencv-2.4.11/samples/cpp/example7.cpp
 
     return 0;
 }
