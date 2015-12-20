@@ -26,7 +26,8 @@ int main(int,char**)
 
 #if 0
     // create by using the constructor
-    Mat M(2,2, CV_8UC3, Scalar(0,0,255));
+//    Mat M(2,2, CV_8UC3, Scalar(0,0,255));
+    Mat M(2,2, CV_8UC3, Scalar(10,20,30));
     cout << "M = " << endl << " " << M << endl << endl;
 #endif
 
@@ -45,6 +46,7 @@ int main(int,char**)
 
 #if 0
     // create by using the create function()
+    Mat M(2,2, CV_8UC3, Scalar(0,0,255));
     M.create(4,4, CV_8UC(2));
     cout << "M = "<< endl << " "  << M << endl << endl;
 #endif 

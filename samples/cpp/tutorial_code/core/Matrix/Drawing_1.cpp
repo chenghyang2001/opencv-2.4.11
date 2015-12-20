@@ -22,9 +22,10 @@ void MyLine( Mat img, Point start, Point end );
  */
 int main( void ){
 
+#if 0
   // atom image related. >>
   /// Windows names
-  char atom_window[] = "Drawing 1: Atom";
+  char atom_window[] = "Drawing 1: Atom"; 
   /// Create black empty images
   Mat atom_image = Mat::zeros( w, w, CV_8UC3 );
   /// 1.a. Creating ellipses
@@ -41,8 +42,9 @@ int main( void ){
   imshow( atom_window, atom_image );
   moveWindow( atom_window, 0, 200 );
   // atom image related. <<
+#endif 
 
-#if 0
+#if 1
   // rook image >>
   char rook_window[] = "Drawing 2: Rook";
   Mat rook_image = Mat::zeros( w, w, CV_8UC3 );
@@ -50,6 +52,7 @@ int main( void ){
   /// 2.a. Create a convex polygon
   MyPolygon( rook_image );
 
+#if 0
   /// 2.b. Creating rectangles
   rectangle( rook_image,
          Point( 0, 7*w/8 ),
@@ -57,11 +60,14 @@ int main( void ){
          Scalar( 0, 255, 255 ),
          -1,
          8 );
-  
+#endif
+
+#if 0
   MyLine( rook_image, Point( 0, 15*w/16 ), Point( w, 15*w/16 ) );
   MyLine( rook_image, Point( w/4, 7*w/8 ), Point( w/4, w ) );
   MyLine( rook_image, Point( w/2, 7*w/8 ), Point( w/2, w ) );
   MyLine( rook_image, Point( 3*w/4, 7*w/8 ), Point( 3*w/4, w ) );
+#endif
 
   imshow( rook_window, rook_image );
   moveWindow( rook_window, w, 200 );

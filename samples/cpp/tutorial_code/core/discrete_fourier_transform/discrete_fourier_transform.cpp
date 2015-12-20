@@ -20,7 +20,7 @@ int main(int argc, char ** argv)
 {
     help(argv[0]);
 
-//    const char* filename = argc >=2 ? argv[1] : "lena.jpg";
+//    const char* filename = argc >=2 ? argv[1] : "lena.jpg"; 
     const char* filename = argc >=2 ? argv[1] : "/home/peter/lena.jpg";
 
     Mat I = imread(filename, CV_LOAD_IMAGE_GRAYSCALE);
@@ -33,6 +33,8 @@ int main(int argc, char ** argv)
     copyMakeBorder(I, padded, 0, m - I.rows, 0, n - I.cols, BORDER_CONSTANT, Scalar::all(0));
 
     Mat planes[] = {Mat_<float>(padded), Mat::zeros(padded.size(), CV_32F)};
+//    cout << " planes = " << planes << endl;
+//    cout << " padded = " << padded << endl;
     Mat complexI;
     merge(planes, 2, complexI);         // Add to the expanded another plane with zeros
 
