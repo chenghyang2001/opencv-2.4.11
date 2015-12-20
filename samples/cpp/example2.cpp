@@ -15,5 +15,54 @@ using namespace std;
 int main( int argc, char** argv )
 {
 
-    cout <<" example2  " << endl;
+    cout <<" example 2-1 and example 2-2" << endl;
+
+    // must use absolute path, can not use relative path ~/lena.jpg. will not work.
+    Mat img = imread( "/home/peter/lena.jpg", -1 ); 
+
+    if( img.empty() ) {
+
+	cout << " missing parameter. " << endl;
+	return -1; 
+    }
+
+//    namedWindow( "Example2", WINDOW_AUTOSIZE ); 
+    namedWindow( "Example2", WINDOW_NORMAL ); 
+//    namedWindow( "Example2", WINDOW_OPENGL ); 
+    imshow( "Example2", img ); 
+
+//    moveWindow( "Example2", 100, 100 ); 
+//    waitKey( 0 ); 
+
+    resizeWindow( "Example2", 500, 200 ); 
+    waitKey( 0 ); 
+
+    resizeWindow( "Example2", 1024, 720 ); 
+    waitKey( 0 ); 
+
+    resizeWindow( "Example2", 500, 200 ); 
+    waitKey( 0 ); 
+
+    resizeWindow( "Example2", 1024, 720 ); 
+    waitKey( 0 ); 
+
+    resizeWindow( "Example2", 500, 200 ); 
+    waitKey( 0 ); 
+
+    resizeWindow( "Example2", 1024, 720 ); 
+    waitKey( 0 ); 
+
+    resizeWindow( "Example2", 500, 200 ); 
+    waitKey( 0 ); 
+
+    resizeWindow( "Example2", 1024, 720 ); 
+    waitKey( 0 ); 
+
+//    moveWindow( "Example2", 300, 300 ); 
+//    waitKey( 0 ); 
+
+//    moveWindow( "Example2", 700, 300 ); 
+//    waitKey( 0 ); 
+
+    destroyWindow( "Example2" ); 
 }
