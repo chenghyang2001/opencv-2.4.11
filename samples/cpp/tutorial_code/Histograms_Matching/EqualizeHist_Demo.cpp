@@ -23,7 +23,8 @@ int main( int, char** argv )
   const char* equalized_window = "Equalized Image";
 
   /// Load image
-  src = imread( argv[1], 1 );
+//  src = imread( argv[1], 1 );
+  src = imread( "/home/peter/lena.jpg" , 1 );
 
   if( !src.data )
     { cout<<"Usage: ./Histogram_Demo <path_to_image>"<<endl;

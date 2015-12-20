@@ -26,7 +26,9 @@ void Hist_and_Backproj(int, void* );
 int main( int, char** argv )
 {
   /// Read the image
-  src = imread( argv[1], 1 );
+//  src = imread( argv[1], 1 );
+  src = imread( "/home/peter/lena.jpg" , 1 );
+
   /// Transform it to HSV
   cvtColor( src, hsv, COLOR_BGR2HSV );
 

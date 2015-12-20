@@ -20,7 +20,8 @@ int main( int, char** argv )
   Mat src, dst;
 
   /// Load image
-  src = imread( argv[1], 1 );
+//  src = imread( argv[1], 1 );
+  src = imread( "/home/peter/lena.jpg" , 1 );
 
   if( !src.data )
     { return -1; }

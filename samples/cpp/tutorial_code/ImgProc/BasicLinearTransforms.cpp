@@ -19,7 +19,10 @@ int beta;  /**< Simple brightness control */
 int main( int, char** argv )
 {
    /// Read image given by user
-   Mat image = imread( argv[1] );
+//   Mat image = imread( argv[1] );
+   Mat image = imread( "/home/peter/lena.jpg" );
+
+
    Mat new_image = Mat::zeros( image.size(), image.type() );
 
    /// Initialize values
