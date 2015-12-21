@@ -50,7 +50,7 @@ int main(   )
 
 	ShowHelpText();
 	// 讀入用戶提供的圖像
-	g_srcImage = imread( "1.jpg");
+	g_srcImage = imread( "/home/peter/1.jpg");
 	if( !g_srcImage.data ) { printf("Oh，no，讀取g_srcImage圖形錯誤~！ \n"); return false; }
 	g_dstImage = Mat::zeros( g_srcImage.size(), g_srcImage.type() );
 

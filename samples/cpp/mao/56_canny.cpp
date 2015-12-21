@@ -28,7 +28,7 @@ using namespace cv;
 int main( )
 {
 	//載入原始圖  
-	Mat srcImage = imread("1.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
+	Mat srcImage = imread("/home/peter/1.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
 	Mat srcImage1=srcImage.clone();
 
 	//顯示原始圖 

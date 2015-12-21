@@ -54,7 +54,7 @@ int main( )
 	Mat hsvImage_halfDown;
 
 	//【2】載入基準影像(srcImage_base) 和兩張測試影像srcImage_test1、srcImage_test2，並顯示
-	srcImage_base = imread( "1.jpg",1 );
+	srcImage_base = imread( "/home/peter/1.jpg",1 );
 	srcImage_test1 = imread( "2.jpg", 1 );
 	srcImage_test2 = imread( "3.jpg", 1 );
 	//顯示載入的3張影像

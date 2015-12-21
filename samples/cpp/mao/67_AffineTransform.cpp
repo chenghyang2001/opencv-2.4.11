@@ -59,7 +59,7 @@ int main(  )
 	Mat srcImage, dstImage_warp, dstImage_warp_rotate;
 
 	//【2】加載源圖像並作一些初始化
-	srcImage = imread( "1.jpg", 1 );
+	srcImage = imread( "/home/peter/1.jpg", 1 );
 	if(!srcImage.data ) { printf("讀取圖形錯誤，請確定目錄下是否有imread函數指定的圖形存在~！ \n"); return false; } 
 	// 設定目標圖像的大小和類別型與源圖像一致
 	dstImage_warp = Mat::zeros( srcImage.rows, srcImage.cols, srcImage.type() );

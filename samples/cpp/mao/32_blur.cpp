@@ -25,7 +25,7 @@ using namespace cv;
 int main( )
 { 
 	//【1】載入原始圖
-	Mat srcImage=imread("1.jpg"); 
+	Mat srcImage=imread("/home/peter/1.jpg"); 
 
 	//【2】顯示原始圖
 	imshow( "均值濾波【原圖】", srcImage ); 

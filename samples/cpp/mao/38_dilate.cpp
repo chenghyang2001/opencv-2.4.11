@@ -32,7 +32,7 @@ int main(   )
 {
 
 	//載入原圖  
-	Mat image = imread("1.jpg");
+	Mat image = imread("/home/peter/1.jpg");
 
 	//建立視窗  
 	namedWindow("【原圖】膨脹操作");

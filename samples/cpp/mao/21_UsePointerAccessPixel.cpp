@@ -32,7 +32,7 @@ void ShowHelpText();
 int main( )  
 {  
 	//【1】建立原始圖並顯示
-	Mat srcImage = imread("1.jpg");  
+	Mat srcImage = imread("/home/peter/1.jpg");  
 	imshow("原始圖像",srcImage);  
 
 	//【2】按原始圖的參數規格來建立建立效果圖

@@ -57,7 +57,7 @@ int main( int argc, char** argv )
 
 	ShowHelpText();
 	// 讀入原圖像, 返回3通道圖像資料
-	g_srcImage = imread( "1.jpg", 1 );
+	g_srcImage = imread( "/home/peter/1.jpg", 1 );
 
 	// 把原圖像轉化成灰度圖像並進行平滑
 	cvtColor( g_srcImage, g_grayImage, CV_BGR2GRAY );

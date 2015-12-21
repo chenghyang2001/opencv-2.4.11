@@ -42,7 +42,7 @@ void ShowHelpText()
 int main()
 {
 	//【1】載入原圖並顯示
-	Mat srcImage = imread("1.jpg", 0);
+	Mat srcImage = imread("/home/peter/1.jpg", 0);
 	imshow("原圖",srcImage);
 	if(!srcImage.data) {cout << "fail to load image" << endl; 	return 0;}
 

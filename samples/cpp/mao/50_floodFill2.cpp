@@ -118,7 +118,7 @@ int main( int argc, char** argv )
 	system("color 2F");    
 
 	//載入原圖
-	g_srcImage = imread("1.jpg", 1);
+	g_srcImage = imread("/home/peter/1.jpg", 1);
 
 	if( !g_srcImage.data ) { printf("Oh，no，讀取圖形image0錯誤~！ \n"); return false; }  
 

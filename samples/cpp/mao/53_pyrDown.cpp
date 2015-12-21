@@ -26,7 +26,7 @@ using namespace cv;
 int main( )
 {
 	//載入原始圖   
-	Mat srcImage = imread("1.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
+	Mat srcImage = imread("/home/peter/1.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
 	Mat tmpImage,dstImage;//臨時變數和目標圖的定義
 	tmpImage=srcImage;//將原始圖賦給臨時變數
 

@@ -28,7 +28,7 @@ using namespace cv;
 int main( )
 {
 	//載入原始圖   
-	Mat image = imread("1.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
+	Mat image = imread("/home/peter/1.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
 	//建立視窗   
 	namedWindow("【原始圖】黑帽運算");  
 	namedWindow("【效果圖】黑帽運算");  

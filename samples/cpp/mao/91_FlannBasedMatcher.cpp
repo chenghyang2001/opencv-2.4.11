@@ -43,7 +43,7 @@ int main( int argc, char** argv )
 	ShowHelpText();  
 
 	//【1】載入源圖形
-	Mat img_1 = imread("1.jpg", 1 );
+	Mat img_1 = imread("/home/peter/1.jpg", 1 );
 	Mat img_2 = imread( "2.jpg", 1 );
 	if( !img_1.data || !img_2.data ) { printf("讀取圖形image0錯誤~！ \n"); return false; }  
 

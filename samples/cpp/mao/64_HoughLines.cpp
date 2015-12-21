@@ -49,7 +49,7 @@ int main( )
 	ShowHelpText();
 
 	//載入原始圖和Mat變數定義   
-	Mat g_srcImage = imread("1.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
+	Mat g_srcImage = imread("/home/peter/1.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
 
 	//顯示原始圖  
 	imshow("【原始圖】", g_srcImage);  

@@ -29,7 +29,7 @@ using namespace cv;
 int main( int argc, char** argv )
 {
 	// 【1】載入原始圖，且必須以二值圖模式載入
-	Mat srcImage=imread("1.jpg", 0);
+	Mat srcImage=imread("/home/peter/1.jpg", 0);
 	imshow("原始圖",srcImage);
 
 	//【2】初始化結果圖

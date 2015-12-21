@@ -31,7 +31,7 @@ int main(  )
 	Mat map_x, map_y;
 
 	//【1】載入原始圖
-	srcImage = imread( "1.jpg", 1 );
+	srcImage = imread( "/home/peter/1.jpg", 1 );
 	if(!srcImage.data ) { printf("讀取圖形錯誤，請確定目錄下是否有imread函數指定的圖形存在~！ \n"); return false; }  
 	imshow("原始圖",srcImage);
 

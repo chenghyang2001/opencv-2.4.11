@@ -30,7 +30,7 @@ int main( )
 	Mat src,src_gray,dst, abs_dst;
 
 	//【1】載入原始圖  
-	src = imread("1.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
+	src = imread("/home/peter/1.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
 
 	//【2】顯示原始圖 
 	imshow("【原始圖】圖像Laplace變換", src); 

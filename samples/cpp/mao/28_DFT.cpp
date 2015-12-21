@@ -42,7 +42,7 @@ int main( )
 {
 
 	//【1】以灰度模式讀取原始圖像並顯示
-	Mat srcImage = imread("1.jpg", 0);
+	Mat srcImage = imread("/home/peter/1.jpg", 0);
 	if(!srcImage.data ) { printf("讀取圖形錯誤，請確定目錄下是否有imread函數指定圖形存在~！ \n"); return false; } 
 	imshow("原始圖像" , srcImage);   
 

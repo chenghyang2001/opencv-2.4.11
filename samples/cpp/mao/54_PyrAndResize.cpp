@@ -52,7 +52,7 @@ int main( )
 	ShowHelpText();
 
 	//¿¿¿¿
-	g_srcImage = imread("1.jpg");//¿¿¿¿¿¿¿¿¿¿¿¿1.jpg¿¿¿¿¿¿¿¿¿¿¿¿2¿N¿¿¿¿¿N¿¿¿¿¿¿¿¿
+	g_srcImage = imread("/home/peter/1.jpg");//¿¿¿¿¿¿¿¿¿¿¿¿1.jpg¿¿¿¿¿¿¿¿¿¿¿¿2¿N¿¿¿¿¿N¿¿¿¿¿¿¿¿
 	if( !g_srcImage.data ) { printf("Oh¿no¿¿¿srcImage¿¿~¿ \n"); return false; }
 
 	// ¿¿¿¿¿¿

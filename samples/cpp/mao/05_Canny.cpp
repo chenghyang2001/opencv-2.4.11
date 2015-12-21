@@ -23,7 +23,7 @@ using namespace cv;
 int main( )
 {
 	//【0】載入原始圖  
-	Mat srcImage = imread("1.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
+	Mat srcImage = imread("/home/peter/1.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
 	imshow("【原始圖】Canny邊緣檢測", srcImage); 	//顯示原始圖 
 	Mat dstImage,edge,grayImage;	//參數定義
 

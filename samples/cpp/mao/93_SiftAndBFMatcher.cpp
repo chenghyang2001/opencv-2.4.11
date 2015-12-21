@@ -48,7 +48,7 @@ int main()
 	ShowHelpText();
 
 	//【1】載入圖像、顯示並轉化為灰度圖
-	Mat trainImage = imread("1.jpg"), trainImage_gray;
+	Mat trainImage = imread("/home/peter/1.jpg"), trainImage_gray;
 	imshow("原始圖",trainImage);
 	cvtColor(trainImage, trainImage_gray, CV_BGR2GRAY);
 

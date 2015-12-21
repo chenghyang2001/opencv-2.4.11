@@ -59,7 +59,7 @@ int main(   )
 	ShowHelpText();	
 
 	// 載入原圖
-	g_srcImage = imread( "1.jpg", 1 );
+	g_srcImage = imread( "/home/peter/1.jpg", 1 );
 	if( !g_srcImage.data ) { printf("讀取srcImage錯誤~！ \n"); return false; }
 
 	//克隆原圖到四個Mat類別型中

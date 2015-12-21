@@ -22,7 +22,7 @@ using namespace cv;
 int main()  
 {  
 	//以灰度模式載入圖像並顯示
-	Mat srcImage = imread("1.jpg", 0);  
+	Mat srcImage = imread("/home/peter/1.jpg", 0);  
 	imshow("原始圖", srcImage);  
 
 	//進行Harris角點檢測找出角點
