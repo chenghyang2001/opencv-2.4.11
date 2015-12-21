@@ -1,19 +1,20 @@
 #include <stdio.h>
+//:read /home/peter/mao/48_Morphology.cpp
 
-//--------------------------------------\u3010\u7a0b\u5e8f\u8aaa\u660e\u3011-------------------------------------------
-//		\u7a0b\u5e8f\u8aaa\u660e\uff1a\u300aOpenCV3\u7a0b\u5f0f\u8a2d\u8a08\u5165\u9580\u300bOpenCV2\u7248\u66f8\u672c\u914d\u5957\u7bc4\u4f8b\u7a0b\u5e8f48
-//		\u7a0b\u5e8f\u63cf\u8ff0\uff1a\u5f62\u614b\u5b78\u5716\u50cf\u8655\u7406\u2014\u2014\u958b\u904b\u7b97\u3001\u9589\u904b\u7b97\u3001\u5f62\u614b\u5b78\u68af\u5ea6\u3001\u9802\u5e3d\u3001\u9ed1\u5e3d
-//		\u958b\u767c\u6e2c\u8a66\u6240\u7528\u64cd\u4f5c\u7cfb\u7d71\uff1a Windows 7 64bit
-//		\u958b\u767c\u6e2c\u8a66\u6240\u7528IDE\u7248\u672c\uff1aVisual Studio 2010
-//		\u958b\u767c\u6e2c\u8a66\u6240\u7528OpenCV\u7248\u672c\uff1a	2.4.9
-//		2014\u5e7406\u6708 Created by @\u6dfa\u58a8_\u6bdb\u661f\u4e91
-//		2014\u5e7411\u6708 Revised by @\u6dfa\u58a8_\u6bdb\u661f\u4e91
+//--------------------------------------【程序說明】-------------------------------------------
+//		程序說明：《OpenCV3程式設計入門》OpenCV2版書本配套範例程序48
+//		程序描述：形態學圖像處理——開運算、閉運算、形態學梯度、頂帽、黑帽
+//		開發測試所用操作系統： Windows 7 64bit
+//		開發測試所用IDE版本：Visual Studio 2010
+//		開發測試所用OpenCV版本：	2.4.9
+//		2014年06月 Created by @淺墨_毛星云
+//		2014年11月 Revised by @淺墨_毛星云
 //------------------------------------------------------------------------------------------------
 
 
 
-//---------------------------------\u3010\u982d\u6587\u4ef6\u3001\u547d\u540d\u7a7a\u9593\u5305\u542b\u90e8\u5206\u3011----------------------------
-//		\u63cf\u8ff0\uff1a\u5305\u542b\u7a0b\u5e8f\u6240\u4f7f\u7528\u7684\u982d\u6587\u4ef6\u548c\u547d\u540d\u7a7a\u9593
+//---------------------------------【頭文件、命名空間包含部分】----------------------------
+//		描述：包含程序所使用的頭文件和命名空間
 //------------------------------------------------------------------------------------------------
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui/highgui.hpp>
@@ -22,13 +23,13 @@ using namespace std;
 using namespace cv;
 
 
-//-----------------------------------\u3010\u5168\u5c40\u8b8a\u6578\u5ba3\u544a\u90e8\u5206\u3011-----------------------------------
-//		\u63cf\u8ff0\uff1a\u5168\u5c40\u8b8a\u6578\u5ba3\u544a
+//-----------------------------------【全局變數宣告部分】-----------------------------------
+//		描述：全局變數宣告
 //-----------------------------------------------------------------------------------------------
-Mat g_srcImage, g_dstImage;//\u539f\u59cb\u5716\u548c\u6548\u679c\u5716
-int g_nElementShape = MORPH_RECT;//\u5143\u7d20\u7d50\u69cb\u7684\u5f62\u72c0
+Mat g_srcImage, g_dstImage;//原始圖和效果圖
+int g_nElementShape = MORPH_RECT;//元素結構的形狀
 
-//\u8b8a\u6578\u63a5\u6536\u7684TrackBar\u4f4d\u7f6e\u53c3\u6578
+//變數接收的TrackBar位置參數
 int g_nMaxIterationNum = 10;
 int g_nOpenCloseNum = 0;
 int g_nErodeDilateNum = 0;
@@ -36,74 +37,74 @@ int g_nTopBlackHatNum = 0;
 
 
 
-//-----------------------------------\u3010\u5168\u5c40\u51fd\u6578\u5ba3\u544a\u90e8\u5206\u3011--------------------------------------
-//		\u63cf\u8ff0\uff1a\u5168\u5c40\u51fd\u6578\u5ba3\u544a
+//-----------------------------------【全局函數宣告部分】--------------------------------------
+//		描述：全局函數宣告
 //-----------------------------------------------------------------------------------------------
-static void on_OpenClose(int, void*);//\u56de\u8abf\u51fd\u6578
-static void on_ErodeDilate(int, void*);//\u56de\u8abf\u51fd\u6578
-static void on_TopBlackHat(int, void*);//\u56de\u8abf\u51fd\u6578
+static void on_OpenClose(int, void*);//回調函數
+static void on_ErodeDilate(int, void*);//回調函數
+static void on_TopBlackHat(int, void*);//回調函數
 static void ShowHelpText();
 
 
-//-----------------------------------\u3010main( )\u51fd\u6578\u3011--------------------------------------------
-//		\u63cf\u8ff0\uff1a\u63a7\u5236\u81fa\u61c9\u7528\u7a0b\u5e8f\u7684\u5165\u53e3\u51fd\u6578\uff0c\u6211\u5011\u7684\u7a0b\u5e8f\u5f9e\u9019\u91cc\u958b\u59cb
+//-----------------------------------【main( )函數】--------------------------------------------
+//		描述：控制臺應用程序的入口函數，我們的程序從這里開始
 //-----------------------------------------------------------------------------------------------
 int main( )
 {
-	//\u6539\u8b8aconsole\u5b57\u9ad4\u984f\u8272
+	//改變console字體顏色
 	system("color 2F");  
 
 	ShowHelpText();
 
-	//\u8f09\u5165\u539f\u5716
+	//載入原圖
 	g_srcImage = imread("1.jpg");
-	if( !g_srcImage.data ) { printf("Oh\uff0cno\uff0c\u8b80\u53d6srcImage\u932f\u8aa4~\uff01 \n"); return false; }
+	if( !g_srcImage.data ) { printf("Oh，no，讀取srcImage錯誤~！ \n"); return false; }
 
-	//\u986f\u793a\u539f\u59cb\u5716
-	namedWindow("\u3010\u539f\u59cb\u5716\u3011");
-	imshow("\u3010\u539f\u59cb\u5716\u3011", g_srcImage);
+	//顯示原始圖
+	namedWindow("【原始圖】");
+	imshow("【原始圖】", g_srcImage);
 
-	//\u5efa\u7acb\u4e09\u500b\u8996\u7a97
-	namedWindow("\u3010\u958b\u904b\u7b97/\u9589\u904b\u7b97\u3011",1);
-	namedWindow("\u3010\u8150\u8755/\u81a8\u8139\u3011",1);
-	namedWindow("\u3010\u9802\u5e3d/\u9ed1\u5e3d\u3011",1);
+	//建立三個視窗
+	namedWindow("【開運算/閉運算】",1);
+	namedWindow("【腐蝕/膨脹】",1);
+	namedWindow("【頂帽/黑帽】",1);
 
-	//\u53c3\u6578\u8ce6\u503c
+	//參數賦值
 	g_nOpenCloseNum=9;
 	g_nErodeDilateNum=9;
 	g_nTopBlackHatNum=2;
 
-	//\u5206\u5225\u70ba\u4e09\u500b\u8996\u7a97\u5efa\u7acb\u6372\u8ef8
-	createTrackbar("\u504f\u79fb\u91cf", "\u3010\u958b\u904b\u7b97/\u9589\u904b\u7b97\u3011",&g_nOpenCloseNum,g_nMaxIterationNum*2+1,on_OpenClose);
-	createTrackbar("\u504f\u79fb\u91cf", "\u3010\u8150\u8755/\u81a8\u8139\u3011",&g_nErodeDilateNum,g_nMaxIterationNum*2+1,on_ErodeDilate);
-	createTrackbar("\u504f\u79fb\u91cf", "\u3010\u9802\u5e3d/\u9ed1\u5e3d\u3011",&g_nTopBlackHatNum,g_nMaxIterationNum*2+1,on_TopBlackHat);
+	//分別為三個視窗建立捲軸
+	createTrackbar("偏移量", "【開運算/閉運算】",&g_nOpenCloseNum,g_nMaxIterationNum*2+1,on_OpenClose);
+	createTrackbar("偏移量", "【腐蝕/膨脹】",&g_nErodeDilateNum,g_nMaxIterationNum*2+1,on_ErodeDilate);
+	createTrackbar("偏移量", "【頂帽/黑帽】",&g_nTopBlackHatNum,g_nMaxIterationNum*2+1,on_TopBlackHat);
 
-	//\u8f2a\u8a62\u53d6\u5f97\u6309\u9375\u8a0a\u606f
+	//輪詢取得按鍵訊息
 	while(1)
 	{
 		int c;
 
-		//\u57f7\u884c\u56de\u8abf\u51fd\u6578
+		//執行回調函數
 		on_OpenClose(g_nOpenCloseNum, 0);
 		on_ErodeDilate(g_nErodeDilateNum, 0);
 		on_TopBlackHat(g_nTopBlackHatNum,0);
 
-		//\u53d6\u5f97\u6309\u9375
+		//取得按鍵
 		c = waitKey(0);
 
-		//\u6309\u4e0b\u9375\u76e4\u6309\u9375Q\u6216\u8005ESC\uff0c\u7a0b\u5e8f\u9000\u51fa
+		//按下鍵盤按鍵Q或者ESC，程序退出
 		if( (char)c == 'q'||(char)c == 27 )
 			break;
-		//\u6309\u4e0b\u9375\u76e4\u6309\u93751\uff0c\u4f7f\u7528\u6a62\u5713(Elliptic)\u7d50\u69cb\u5143\u7d20\u7d50\u69cb\u5143\u7d20MORPH_ELLIPSE
-		if( (char)c == 49 )//\u9375\u76e4\u6309\u93751\u7684ASII\u78bc\u70ba49
+		//按下鍵盤按鍵1，使用橢圓(Elliptic)結構元素結構元素MORPH_ELLIPSE
+		if( (char)c == 49 )//鍵盤按鍵1的ASII碼為49
 			g_nElementShape = MORPH_ELLIPSE;
-		//\u6309\u4e0b\u9375\u76e4\u6309\u93752\uff0c\u4f7f\u7528\u77e9\u5f62(Rectangle)\u7d50\u69cb\u5143\u7d20MORPH_RECT
-		else if( (char)c == 50 )//\u9375\u76e4\u6309\u93752\u7684ASII\u78bc\u70ba50
+		//按下鍵盤按鍵2，使用矩形(Rectangle)結構元素MORPH_RECT
+		else if( (char)c == 50 )//鍵盤按鍵2的ASII碼為50
 			g_nElementShape = MORPH_RECT;
-		//\u6309\u4e0b\u9375\u76e4\u6309\u93753\uff0c\u4f7f\u7528\u5341\u5b57\u5f62(Cross-shaped)\u7d50\u69cb\u5143\u7d20MORPH_CROSS
-		else if( (char)c == 51 )//\u9375\u76e4\u6309\u93753\u7684ASII\u78bc\u70ba51
+		//按下鍵盤按鍵3，使用十字形(Cross-shaped)結構元素MORPH_CROSS
+		else if( (char)c == 51 )//鍵盤按鍵3的ASII碼為51
 			g_nElementShape = MORPH_CROSS;
-		//\u6309\u4e0b\u9375\u76e4\u6309\u9375space\uff0c\u5728\u77e9\u5f62\u3001\u6a62\u5713\u3001\u5341\u5b57\u5f62\u7d50\u69cb\u5143\u7d20\u4e2d\u5faa\u74b0
+		//按下鍵盤按鍵space，在矩形、橢圓、十字形結構元素中循環
 		else if( (char)c == ' ' )
 			g_nElementShape = (g_nElementShape + 1) % 3;
 	}
@@ -112,82 +113,82 @@ int main( )
 }
 
 
-//-----------------------------------\u3010on_OpenClose( )\u51fd\u6578\u3011----------------------------------
-//		\u63cf\u8ff0\uff1a\u3010\u958b\u904b\u7b97/\u9589\u904b\u7b97\u3011\u8996\u7a97\u7684\u56de\u8abf\u51fd\u6578
+//-----------------------------------【on_OpenClose( )函數】----------------------------------
+//		描述：【開運算/閉運算】視窗的回調函數
 //-----------------------------------------------------------------------------------------------
 static void on_OpenClose(int, void*)
 {
-	//\u504f\u79fb\u91cf\u7684\u5b9a\u7fa9
-	int offset = g_nOpenCloseNum - g_nMaxIterationNum;//\u504f\u79fb\u91cf
-	int Absolute_offset = offset > 0 ? offset : -offset;//\u504f\u79fb\u91cf\u7d55\u5c0d\u503c
-	//\u81ea\u5b9a\u7fa9\u6838
+	//偏移量的定義
+	int offset = g_nOpenCloseNum - g_nMaxIterationNum;//偏移量
+	int Absolute_offset = offset > 0 ? offset : -offset;//偏移量絕對值
+	//自定義核
 	Mat element = getStructuringElement(g_nElementShape, Size(Absolute_offset*2+1, Absolute_offset*2+1), Point(Absolute_offset, Absolute_offset) );
-	//\u9032\u884c\u64cd\u4f5c
+	//進行操作
 	if( offset < 0 )
 		morphologyEx(g_srcImage, g_dstImage, CV_MOP_OPEN, element);
 	else
 		morphologyEx(g_srcImage, g_dstImage, CV_MOP_CLOSE, element);
-	//\u986f\u793a\u5716\u50cf
-	imshow("\u3010\u958b\u904b\u7b97/\u9589\u904b\u7b97\u3011",g_dstImage);
+	//顯示圖像
+	imshow("【開運算/閉運算】",g_dstImage);
 }
 
 
-//-----------------------------------\u3010on_ErodeDilate( )\u51fd\u6578\u3011----------------------------------
-//		\u63cf\u8ff0\uff1a\u3010\u8150\u8755/\u81a8\u8139\u3011\u8996\u7a97\u7684\u56de\u8abf\u51fd\u6578
+//-----------------------------------【on_ErodeDilate( )函數】----------------------------------
+//		描述：【腐蝕/膨脹】視窗的回調函數
 //-----------------------------------------------------------------------------------------------
 static void on_ErodeDilate(int, void*)
 {
-	//\u504f\u79fb\u91cf\u7684\u5b9a\u7fa9
-	int offset = g_nErodeDilateNum - g_nMaxIterationNum;	//\u504f\u79fb\u91cf
-	int Absolute_offset = offset > 0 ? offset : -offset;//\u504f\u79fb\u91cf\u7d55\u5c0d\u503c
-	//\u81ea\u5b9a\u7fa9\u6838
+	//偏移量的定義
+	int offset = g_nErodeDilateNum - g_nMaxIterationNum;	//偏移量
+	int Absolute_offset = offset > 0 ? offset : -offset;//偏移量絕對值
+	//自定義核
 	Mat element = getStructuringElement(g_nElementShape, Size(Absolute_offset*2+1, Absolute_offset*2+1), Point(Absolute_offset, Absolute_offset) );
-	//\u9032\u884c\u64cd\u4f5c
+	//進行操作
 	if( offset < 0 )
 		erode(g_srcImage, g_dstImage, element);
 	else
 		dilate(g_srcImage, g_dstImage, element);
-	//\u986f\u793a\u5716\u50cf
-	imshow("\u3010\u8150\u8755/\u81a8\u8139\u3011",g_dstImage);
+	//顯示圖像
+	imshow("【腐蝕/膨脹】",g_dstImage);
 }
 
 
-//-----------------------------------\u3010on_TopBlackHat( )\u51fd\u6578\u3011--------------------------------
-//		\u63cf\u8ff0\uff1a\u3010\u9802\u5e3d\u904b\u7b97/\u9ed1\u5e3d\u904b\u7b97\u3011\u8996\u7a97\u7684\u56de\u8abf\u51fd\u6578
+//-----------------------------------【on_TopBlackHat( )函數】--------------------------------
+//		描述：【頂帽運算/黑帽運算】視窗的回調函數
 //----------------------------------------------------------------------------------------------
 static void on_TopBlackHat(int, void*)
 {
-	//\u504f\u79fb\u91cf\u7684\u5b9a\u7fa9
-	int offset = g_nTopBlackHatNum - g_nMaxIterationNum;//\u504f\u79fb\u91cf
-	int Absolute_offset = offset > 0 ? offset : -offset;//\u504f\u79fb\u91cf\u7d55\u5c0d\u503c
-	//\u81ea\u5b9a\u7fa9\u6838
+	//偏移量的定義
+	int offset = g_nTopBlackHatNum - g_nMaxIterationNum;//偏移量
+	int Absolute_offset = offset > 0 ? offset : -offset;//偏移量絕對值
+	//自定義核
 	Mat element = getStructuringElement(g_nElementShape, Size(Absolute_offset*2+1, Absolute_offset*2+1), Point(Absolute_offset, Absolute_offset) );
-	//\u9032\u884c\u64cd\u4f5c
+	//進行操作
 	if( offset < 0 )
 		morphologyEx(g_srcImage, g_dstImage, MORPH_TOPHAT , element);
 	else
 		morphologyEx(g_srcImage, g_dstImage, MORPH_BLACKHAT, element);
-	//\u986f\u793a\u5716\u50cf
-	imshow("\u3010\u9802\u5e3d/\u9ed1\u5e3d\u3011",g_dstImage);
+	//顯示圖像
+	imshow("【頂帽/黑帽】",g_dstImage);
 }
 
-//-----------------------------------\u3010ShowHelpText( )\u51fd\u6578\u3011----------------------------------
-//		\u63cf\u8ff0\uff1a\u8f38\u51fa\u4e00\u4e9b\u8aaa\u660e\u8a0a\u606f
+//-----------------------------------【ShowHelpText( )函數】----------------------------------
+//		描述：輸出一些說明訊息
 //----------------------------------------------------------------------------------------------
 static void ShowHelpText()
 {
-	//\u8f38\u51fa\u6b61\u8fce\u8a0a\u606f\u548cOpenCV\u7248\u672c
-	printf("\n\n\t\t\t\u975e\u5e38\u611f\u8b1d\u8cfc\u8cb7\u300aOpenCV3\u7a0b\u5f0f\u8a2d\u8a08\u5165\u9580\u300b\u4e00\u66f8\uff01\n");
-	printf("\n\n\t\t\t\u6b64\u70ba\u672c\u66f8OpenCV2\u7248\u7684\u7b2c48\u500b\u914d\u5957\u7bc4\u4f8b\u7a0b\u5e8f\n");
-	printf("\n\n\t\t\t   \u73fe\u5728\u4f7f\u7528\u7684OpenCV\u7248\u672c\u70ba\uff1a" CV_VERSION );
+	//輸出歡迎訊息和OpenCV版本
+	printf("\n\n\t\t\t非常感謝購買《OpenCV3程式設計入門》一書！\n");
+	printf("\n\n\t\t\t此為本書OpenCV2版的第48個配套範例程序\n");
+	printf("\n\n\t\t\t   現在使用的OpenCV版本為：" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
 
-	//\u8f38\u51fa\u4e00\u4e9b\u8aaa\u660e\u8a0a\u606f
-	printf("\n\t\u8acb\u8abf\u6574\u6372\u8ef8\u89c0\u5bdf\u5716\u50cf\u6548\u679c\n\n");
-	printf( "\n\t\u6309\u9375\u64cd\u4f5c\u8aaa\u660e: \n\n"
-		"\t\t\u9375\u76e4\u6309\u9375\u3010ESC\u3011\u6216\u8005\u3010Q\u3011- \u9000\u51fa\u7a0b\u5e8f\n"
-		"\t\t\u9375\u76e4\u6309\u9375\u30101\u3011- \u4f7f\u7528\u6a62\u5713(Elliptic)\u7d50\u69cb\u5143\u7d20\n"
-		"\t\t\u9375\u76e4\u6309\u9375\u30102\u3011- \u4f7f\u7528\u77e9\u5f62(Rectangle )\u7d50\u69cb\u5143\u7d20\n"
-		"\t\t\u9375\u76e4\u6309\u9375\u30103\u3011- \u4f7f\u7528\u5341\u5b57\u578b(Cross-shaped)\u7d50\u69cb\u5143\u7d20\n"
-		"\t\t\u9375\u76e4\u6309\u9375\u3010\u7a7a\u683cSPACE\u3011- \u5728\u77e9\u5f62\u3001\u6a62\u5713\u3001\u5341\u5b57\u5f62\u7d50\u69cb\u5143\u7d20\u4e2d\u5faa\u74b0\n"	);
+	//輸出一些說明訊息
+	printf("\n\t請調整捲軸觀察圖像效果\n\n");
+	printf( "\n\t按鍵操作說明: \n\n"
+		"\t\t鍵盤按鍵【ESC】或者【Q】- 退出程序\n"
+		"\t\t鍵盤按鍵【1】- 使用橢圓(Elliptic)結構元素\n"
+		"\t\t鍵盤按鍵【2】- 使用矩形(Rectangle )結構元素\n"
+		"\t\t鍵盤按鍵【3】- 使用十字型(Cross-shaped)結構元素\n"
+		"\t\t鍵盤按鍵【空格SPACE】- 在矩形、橢圓、十字形結構元素中循環\n"	);
 }

@@ -1,5 +1,6 @@
 #include <stdio.h>
-//  file : /home/peter/opencv-2.4.11/samples/cpp/example2.cpp
+//:read /home/peter/mao/1_hello.cpp
+////  file : /home/peter/opencv-2.4.11/samples/cpp/example2.cpp
 
 #include <opencv2/opencv.hpp>  // full path ~/opencv-2.4.11/include/opencv2/opencv.hpp
 #include <iostream>

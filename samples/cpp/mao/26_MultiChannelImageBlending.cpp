@@ -1,37 +1,38 @@
 #include <stdio.h>
+//:read /home/peter/mao/26_MultiChannelImageBlending.cpp
 
-//--------------------------------------\u3010\u7a0b\u5e8f\u8aaa\u660e\u3011-------------------------------------------
-//		\u7a0b\u5e8f\u8aaa\u660e\uff1a\u300aOpenCV3\u7a0b\u5f0f\u8a2d\u8a08\u5165\u9580\u300bOpenCV2\u7248\u66f8\u672c\u914d\u5957\u7bc4\u4f8b\u7a0b\u5e8f26
-//		\u7a0b\u5e8f\u63cf\u8ff0\uff1a\u5206\u96e2\u984f\u8272\u901a\u9053&\u591a\u901a\u9053\u5716\u50cf\u6df7\u5408
-//		\u958b\u767c\u6e2c\u8a66\u6240\u7528IDE\u7248\u672c\uff1aVisual Studio 2010
-//		\u958b\u767c\u6e2c\u8a66\u6240\u7528OpenCV\u7248\u672c\uff1a	2.4.9
-//		2014\u5e7406\u6708 Created by @\u6dfa\u58a8_\u6bdb\u661f\u4e91
-//		2014\u5e7411\u6708 Revised by @\u6dfa\u58a8_\u6bdb\u661f\u4e91
+//--------------------------------------【程序說明】-------------------------------------------
+//		程序說明：《OpenCV3程式設計入門》OpenCV2版書本配套範例程序26
+//		程序描述：分離顏色通道&多通道圖像混合
+//		開發測試所用IDE版本：Visual Studio 2010
+//		開發測試所用OpenCV版本：	2.4.9
+//		2014年06月 Created by @淺墨_毛星云
+//		2014年11月 Revised by @淺墨_毛星云
 //------------------------------------------------------------------------------------------------
 
-//-----------------------------------\u3010\u982d\u6587\u4ef6\u5305\u542b\u90e8\u5206\u3011---------------------------------------
-//	\u63cf\u8ff0\uff1a\u5305\u542b\u7a0b\u5e8f\u6240\u4f9d\u8cf4\u7684\u982d\u6587\u4ef6
+//-----------------------------------【頭文件包含部分】---------------------------------------
+//	描述：包含程序所依賴的頭文件
 //------------------------------------------------------------------------------------------------                                                                                     
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <iostream>
 
-//-----------------------------------\u3010\u547d\u540d\u7a7a\u9593\u5ba3\u544a\u90e8\u5206\u3011---------------------------------------
-//	\u63cf\u8ff0\uff1a\u5305\u542b\u7a0b\u5e8f\u6240\u4f7f\u7528\u7684\u547d\u540d\u7a7a\u9593
+//-----------------------------------【命名空間宣告部分】---------------------------------------
+//	描述：包含程序所使用的命名空間
 //-------------------------------------------------------------------------------------------------   
 using namespace cv;
 using namespace std;
 
 
-//-----------------------------------\u3010\u5168\u5c40\u51fd\u6578\u5ba3\u544a\u90e8\u5206\u3011--------------------------------------
-//	\u63cf\u8ff0\uff1a\u5168\u5c40\u51fd\u6578\u5ba3\u544a
+//-----------------------------------【全局函數宣告部分】--------------------------------------
+//	描述：全局函數宣告
 //-----------------------------------------------------------------------------------------------
 bool  MultiChannelBlending();
 void ShowHelpText();
 
 
-//-----------------------------------\u3010main( )\u51fd\u6578\u3011------------------------------------------
-//	\u63cf\u8ff0\uff1a\u63a7\u5236\u81fa\u61c9\u7528\u7a0b\u5e8f\u7684\u5165\u53e3\u51fd\u6578\uff0c\u6211\u5011\u7684\u7a0b\u5e8f\u5f9e\u9019\u91cc\u958b\u59cb
+//-----------------------------------【main( )函數】------------------------------------------
+//	描述：控制臺應用程序的入口函數，我們的程序從這里開始
 //-----------------------------------------------------------------------------------------------
 int main(   )
 {
@@ -41,7 +42,7 @@ int main(   )
 
 	if(MultiChannelBlending( ))
 	{
-		cout<<endl<<"\n\u57f7\u884c\u6210\u529f\uff0c\u5f97\u51fa\u4e86\u9700\u8981\u7684\u5716\u50cf~! ";
+		cout<<endl<<"\n執行成功，得出了需要的圖像~! ";
 	}
 
 	waitKey(0);
@@ -50,15 +51,15 @@ int main(   )
 
 
 
-//-----------------------------------\u3010ShowHelpText( )\u51fd\u6578\u3011----------------------------------
-//		 \u63cf\u8ff0\uff1a\u8f38\u51fa\u4e00\u4e9b\u8aaa\u660e\u8a0a\u606f
+//-----------------------------------【ShowHelpText( )函數】----------------------------------
+//		 描述：輸出一些說明訊息
 //----------------------------------------------------------------------------------------------
 void ShowHelpText()
 {
-	//\u8f38\u51fa\u6b61\u8fce\u8a0a\u606f\u548cOpenCV\u7248\u672c
-	printf("\n\n\t\t\t\u975e\u5e38\u611f\u8b1d\u8cfc\u8cb7\u300aOpenCV3\u7a0b\u5f0f\u8a2d\u8a08\u5165\u9580\u300b\u4e00\u66f8\uff01\n");
-	printf("\n\n\t\t\t\u6b64\u70ba\u672c\u66f8OpenCV2\u7248\u7684\u7b2c26\u500b\u914d\u5957\u7bc4\u4f8b\u7a0b\u5e8f\n");
-	printf("\n\n\t\t\t   \u73fe\u5728\u4f7f\u7528\u7684OpenCV\u7248\u672c\u70ba\uff1a" CV_VERSION );
+	//輸出歡迎訊息和OpenCV版本
+	printf("\n\n\t\t\t非常感謝購買《OpenCV3程式設計入門》一書！\n");
+	printf("\n\n\t\t\t此為本書OpenCV2版的第26個配套範例程序\n");
+	printf("\n\n\t\t\t   現在使用的OpenCV版本為：" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
 }
 
@@ -67,106 +68,106 @@ void ShowHelpText()
 
 
 
-//-----------------------------\u3010MultiChannelBlending( )\u51fd\u6578\u3011--------------------------------
-//	\u63cf\u8ff0\uff1a\u591a\u901a\u9053\u6df7\u5408\u7684\u5be6\u73fe\u51fd\u6578
+//-----------------------------【MultiChannelBlending( )函數】--------------------------------
+//	描述：多通道混合的實現函數
 //-----------------------------------------------------------------------------------------------
 bool  MultiChannelBlending()
 {
-	//\u30100\u3011\u5b9a\u7fa9\u76f8\u95dc\u8b8a\u6578
+	//【0】定義相關變數
 	Mat srcImage;
 	Mat logoImage;
 	vector<Mat> channels;
 	Mat  imageBlueChannel;
 
-	//=================\u3010\u85cd\u8272\u901a\u9053\u90e8\u5206\u3011=================
-	//	\u63cf\u8ff0\uff1a\u591a\u901a\u9053\u6df7\u5408-\u85cd\u8272\u5206\u91cf\u90e8\u5206
+	//=================【藍色通道部分】=================
+	//	描述：多通道混合-藍色分量部分
 	//============================================
 
-	// \u30101\u3011\u8b80\u5165\u5716\u5f62
+	// 【1】讀入圖形
 	logoImage= imread("dota_logo.jpg",0);
 	srcImage= imread("dota_jugg.jpg");
 
-	if( !logoImage.data ) { printf("Oh\uff0cno\uff0c\u8b80\u53d6logoImage\u932f\u8aa4~\uff01 \n"); return false; }
-	if( !srcImage.data ) { printf("Oh\uff0cno\uff0c\u8b80\u53d6srcImage\u932f\u8aa4~\uff01 \n"); return false; }
+	if( !logoImage.data ) { printf("Oh，no，讀取logoImage錯誤~！ \n"); return false; }
+	if( !srcImage.data ) { printf("Oh，no，讀取srcImage錯誤~！ \n"); return false; }
 
-	//\u30102\u3011\u628a\u4e00\u500b3\u901a\u9053\u5716\u50cf\u8f49\u63db\u62103\u500b\u55ae\u901a\u9053\u5716\u50cf
-	split(srcImage,channels);//\u5206\u96e2\u8272\u5f69\u901a\u9053
+	//【2】把一個3通道圖像轉換成3個單通道圖像
+	split(srcImage,channels);//分離色彩通道
 
-	//\u30103\u3011\u5c07\u539f\u5716\u7684\u85cd\u8272\u901a\u9053\u5f15\u7528\u8fd4\u56de\u7d66imageBlueChannel\uff0c\u6ce8\u610f\u662f\u5f15\u7528\uff0c\u76f8\u7576\u4e8e\u5169\u8005\u7b49\u50f9\uff0c\u4fee\u6539\u5176\u4e2d\u4e00\u500b\u53e6\u4e00\u500b\u8ddf\u8457\u8b8a
+	//【3】將原圖的藍色通道引用返回給imageBlueChannel，注意是引用，相當于兩者等價，修改其中一個另一個跟著變
 	imageBlueChannel= channels.at(0);
-	//\u30104\u3011\u5c07\u539f\u5716\u7684\u85cd\u8272\u901a\u9053\u7684\uff08500,250\uff09\u5750\u6a19\u8655\u53f3\u4e0b\u65b9\u7684\u4e00\u584a\u5340\u57df\u548clogo\u5716\u9032\u884c\u52a0\u6b0a\u64cd\u4f5c\uff0c\u5c07\u5f97\u5230\u7684\u6df7\u5408\u7d50\u679c\u5b58\u5230imageBlueChannel\u4e2d
+	//【4】將原圖的藍色通道的（500,250）坐標處右下方的一塊區域和logo圖進行加權操作，將得到的混合結果存到imageBlueChannel中
 	addWeighted(imageBlueChannel(Rect(500,250,logoImage.cols,logoImage.rows)),1.0,
 		logoImage,0.5,0,imageBlueChannel(Rect(500,250,logoImage.cols,logoImage.rows)));
 
-	//\u30105\u3011\u5c07\u4e09\u500b\u55ae\u901a\u9053\u91cd\u65b0\u5408\u4e26\u6210\u4e00\u500b\u4e09\u901a\u9053
+	//【5】將三個單通道重新合並成一個三通道
 	merge(channels,srcImage);
 
-	//\u30106\u3011\u986f\u793a\u6548\u679c\u5716
-	namedWindow(" <1>\u6e38\u6232\u539f\u756b+logo\u85cd\u8272\u901a\u9053");
-	imshow(" <1>\u6e38\u6232\u539f\u756b+logo\u85cd\u8272\u901a\u9053",srcImage);
+	//【6】顯示效果圖
+	namedWindow(" <1>游戲原畫+logo藍色通道");
+	imshow(" <1>游戲原畫+logo藍色通道",srcImage);
 
 
-	//=================\u3010\u7da0\u8272\u901a\u9053\u90e8\u5206\u3011=================
-	//	\u63cf\u8ff0\uff1a\u591a\u901a\u9053\u6df7\u5408-\u7da0\u8272\u5206\u91cf\u90e8\u5206
+	//=================【綠色通道部分】=================
+	//	描述：多通道混合-綠色分量部分
 	//============================================
 
-	//\u30100\u3011\u5b9a\u7fa9\u76f8\u95dc\u8b8a\u6578
+	//【0】定義相關變數
 	Mat  imageGreenChannel;
 
-	//\u30101\u3011\u91cd\u65b0\u8b80\u5165\u5716\u5f62
+	//【1】重新讀入圖形
 	logoImage= imread("dota_logo.jpg",0);
 	srcImage= imread("dota_jugg.jpg");
 
-	if( !logoImage.data ) { printf("\u8b80\u53d6logoImage\u932f\u8aa4~\uff01 \n"); return false; }
-	if( !srcImage.data ) { printf("\u8b80\u53d6srcImage\u932f\u8aa4~\uff01 \n"); return false; }
+	if( !logoImage.data ) { printf("讀取logoImage錯誤~！ \n"); return false; }
+	if( !srcImage.data ) { printf("讀取srcImage錯誤~！ \n"); return false; }
 
-	//\u30102\u3011\u5c07\u4e00\u500b\u4e09\u901a\u9053\u5716\u50cf\u8f49\u63db\u6210\u4e09\u500b\u55ae\u901a\u9053\u5716\u50cf
-	split(srcImage,channels);//\u5206\u96e2\u8272\u5f69\u901a\u9053
+	//【2】將一個三通道圖像轉換成三個單通道圖像
+	split(srcImage,channels);//分離色彩通道
 
-	//\u30103\u3011\u5c07\u539f\u5716\u7684\u7da0\u8272\u901a\u9053\u7684\u5f15\u7528\u8fd4\u56de\u7d66imageBlueChannel\uff0c\u6ce8\u610f\u662f\u5f15\u7528\uff0c\u76f8\u7576\u4e8e\u5169\u8005\u7b49\u50f9\uff0c\u4fee\u6539\u5176\u4e2d\u4e00\u500b\u53e6\u4e00\u500b\u8ddf\u8457\u8b8a
+	//【3】將原圖的綠色通道的引用返回給imageBlueChannel，注意是引用，相當于兩者等價，修改其中一個另一個跟著變
 	imageGreenChannel= channels.at(1);
-	//\u30104\u3011\u5c07\u539f\u5716\u7684\u7da0\u8272\u901a\u9053\u7684\uff08500,250\uff09\u5750\u6a19\u8655\u53f3\u4e0b\u65b9\u7684\u4e00\u584a\u5340\u57df\u548clogo\u5716\u9032\u884c\u52a0\u6b0a\u64cd\u4f5c\uff0c\u5c07\u5f97\u5230\u7684\u6df7\u5408\u7d50\u679c\u5b58\u5230imageGreenChannel\u4e2d
+	//【4】將原圖的綠色通道的（500,250）坐標處右下方的一塊區域和logo圖進行加權操作，將得到的混合結果存到imageGreenChannel中
 	addWeighted(imageGreenChannel(Rect(500,250,logoImage.cols,logoImage.rows)),1.0,
 		logoImage,0.5,0.,imageGreenChannel(Rect(500,250,logoImage.cols,logoImage.rows)));
 
-	//\u30105\u3011\u5c07\u4e09\u500b\u7368\u7acb\u7684\u55ae\u901a\u9053\u91cd\u65b0\u5408\u4e26\u6210\u4e00\u500b\u4e09\u901a\u9053
+	//【5】將三個獨立的單通道重新合並成一個三通道
 	merge(channels,srcImage);
 
-	//\u30106\u3011\u986f\u793a\u6548\u679c\u5716
-	namedWindow("<2>\u6e38\u6232\u539f\u756b+logo\u7da0\u8272\u901a\u9053");
-	imshow("<2>\u6e38\u6232\u539f\u756b+logo\u7da0\u8272\u901a\u9053",srcImage);
+	//【6】顯示效果圖
+	namedWindow("<2>游戲原畫+logo綠色通道");
+	imshow("<2>游戲原畫+logo綠色通道",srcImage);
 
 
 
-	//=================\u3010\u7d05\u8272\u901a\u9053\u90e8\u5206\u3011=================
-	//	\u63cf\u8ff0\uff1a\u591a\u901a\u9053\u6df7\u5408-\u7d05\u8272\u5206\u91cf\u90e8\u5206
+	//=================【紅色通道部分】=================
+	//	描述：多通道混合-紅色分量部分
 	//============================================
 
-	//\u30100\u3011\u5b9a\u7fa9\u76f8\u95dc\u8b8a\u6578
+	//【0】定義相關變數
 	Mat  imageRedChannel;
 
-	//\u30101\u3011\u91cd\u65b0\u8b80\u5165\u5716\u5f62
+	//【1】重新讀入圖形
 	logoImage= imread("dota_logo.jpg",0);
 	srcImage= imread("dota_jugg.jpg");
 
-	if( !logoImage.data ) { printf("Oh\uff0cno\uff0c\u8b80\u53d6logoImage\u932f\u8aa4~\uff01 \n"); return false; }
-	if( !srcImage.data ) { printf("Oh\uff0cno\uff0c\u8b80\u53d6srcImage\u932f\u8aa4~\uff01 \n"); return false; }
+	if( !logoImage.data ) { printf("Oh，no，讀取logoImage錯誤~！ \n"); return false; }
+	if( !srcImage.data ) { printf("Oh，no，讀取srcImage錯誤~！ \n"); return false; }
 
-	//\u30102\u3011\u5c07\u4e00\u500b\u4e09\u901a\u9053\u5716\u50cf\u8f49\u63db\u6210\u4e09\u500b\u55ae\u901a\u9053\u5716\u50cf
-	split(srcImage,channels);//\u5206\u96e2\u8272\u5f69\u901a\u9053
+	//【2】將一個三通道圖像轉換成三個單通道圖像
+	split(srcImage,channels);//分離色彩通道
 
-	//\u30103\u3011\u5c07\u539f\u5716\u7684\u7d05\u8272\u901a\u9053\u5f15\u7528\u8fd4\u56de\u7d66imageBlueChannel\uff0c\u6ce8\u610f\u662f\u5f15\u7528\uff0c\u76f8\u7576\u4e8e\u5169\u8005\u7b49\u50f9\uff0c\u4fee\u6539\u5176\u4e2d\u4e00\u500b\u53e6\u4e00\u500b\u8ddf\u8457\u8b8a
+	//【3】將原圖的紅色通道引用返回給imageBlueChannel，注意是引用，相當于兩者等價，修改其中一個另一個跟著變
 	imageRedChannel= channels.at(2);
-	//\u30104\u3011\u5c07\u539f\u5716\u7684\u7d05\u8272\u901a\u9053\u7684\uff08500,250\uff09\u5750\u6a19\u8655\u53f3\u4e0b\u65b9\u7684\u4e00\u584a\u5340\u57df\u548clogo\u5716\u9032\u884c\u52a0\u6b0a\u64cd\u4f5c\uff0c\u5c07\u5f97\u5230\u7684\u6df7\u5408\u7d50\u679c\u5b58\u5230imageRedChannel\u4e2d
+	//【4】將原圖的紅色通道的（500,250）坐標處右下方的一塊區域和logo圖進行加權操作，將得到的混合結果存到imageRedChannel中
 	addWeighted(imageRedChannel(Rect(500,250,logoImage.cols,logoImage.rows)),1.0,
 		logoImage,0.5,0.,imageRedChannel(Rect(500,250,logoImage.cols,logoImage.rows)));
 
-	//\u30105\u3011\u5c07\u4e09\u500b\u7368\u7acb\u7684\u55ae\u901a\u9053\u91cd\u65b0\u5408\u4e26\u6210\u4e00\u500b\u4e09\u901a\u9053
+	//【5】將三個獨立的單通道重新合並成一個三通道
 	merge(channels,srcImage);
 
-	//\u30106\u3011\u986f\u793a\u6548\u679c\u5716
-	namedWindow("<3>\u6e38\u6232\u539f\u756b+logo\u7d05\u8272\u901a\u9053 ");
-	imshow("<3>\u6e38\u6232\u539f\u756b+logo\u7d05\u8272\u901a\u9053 ",srcImage);
+	//【6】顯示效果圖
+	namedWindow("<3>游戲原畫+logo紅色通道 ");
+	imshow("<3>游戲原畫+logo紅色通道 ",srcImage);
 
 	return true;
 }

@@ -1,49 +1,50 @@
 #include <stdio.h>
-//--------------------------------------\u3010\u7a0b\u5f0f\u8aaa\u660e\u3011-------------------------------------------
-//		\u7a0b\u5f0f\u8aaa\u660e\uff1a\u300aOpenCV3\u7a0b\u5f0f\u8a2d\u8a08\u5165\u9580\u300bOpenCV2\u7248\u66f8\u672c\u914d\u5957\u7bc4\u4f8b\u7a0b\u5f0f29
-//		\u7a0b\u5f0f\u63cf\u8ff0\uff1aXML\u548cYAML\u6a94\u6848\u7684\u5beb\u5165
-//		\u958b\u767c\u6e2c\u8a66\u6240\u7528IDE\u7248\u672c\uff1aVisual Studio 2010
-//		\u958b\u767c\u6e2c\u8a66\u6240\u7528OpenCV\u7248\u672c\uff1a	2.4.9
-//		2014\u5e7406\u6708 Created by @\u6dfa\u58a8_\u6bdb\u661f\u4e91
-//		2014\u5e7411\u6708 Revised by @\u6dfa\u58a8_\u6bdb\u661f\u4e91
+//:read /home/peter/mao/29_Write_XML_and_YAML_File.cpp
+//--------------------------------------【程式說明】-------------------------------------------
+//		程式說明：《OpenCV3程式設計入門》OpenCV2版書本配套範例程式29
+//		程式描述：XML和YAML檔案的寫入
+//		開發測試所用IDE版本：Visual Studio 2010
+//		開發測試所用OpenCV版本：	2.4.9
+//		2014年06月 Created by @淺墨_毛星云
+//		2014年11月 Revised by @淺墨_毛星云
 //------------------------------------------------------------------------------------------------
 
 
-//---------------------------------\u3010\u982d\u6a94\u6848\u3001\u547d\u540d\u7a7a\u9593\u5305\u542b\u90e8\u5206\u3011-------------------------------
-//		\u63cf\u8ff0\uff1a\u5305\u542b\u7a0b\u5f0f\u6240\u4f7f\u7528\u7684\u982d\u6a94\u6848\u548c\u547d\u540d\u7a7a\u9593
+//---------------------------------【頭檔案、命名空間包含部分】-------------------------------
+//		描述：包含程式所使用的頭檔案和命名空間
 //------------------------------------------------------------------------------------------------
 #include "opencv2/opencv.hpp"  
 #include <time.h>  
 using namespace cv;  
 
 
-//-----------------------------------\u3010ShowHelpText( )\u51fd\u6578\u3011----------------------------------
-//		 \u63cf\u8ff0\uff1a\u8f38\u51fa\u4e00\u4e9b\u8aaa\u660e\u8a0a\u606f
+//-----------------------------------【ShowHelpText( )函數】----------------------------------
+//		 描述：輸出一些說明訊息
 //----------------------------------------------------------------------------------------------
 void ShowHelpText()
 {
-	//\u8f38\u51fa\u6b61\u8fce\u8a0a\u606f\u548cOpenCV\u7248\u672c
-	printf("\n\n\t\t\t\u975e\u5e38\u611f\u8b1d\u8cfc\u8cb7\u300aOpenCV3\u7a0b\u5f0f\u8a2d\u8a08\u5165\u9580\u300b\u4e00\u66f8\uff01\n");
-	printf("\n\n\t\t\t\u6b64\u70ba\u672c\u66f8OpenCV2\u7248\u7684\u7b2c29\u500b\u914d\u5957\u7bc4\u4f8b\u7a0b\u5f0f\n");
-	printf("\n\n\t\t\t   \u73fe\u5728\u4f7f\u7528\u7684OpenCV\u7248\u672c\u70ba\uff1a" CV_VERSION );
+	//輸出歡迎訊息和OpenCV版本
+	printf("\n\n\t\t\t非常感謝購買《OpenCV3程式設計入門》一書！\n");
+	printf("\n\n\t\t\t此為本書OpenCV2版的第29個配套範例程式\n");
+	printf("\n\n\t\t\t   現在使用的OpenCV版本為：" CV_VERSION );
 	printf("\n\n  ----------------------------------------------------------------------------\n");
 }
 
 
-//-----------------------------------\u3010main( )\u51fd\u6578\u3011--------------------------------------------
-//	\u63cf\u8ff0\uff1a\u63a7\u5236\u81fa\u61c9\u7528\u7a0b\u5f0f\u7684\u5165\u53e3\u51fd\u6578\uff0c\u6211\u5011\u7684\u7a0b\u5f0f\u5f9e\u9019\u91cc\u958b\u59cb
+//-----------------------------------【main( )函數】--------------------------------------------
+//	描述：控制臺應用程式的入口函數，我們的程式從這里開始
 //-----------------------------------------------------------------------------------------------
 int main( )  
 {  
-	//\u6539\u8b8aconsole\u5b57\u9ad4\u984f\u8272
+	//改變console字體顏色
 	system("color 5F"); 
 
 	ShowHelpText();
 
-	//\u521d\u59cb\u5316
+	//初始化
 	FileStorage fs("test.yaml", FileStorage::WRITE);  
 
-	//\u958b\u59cb\u6a94\u6848\u5beb\u5165
+	//開始檔案寫入
 	fs << "frameCount" << 5;  
 	time_t rawtime; time(&rawtime);  
 	fs << "calibrationDate" << asctime(localtime(&rawtime));  
@@ -65,7 +66,7 @@ int main( )
 	fs << "]";  
 	fs.release();  
 
-	printf("\n\u6a94\u6848\u8b80\u5beb\u5b8c\u7562\uff0c\u8acb\u5728\u5c08\u6848\u76ee\u9304\u4e0b\u67e5\u770b\u7522\u751f\u7684\u6a94\u6848~");
+	printf("\n檔案讀寫完畢，請在專案目錄下查看產生的檔案~");
 	getchar();
 
 	return 0;  

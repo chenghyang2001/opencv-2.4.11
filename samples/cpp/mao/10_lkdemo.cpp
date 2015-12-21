@@ -1,16 +1,17 @@
 #include <stdio.h>
+//:read /home/peter/mao/10_lkdemo.cpp
 
-//--------------------------------------\u3010\u7a0b\u5e8f\u8aaa\u660e\u3011-------------------------------------------
-//		\u7a0b\u5e8f\u8aaa\u660e\uff1a\u300aOpenCV3\u7a0b\u5f0f\u8a2d\u8a08\u5165\u9580\u300bOpenCV2\u7248\u66f8\u672c\u914d\u5957\u7bc4\u4f8b\u7a0b\u5e8f10
-//		\u7a0b\u5e8f\u63cf\u8ff0\uff1a\u4f86\u81eaOpenCV\u5b89\u88dd\u76ee\u9304\u4e0bSamples\u6587\u4ef6\u593e\u4e2d\u7684\u5b98\u65b9\u7bc4\u4f8b\u7a0b\u5e8f-\u9ede\u8ffd\u8e64\u6280\u8853\u793a\u7bc4
-//		\u958b\u767c\u6e2c\u8a66\u6240\u7528\u64cd\u4f5c\u7cfb\u7d71\uff1a Windows 7 64bit
-//		\u958b\u767c\u6e2c\u8a66\u6240\u7528IDE\u7248\u672c\uff1aVisual Studio 2010
-//		\u958b\u767c\u6e2c\u8a66\u6240\u7528OpenCV\u7248\u672c\uff1a	2.4.9
-//		2014\u5e7411\u6708 Revised by @\u6dfa\u58a8_\u6bdb\u661f\u4e91
+//--------------------------------------【程序說明】-------------------------------------------
+//		程序說明：《OpenCV3程式設計入門》OpenCV2版書本配套範例程序10
+//		程序描述：來自OpenCV安裝目錄下Samples文件夾中的官方範例程序-點追蹤技術示範
+//		開發測試所用操作系統： Windows 7 64bit
+//		開發測試所用IDE版本：Visual Studio 2010
+//		開發測試所用OpenCV版本：	2.4.9
+//		2014年11月 Revised by @淺墨_毛星云
 //------------------------------------------------------------------------------------------------
 
-//---------------------------------\u3010\u982d\u6587\u4ef6\u3001\u547d\u540d\u7a7a\u9593\u5305\u542b\u90e8\u5206\u3011----------------------------
-//		\u63cf\u8ff0\uff1a\u5305\u542b\u7a0b\u5e8f\u6240\u4f7f\u7528\u7684\u982d\u6587\u4ef6\u548c\u547d\u540d\u7a7a\u9593
+//---------------------------------【頭文件、命名空間包含部分】----------------------------
+//		描述：包含程序所使用的頭文件和命名空間
 //-------------------------------------------------------------------------------------------------
 #include "opencv2/video/tracking.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
@@ -24,31 +25,31 @@ using namespace std;
 
 
 
-//--------------------------------\u3010help( )\u51fd\u6578\u3011----------------------------------------------
-//		\u63cf\u8ff0\uff1a\u8f38\u51fa\u8aaa\u660e\u8a0a\u606f
+//--------------------------------【help( )函數】----------------------------------------------
+//		描述：輸出說明訊息
 //-------------------------------------------------------------------------------------------------
 static void help()
 {
-	//\u8f38\u51fa\u6b61\u8fce\u8a0a\u606f\u548cOpenCV\u7248\u672c
-	cout <<"\n\n\t\t\t\u975e\u5e38\u611f\u8b1d\u8cfc\u8cb7\u300aOpenCV3\u7a0b\u5f0f\u8a2d\u8a08\u5165\u9580\u300b\u4e00\u66f8\uff01\n"
-		<<"\n\n\t\t\t\u6b64\u70ba\u672c\u66f8OpenCV2\u7248\u7684\u7b2c10\u500b\u914d\u5957\u7bc4\u4f8b\u7a0b\u5e8f\n"
-		<<	"\n\n\t\t\t   \u73fe\u5728\u4f7f\u7528\u7684OpenCV\u7248\u672c\u70ba\uff1a" << CV_VERSION 
+	//輸出歡迎訊息和OpenCV版本
+	cout <<"\n\n\t\t\t非常感謝購買《OpenCV3程式設計入門》一書！\n"
+		<<"\n\n\t\t\t此為本書OpenCV2版的第10個配套範例程序\n"
+		<<	"\n\n\t\t\t   現在使用的OpenCV版本為：" << CV_VERSION 
 		<<"\n\n  ----------------------------------------------------------------------------" ;
-	cout	<< "\n\n\t\u8a72Demo\u793a\u7bc4\u4e86 Lukas-Kanade\u57fa\u4e8e\u5149\u6d41\u7684lkdemo\n";
-	cout << "\n\t\u7a0b\u5e8f\u9810\u8a2d\u5f9e\u651d\u5f71\u6a5f\u8b80\u5165\u8996\u8a0a\uff0c\u53ef\u4ee5\u6309\u9700\u6539\u70ba\u5f9e\u8996\u8a0a\u6587\u4ef6\u8b80\u5165\u5716\u50cf\n";
-	cout << "\n\t\u64cd\u4f5c\u8aaa\u660e: \n"
-		"\t\t\u901a\u904e\u9ede\u64ca\u5728\u5716\u50cf\u4e2d\u65b0\u589e/\u522a\u9664\u7279\u5f81\u9ede\n" 
-		"\t\tESC - \u9000\u51fa\u7a0b\u5e8f\n"
-		"\t\tr -\u81ea\u52d5\u9032\u884c\u8ffd\u8e64\n"
-		"\t\tc - \u522a\u9664\u6240\u6709\u9ede\n"
-		"\t\tn - \u958b/\u5149-\u591c\u665a\u6a21\u5f0f\n"<< endl;
+	cout	<< "\n\n\t該Demo示範了 Lukas-Kanade基于光流的lkdemo\n";
+	cout << "\n\t程序預設從攝影機讀入視訊，可以按需改為從視訊文件讀入圖像\n";
+	cout << "\n\t操作說明: \n"
+		"\t\t通過點擊在圖像中新增/刪除特征點\n" 
+		"\t\tESC - 退出程序\n"
+		"\t\tr -自動進行追蹤\n"
+		"\t\tc - 刪除所有點\n"
+		"\t\tn - 開/光-夜晚模式\n"<< endl;
 }
 
 Point2f point;
 bool addRemovePt = false;
 
-//--------------------------------\u3010onMouse( )\u56de\u8abf\u51fd\u6578\u3011------------------------------------
-//		\u63cf\u8ff0\uff1a\u6ed1\u9f20\u64cd\u4f5c\u56de\u8abf
+//--------------------------------【onMouse( )回調函數】------------------------------------
+//		描述：滑鼠操作回調
 //-------------------------------------------------------------------------------------------------
 static void onMouse( int event, int x, int y, int /*flags*/, void* /*param*/ )
 {
@@ -59,8 +60,8 @@ static void onMouse( int event, int x, int y, int /*flags*/, void* /*param*/ )
 	}
 }
 
-//-----------------------------------\u3010main( )\u51fd\u6578\u3011--------------------------------------------
-//		\u63cf\u8ff0\uff1a\u63a7\u5236\u81fa\u61c9\u7528\u7a0b\u5e8f\u7684\u5165\u53e3\u51fd\u6578\uff0c\u6211\u5011\u7684\u7a0b\u5e8f\u5f9e\u9019\u91cc\u958b\u59cb
+//-----------------------------------【main( )函數】--------------------------------------------
+//		描述：控制臺應用程序的入口函數，我們的程序從這里開始
 //-------------------------------------------------------------------------------------------------
 int main( int argc, char** argv )
 {
@@ -103,7 +104,7 @@ int main( int argc, char** argv )
 
 		if( needToInit )
 		{
-			// \u81ea\u52d5\u521d\u59cb\u5316
+			// 自動初始化
 			goodFeaturesToTrack(gray, points[1], MAX_COUNT, 0.01, 10, Mat(), 3, 0, 0.04);
 			cornerSubPix(gray, points[1], subPixWinSize, Size(-1,-1), termcrit);
 			addRemovePt = false;

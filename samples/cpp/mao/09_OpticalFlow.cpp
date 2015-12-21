@@ -1,12 +1,13 @@
 #include <stdio.h>
+//:read /home/peter/mao/09_OpticalFlow.cpp
 
-//--------------------------------------\u3010\u7a0b\u5e8f\u8aaa\u660e\u3011-------------------------------------------
-//		\u7a0b\u5e8f\u8aaa\u660e\uff1a\u300aOpenCV3\u7a0b\u5f0f\u8a2d\u8a08\u5165\u9580\u300bOpenCV2\u7248\u66f8\u672c\u914d\u5957\u7bc4\u4f8b\u7a0b\u5e8f09
-//		\u7a0b\u5e8f\u63cf\u8ff0\uff1a\u4f86\u81eaOpenCV\u5b89\u88dd\u76ee\u9304\u4e0bSamples\u6587\u4ef6\u593e\u4e2d\u7684\u5b98\u65b9\u7bc4\u4f8b\u7a0b\u5e8f-\u5229\u7528\u5149\u6d41\u6cd5\u9032\u884c\u904b\u52d5\u76ee\u6a19\u6aa2\u6e2c
-//		\u958b\u767c\u6e2c\u8a66\u6240\u7528\u64cd\u4f5c\u7cfb\u7d71\uff1a Windows 7 64bit
-//		\u958b\u767c\u6e2c\u8a66\u6240\u7528IDE\u7248\u672c\uff1aVisual Studio 2010
-//		\u958b\u767c\u6e2c\u8a66\u6240\u7528OpenCV\u7248\u672c\uff1a	2.4.9
-//		2014\u5e7411\u6708 Revised by @\u6dfa\u58a8_\u6bdb\u661f\u4e91
+//--------------------------------------【程序說明】-------------------------------------------
+//		程序說明：《OpenCV3程式設計入門》OpenCV2版書本配套範例程序09
+//		程序描述：來自OpenCV安裝目錄下Samples文件夾中的官方範例程序-利用光流法進行運動目標檢測
+//		開發測試所用操作系統： Windows 7 64bit
+//		開發測試所用IDE版本：Visual Studio 2010
+//		開發測試所用OpenCV版本：	2.4.9
+//		2014年11月 Revised by @淺墨_毛星云
 //------------------------------------------------------------------------------------------------
 
 
@@ -15,7 +16,7 @@
 * All rights reserved.
 *
 * File:	opticalFlow.cpp
-* Brief: lk\u5149\u6d41\u6cd5\u505a\u904b\u52d5\u76ee\u6a19\u6aa2\u6e2c
+* Brief: lk光流法做運動目標檢測
 * Version: 1.0
 * Author: Yang Xian
 * Email: xyang2011@sinano.ac.cn
@@ -24,8 +25,8 @@
 ************************************************************************/
 
 
-//---------------------------------\u3010\u982d\u6587\u4ef6\u3001\u547d\u540d\u7a7a\u9593\u5305\u542b\u90e8\u5206\u3011----------------------------
-//		\u63cf\u8ff0\uff1a\u5305\u542b\u7a0b\u5e8f\u6240\u4f7f\u7528\u7684\u982d\u6587\u4ef6\u548c\u547d\u540d\u7a7a\u9593
+//---------------------------------【頭文件、命名空間包含部分】----------------------------
+//		描述：包含程序所使用的頭文件和命名空間
 //-------------------------------------------------------------------------------------------------
 #include <opencv2/video/video.hpp>
 #include <opencv2/highgui/highgui.hpp>
@@ -41,44 +42,44 @@ using namespace cv;
 
 
 
-//-----------------------------------\u3010\u5168\u5c40\u51fd\u6578\u5ba3\u544a\u3011-----------------------------------------
-//		\u63cf\u8ff0\uff1a\u5ba3\u544a\u5168\u5c40\u51fd\u6578
+//-----------------------------------【全局函數宣告】-----------------------------------------
+//		描述：宣告全局函數
 //-------------------------------------------------------------------------------------------------
 void tracking(Mat &frame, Mat &output);
 bool addNewPoints();
 bool acceptTrackedPoint(int i);
 
-//-----------------------------------\u3010\u5168\u5c40\u8b8a\u6578\u5ba3\u544a\u3011-----------------------------------------
-//		\u63cf\u8ff0\uff1a\u5ba3\u544a\u5168\u5c40\u8b8a\u6578
+//-----------------------------------【全局變數宣告】-----------------------------------------
+//		描述：宣告全局變數
 //-------------------------------------------------------------------------------------------------
 string window_name = "optical flow tracking";
-Mat gray;	// \u73fe\u5728\u5716\u5f62
-Mat gray_prev;	// \u9810\u6e2c\u5716\u5f62
-vector<Point2f> points[2];	// point0\u70ba\u7279\u5f81\u9ede\u7684\u539f\u4f86\u4f4d\u7f6e\uff0cpoint1\u70ba\u7279\u5f81\u9ede\u7684\u65b0\u4f4d\u7f6e
-vector<Point2f> initial;	// \u521d\u59cb\u5316\u8ddf\u8e64\u9ede\u7684\u4f4d\u7f6e
-vector<Point2f> features;	// \u6aa2\u6e2c\u7684\u7279\u5f81
-int maxCount = 500;	// \u6aa2\u6e2c\u7684\u6700\u5927\u7279\u5f81\u6578
-double qLevel = 0.01;	// \u7279\u5f81\u6aa2\u6e2c\u7684\u7b49\u7d1a
-double minDist = 10.0;	// \u5169\u7279\u5f81\u9ede\u4e4b\u9593\u7684\u6700\u5c0f\u8ddd\u96e2
-vector<uchar> status;	// \u8ddf\u8e64\u7279\u5f81\u7684\u72c0\u614b\uff0c\u7279\u5f81\u7684\u6d41\u767c\u73fe\u70ba1\uff0c\u5426\u5247\u70ba0
+Mat gray;	// 現在圖形
+Mat gray_prev;	// 預測圖形
+vector<Point2f> points[2];	// point0為特征點的原來位置，point1為特征點的新位置
+vector<Point2f> initial;	// 初始化跟蹤點的位置
+vector<Point2f> features;	// 檢測的特征
+int maxCount = 500;	// 檢測的最大特征數
+double qLevel = 0.01;	// 特征檢測的等級
+double minDist = 10.0;	// 兩特征點之間的最小距離
+vector<uchar> status;	// 跟蹤特征的狀態，特征的流發現為1，否則為0
 vector<float> err;
 
 
-//--------------------------------\u3010help( )\u51fd\u6578\u3011----------------------------------------------
-//		\u63cf\u8ff0\uff1a\u8f38\u51fa\u8aaa\u660e\u8a0a\u606f
+//--------------------------------【help( )函數】----------------------------------------------
+//		描述：輸出說明訊息
 //-------------------------------------------------------------------------------------------------
 static void help()
 {
-	//\u8f38\u51fa\u6b61\u8fce\u8a0a\u606f\u548cOpenCV\u7248\u672c
-	cout <<"\n\n\t\t\t\u975e\u5e38\u611f\u8b1d\u8cfc\u8cb7\u300aOpenCV3\u7a0b\u5f0f\u8a2d\u8a08\u5165\u9580\u300b\u4e00\u66f8\uff01\n"
-		<<"\n\n\t\t\t\u6b64\u70ba\u672c\u66f8OpenCV2\u7248\u7684\u7b2c9\u500b\u914d\u5957\u7bc4\u4f8b\u7a0b\u5e8f\n"
-		<<	"\n\n\t\t\t   \u73fe\u5728\u4f7f\u7528\u7684OpenCV\u7248\u672c\u70ba\uff1a" << CV_VERSION 
+	//輸出歡迎訊息和OpenCV版本
+	cout <<"\n\n\t\t\t非常感謝購買《OpenCV3程式設計入門》一書！\n"
+		<<"\n\n\t\t\t此為本書OpenCV2版的第9個配套範例程序\n"
+		<<	"\n\n\t\t\t   現在使用的OpenCV版本為：" << CV_VERSION 
 		<<"\n\n  ----------------------------------------------------------------------------" ;
 }
 
 
-//-----------------------------------\u3010main( )\u51fd\u6578\u3011--------------------------------------------
-//		\u63cf\u8ff0\uff1a\u63a7\u5236\u81fa\u61c9\u7528\u7a0b\u5e8f\u7684\u5165\u53e3\u51fd\u6578\uff0c\u6211\u5011\u7684\u7a0b\u5e8f\u5f9e\u9019\u91cc\u958b\u59cb
+//-----------------------------------【main( )函數】--------------------------------------------
+//		描述：控制臺應用程序的入口函數，我們的程序從這里開始
 //-------------------------------------------------------------------------------------------------
 int main()
 {
@@ -89,7 +90,7 @@ int main()
 	VideoCapture capture("1.avi");
 
 	help();
-	if(capture.isOpened())	// \u651d\u5f71\u6a5f\u8b80\u53d6\u6587\u4ef6\u958b\u95dc
+	if(capture.isOpened())	// 攝影機讀取文件開關
 	{
 		while(true)
 		{
@@ -117,16 +118,16 @@ int main()
 
 //-------------------------------------------------------------------------------------------------
 // function: tracking
-// brief: \u8ddf\u8e64
-// parameter: frame	\u8f38\u5165\u7684\u8996\u8a0a\u5e45
-//			  output \u6709\u8ddf\u8e64\u7d50\u679c\u7684\u8996\u8a0a\u5e45
+// brief: 跟蹤
+// parameter: frame	輸入的視訊幅
+//			  output 有跟蹤結果的視訊幅
 // return: void
 //-------------------------------------------------------------------------------------------------
 void tracking(Mat &frame, Mat &output)
 {
 	cvtColor(frame, gray, CV_BGR2GRAY);
 	frame.copyTo(output);
-	// \u65b0\u589e\u7279\u5f81\u9ede
+	// 新增特征點
 	if (addNewPoints())
 	{
 		goodFeaturesToTrack(gray, features, maxCount, qLevel, minDist);
@@ -138,9 +139,9 @@ void tracking(Mat &frame, Mat &output)
 	{
 		gray.copyTo(gray_prev);
 	}
-	// l-k\u5149\u6d41\u6cd5\u904b\u52d5\u4f30\u8a08
+	// l-k光流法運動估計
 	calcOpticalFlowPyrLK(gray_prev, gray, points[0], points[1], status, err);
-	// \u53bb\u6389\u4e00\u4e9b\u4e0d\u597d\u7684\u7279\u5f81\u9ede
+	// 去掉一些不好的特征點
 	int k = 0;
 	for (size_t i=0; i<points[1].size(); i++)
 	{
@@ -152,14 +153,14 @@ void tracking(Mat &frame, Mat &output)
 	}
 	points[1].resize(k);
 	initial.resize(k);
-	// \u986f\u793a\u7279\u5f81\u9ede\u548c\u904b\u52d5\u8ecc\u8de1
+	// 顯示特征點和運動軌跡
 	for (size_t i=0; i<points[1].size(); i++)
 	{
 		line(output, initial[i], points[1][i], Scalar(0, 0, 255));
 		circle(output, points[1][i], 3, Scalar(0, 255, 0), -1);
 	}
 
-	// \u628a\u73fe\u5728\u8ddf\u8e64\u7d50\u679c\u4f5c\u70ba\u4e0b\u4e00\u6b64\u53c3\u8003
+	// 把現在跟蹤結果作為下一此參考
 	swap(points[1], points[0]);
 	swap(gray_prev, gray);
 
@@ -168,9 +169,9 @@ void tracking(Mat &frame, Mat &output)
 
 //-------------------------------------------------------------------------------------------------
 // function: addNewPoints
-// brief: \u6aa2\u6e2c\u65b0\u9ede\u662f\u5426\u61c9\u8a72\u88ab\u65b0\u589e
+// brief: 檢測新點是否應該被新增
 // parameter:
-// return: \u662f\u5426\u88ab\u65b0\u589e\u6a19\u5fd7
+// return: 是否被新增標志
 //-------------------------------------------------------------------------------------------------
 bool addNewPoints()
 {
@@ -179,7 +180,7 @@ bool addNewPoints()
 
 //-------------------------------------------------------------------------------------------------
 // function: acceptTrackedPoint
-// brief: \u6c7a\u5b9a\u54ea\u4e9b\u8ddf\u8e64\u9ede\u88ab\u63a5\u53d7
+// brief: 決定哪些跟蹤點被接受
 // parameter:
 // return:
 //-------------------------------------------------------------------------------------------------
