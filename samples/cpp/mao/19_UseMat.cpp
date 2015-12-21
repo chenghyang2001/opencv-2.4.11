@@ -67,11 +67,14 @@ int main(int,char**)
 	randu(r, Scalar::all(0), Scalar::all(255));
 
 	cout << "r (OpenCV預設風格) = " << r << ";" << endl << endl;
+#if 0
 	cout << "r (Python風格) = " << format(r,"python") << ";" << endl << endl;
 	cout << "r (Numpy風格) = " << format(r,"numpy") << ";" << endl << endl;
 	cout << "r (逗號分隔風格) = " << format(r,"csv") << ";" << endl<< endl;
+#endif
 	cout << "r (C語言風格) = " << format(r,"C") << ";" << endl << endl;
 
+#if 0
 	Point2f p(6, 2);
 	cout << "【2維點】p = " << p << ";\n" << endl;
 
@@ -90,6 +93,7 @@ int main(int,char**)
 		points[i] = Point2f((float)(i * 5), (float)(i % 7));
 
 	cout << "【二維點向量】points = " << points<<";";
+#endif
 
 	getchar();//按任意鍵退出
 

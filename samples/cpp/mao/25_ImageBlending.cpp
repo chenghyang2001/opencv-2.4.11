@@ -70,8 +70,6 @@ void ShowHelpText()
 bool  ROI_AddImage()
 {
 
-//        Mat img=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");
-
 	// 【1】讀入圖像
 	Mat srcImage1= imread("/home/peter/opencv-2.4.11/samples/cpp/mao/dota_pa.jpg");
 	Mat logoImage= imread("/home/peter/opencv-2.4.11/samples/cpp/mao/dota_logo.jpg");
