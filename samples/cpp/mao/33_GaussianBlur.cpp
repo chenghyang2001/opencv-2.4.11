@@ -35,6 +35,7 @@ int main( )
 
 	//顯示原圖
 	imshow( "高斯濾波【原圖】", image ); 
+	moveWindow( "高斯濾波【原圖】", 100,100 ); 
 
 	//進行高斯濾波操作
 	Mat out; 
@@ -42,6 +43,7 @@ int main( )
 
 	//顯示效果圖
 	imshow( "高斯濾波【效果圖】" ,out ); 
+	moveWindow( "高斯濾波【效果圖】" ,1000,100 ); 
 
 	waitKey( 0 );     
 } 

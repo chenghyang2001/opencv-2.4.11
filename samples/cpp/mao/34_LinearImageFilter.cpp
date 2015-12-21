@@ -65,6 +65,7 @@ int main(   )
 	//顯示原圖
 	namedWindow("【<0>原圖視窗】", 1);
 	imshow("【<0>原圖視窗】",g_srcImage);
+	moveWindow("【<0>原圖視窗】",100, 100);
 
 
 	//=================【<1>方框濾波】==================
@@ -74,6 +75,7 @@ int main(   )
 	createTrackbar("核心值：", "【<1>方框濾波】",&g_nBoxFilterValue, 40,on_BoxFilter );
 	on_MeanBlur(g_nBoxFilterValue,0);
 	imshow("【<1>方框濾波】", g_dstImage1);
+	moveWindow("【<1>方框濾波】", 1000,100);
 	//================================================
 
 	//=================【<2>均值濾波】==================

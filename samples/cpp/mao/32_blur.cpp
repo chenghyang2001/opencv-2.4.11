@@ -29,6 +29,7 @@ int main( )
 
 	//【2】顯示原始圖
 	imshow( "均值濾波【原圖】", srcImage ); 
+	moveWindow( "均值濾波【原圖】", 100,100 ); 
 
 	//【3】進行均值濾波操作
 	Mat dstImage; 
@@ -36,6 +37,7 @@ int main( )
 
 	//【4】顯示效果圖
 	imshow( "均值濾波【效果圖】" ,dstImage ); 
+	moveWindow( "均值濾波【效果圖】" ,1000,100 ); 
 
 	waitKey( 0 );     
 } 
