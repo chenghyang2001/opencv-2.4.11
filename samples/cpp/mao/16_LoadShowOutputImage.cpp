@@ -26,6 +26,7 @@ int main( )
 	Mat girl=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/girl.jpg"); //載入圖像到Mat
 	namedWindow("【1】動漫圖"); //建立一個名為 "【1】動漫圖"的視窗  
 	imshow("【1】動漫圖",girl);//顯示名為 "【1】動漫圖"的視窗  
+	moveWindow("【1】動漫圖",100,100);//顯示名為 "【1】動漫圖"的視窗  
 
 	//-----------------------------------【二、初級圖像混合】--------------------------------------
 	//	描述：二、初級圖像混合
@@ -37,9 +38,11 @@ int main( )
 	//載入後先顯示
 	namedWindow("【2】原畫圖");
 	imshow("【2】原畫圖",image);
+	moveWindow("【2】原畫圖",200,200);
 
 	namedWindow("【3】logo圖");
 	imshow("【3】logo圖",logo);
+	moveWindow("【3】logo圖",300,300);
 
 	// 定義一個Mat類別型，用于存放，圖像的ROI
 	Mat imageROI;
@@ -54,6 +57,7 @@ int main( )
 	//顯示結果
 	namedWindow("【4】原畫+logo圖");
 	imshow("【4】原畫+logo圖",image);
+	moveWindow("【4】原畫+logo圖",400,400);
 
 	//-----------------------------------【三、圖像的輸出】--------------------------------------
 	//	描述：將一個Mat圖像輸出到圖像文件

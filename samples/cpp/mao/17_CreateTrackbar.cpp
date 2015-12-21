@@ -42,16 +42,20 @@ Mat g_dstImage;
 //------------------------------------------------------------------------------------------
 void on_Trackbar( int, void* )
 {
+
 	//求出現在alpha值相對於最大值的比例
 	g_dAlphaValue = (double) g_nAlphaValueSlider/g_nMaxAlphaValue ;
 	//則beta值為1減去alpha值
 	g_dBetaValue = ( 1.0 - g_dAlphaValue );
 
 	//根據alpha和beta值進行線性混合
-	addWeighted( g_srcImage1, g_dAlphaValue, g_srcImage2, g_dBetaValue, 0.0, g_dstImage);
+// 	addWeighted( g_srcImage1, g_dAlphaValue, g_srcImage2, g_dBetaValue, 0.0, g_dstImage);
 
 	//顯示效果圖
-	imshow( WINDOW_NAME, g_dstImage );
+//        imshow( WINDOW_NAME, g_dstImage );
+	imshow( WINDOW_NAME, g_srcImage1 );
+	moveWindow( WINDOW_NAME, 100,100 );
+
 }
 
 
@@ -82,9 +86,9 @@ int main( int argc, char** argv )
 
 	//加載圖像 (兩圖像的尺寸需相同) 
 	g_srcImage1 = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");
-//        g_srcImage2 = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/2.jpg");
-//        g_srcImage2 = imread("2.jpg");
 	if( !g_srcImage1.data ) { printf("讀取第一幅圖形錯誤，請確定目錄下是否有imread函數指定圖形存在~！ \n"); return -1; }
+
+//        g_srcImage2 = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/2.jpg");
 //        if( !g_srcImage2.data ) { printf("讀取第二幅圖形錯誤，請確定目錄下是否有imread函數指定圖形存在~！\n"); return -1; }
 
 	//設定滑動條初值為70

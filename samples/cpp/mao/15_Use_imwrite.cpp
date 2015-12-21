@@ -69,6 +69,7 @@ int main( )
 //        try{
 		imwrite("透明Alpha值圖.png", mat, compression_params);
 		imshow("產生的png圖",mat);
+		moveWindow("產生的png圖",100,100);
 		fprintf(stdout,"PNG圖形文件的alpha資料儲存完畢~\n可以在專案目錄下查看由imwrite函數產生的圖形\n");
 		waitKey(0);
 //        }
