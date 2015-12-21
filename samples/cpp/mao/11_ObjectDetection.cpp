@@ -135,4 +135,5 @@ void detectAndDisplay( Mat frame )
     }
    //-- 顯示最終效果圖
    imshow( window_name, frame );
+   moveWindow( window_name, 100,100  );
 }

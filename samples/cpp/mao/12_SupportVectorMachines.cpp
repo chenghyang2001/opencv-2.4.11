@@ -101,6 +101,7 @@ int main()
 		imwrite("result.png", image);        // 儲存圖像
 
 		imshow("SVM Simple Example", image); // 顯示圖像
+		moveWindow("SVM Simple Example", 100, 100 ); // 顯示圖像
 		waitKey(0);
 
 }

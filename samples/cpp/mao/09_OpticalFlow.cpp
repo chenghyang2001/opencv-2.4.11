@@ -166,6 +166,7 @@ void tracking(Mat &frame, Mat &output)
 	swap(gray_prev, gray);
 
 	imshow(window_name, output);
+	moveWindow(window_name, 100,100);
 }
 
 //-------------------------------------------------------------------------------------------------

@@ -149,6 +149,7 @@ int main( int argc, char** argv )
 
 		needToInit = false;
 		imshow("LK Demo", image);
+		moveWindow("LK Demo", 100,100 );
 
 		char c = (char)waitKey(10);
 		if( c == 27 )

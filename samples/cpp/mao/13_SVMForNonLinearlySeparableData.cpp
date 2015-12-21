@@ -150,5 +150,6 @@ int main()
 
 		imwrite("result.png", I);                      //儲存圖像到文件
 		imshow("SVM for Non-Linear Training Data", I); // 顯示最終視窗
+		moveWindow("SVM for Non-Linear Training Data", 100, 100); // 顯示最終視窗
 		waitKey(0);
 }

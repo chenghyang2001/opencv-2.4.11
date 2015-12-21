@@ -1,9 +1,5 @@
 //:read /home/peter/mao/01_HelloOpenCV.cpp
-//:read /home/peter/mao/01_HelloOpenCV.cpp
-////
 //
-//
-//:read /home/peter/mao/01_HelloOpenCV.cpp
 //--------------------------------------【程序說明】-------------------------------------------
 //		程序說明：《OpenCV3程式設計入門》OpenCV2版書本配套範例程序01
 //		程序描述：OpenCV開發環境的設定，載入一張圖形並顯示
@@ -21,7 +17,6 @@ int main()
 {
 	// 【1】讀入一張圖形 
 	Mat img=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");
-//        Mat img=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");
 	// 【2】在視窗中顯示載入的圖形
 	imshow("【載入的圖形】",img);
 	moveWindow("【載入的圖形】",100,100);
@@ -31,4 +26,3 @@ int main()
 
 
 
-// "/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg";
