@@ -45,6 +45,7 @@ int main( )
 	Mat srcImage = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg", 0);
 	if(!srcImage.data ) { printf("讀取圖形錯誤，請確定目錄下是否有imread函數指定圖形存在~！ \n"); return false; } 
 	imshow("原始圖像" , srcImage);   
+	moveWindow("原始圖像" , 100,100 );   
 
 	ShowHelpText();
 
@@ -98,6 +99,7 @@ int main( )
 
 	//【9】顯示效果圖
 	imshow("頻譜幅值", magnitudeImage);    
+	moveWindow("頻譜幅值", 200,200);    
 	waitKey();
 
 	return 0;

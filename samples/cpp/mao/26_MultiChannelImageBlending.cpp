@@ -84,8 +84,8 @@ bool  MultiChannelBlending()
 	//============================================
 
 	// 【1】讀入圖形
-	logoImage= imread("dota_logo.jpg",0);
-	srcImage= imread("dota_jugg.jpg");
+	logoImage= imread("/home/peter/opencv-2.4.11/samples/cpp/mao/dota_logo.jpg",0);
+	srcImage= imread("/home/peter/opencv-2.4.11/samples/cpp/mao/dota_jugg.jpg");
 
 	if( !logoImage.data ) { printf("Oh，no，讀取logoImage錯誤~！ \n"); return false; }
 	if( !srcImage.data ) { printf("Oh，no，讀取srcImage錯誤~！ \n"); return false; }
@@ -105,6 +105,7 @@ bool  MultiChannelBlending()
 	//【6】顯示效果圖
 	namedWindow(" <1>游戲原畫+logo藍色通道");
 	imshow(" <1>游戲原畫+logo藍色通道",srcImage);
+	moveWindow(" <1>游戲原畫+logo藍色通道",100,100);
 
 
 	//=================【綠色通道部分】=================
@@ -115,8 +116,8 @@ bool  MultiChannelBlending()
 	Mat  imageGreenChannel;
 
 	//【1】重新讀入圖形
-	logoImage= imread("dota_logo.jpg",0);
-	srcImage= imread("dota_jugg.jpg");
+	logoImage= imread("/home/peter/opencv-2.4.11/samples/cpp/mao/dota_logo.jpg",0);
+	srcImage= imread("/home/peter/opencv-2.4.11/samples/cpp/mao/dota_jugg.jpg");
 
 	if( !logoImage.data ) { printf("讀取logoImage錯誤~！ \n"); return false; }
 	if( !srcImage.data ) { printf("讀取srcImage錯誤~！ \n"); return false; }
@@ -136,6 +137,7 @@ bool  MultiChannelBlending()
 	//【6】顯示效果圖
 	namedWindow("<2>游戲原畫+logo綠色通道");
 	imshow("<2>游戲原畫+logo綠色通道",srcImage);
+	moveWindow("<2>游戲原畫+logo綠色通道",200,200);
 
 
 
@@ -147,8 +149,8 @@ bool  MultiChannelBlending()
 	Mat  imageRedChannel;
 
 	//【1】重新讀入圖形
-	logoImage= imread("dota_logo.jpg",0);
-	srcImage= imread("dota_jugg.jpg");
+	logoImage= imread("/home/peter/opencv-2.4.11/samples/cpp/mao/dota_logo.jpg",0);
+	srcImage= imread("/home/peter/opencv-2.4.11/samples/cpp/mao/dota_jugg.jpg");
 
 	if( !logoImage.data ) { printf("Oh，no，讀取logoImage錯誤~！ \n"); return false; }
 	if( !srcImage.data ) { printf("Oh，no，讀取srcImage錯誤~！ \n"); return false; }
@@ -168,6 +170,7 @@ bool  MultiChannelBlending()
 	//【6】顯示效果圖
 	namedWindow("<3>游戲原畫+logo紅色通道 ");
 	imshow("<3>游戲原畫+logo紅色通道 ",srcImage);
+	moveWindow("<3>游戲原畫+logo紅色通道 ",300,300);
 
 	return true;
 }

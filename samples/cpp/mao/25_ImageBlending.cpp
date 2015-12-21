@@ -70,9 +70,11 @@ void ShowHelpText()
 bool  ROI_AddImage()
 {
 
+//        Mat img=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");
+
 	// 【1】讀入圖像
-	Mat srcImage1= imread("dota_pa.jpg");
-	Mat logoImage= imread("dota_logo.jpg");
+	Mat srcImage1= imread("/home/peter/opencv-2.4.11/samples/cpp/mao/dota_pa.jpg");
+	Mat logoImage= imread("/home/peter/opencv-2.4.11/samples/cpp/mao/dota_logo.jpg");
 	if( !srcImage1.data ) { printf("讀取srcImage1錯誤~！ \n"); return false; }
 	if( !logoImage.data ) { printf("讀取logoImage錯誤~！ \n"); return false; }
 
@@ -80,7 +82,7 @@ bool  ROI_AddImage()
 	Mat imageROI= srcImage1(Rect(200,250,logoImage.cols,logoImage.rows));
 
 	// 【3】加載掩模（必須是灰度圖）
-	Mat mask= imread("dota_logo.jpg",0);
+	Mat mask= imread("/home/peter/opencv-2.4.11/samples/cpp/mao/dota_logo.jpg",0);
 
 	//【4】將掩膜拷貝到ROI
 	logoImage.copyTo(imageROI,mask);
@@ -88,6 +90,7 @@ bool  ROI_AddImage()
 	// 【5】顯示結果
 	namedWindow("<1>利用ROI實現圖像疊加範例視窗");
 	imshow("<1>利用ROI實現圖像疊加範例視窗",srcImage1);
+	moveWindow("<1>利用ROI實現圖像疊加範例視窗",100,100);
 
 	return true;
 }
@@ -105,8 +108,8 @@ bool  LinearBlending()
 	Mat srcImage2, srcImage3, dstImage;
 
 	// 【1】讀取圖像 ( 兩幅圖形需為同樣的類別型和尺寸 )
-	srcImage2 = imread("mogu.jpg");
-	srcImage3 = imread("rain.jpg");
+	srcImage2 = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/mogu.jpg");
+	srcImage3 = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/rain.jpg");
 
 	if( !srcImage2.data ) { printf("讀取srcImage2錯誤！ \n"); return false; }
 	if( !srcImage3.data ) { printf("讀取srcImage3錯誤！ \n"); return false; }
@@ -117,7 +120,10 @@ bool  LinearBlending()
 
 	// 【3】顯示原圖視窗
 	imshow( "<2>線性混合範例視窗【原圖】", srcImage2 );
+	moveWindow( "<2>線性混合範例視窗【原圖】", 200,200 );
+
 	imshow( "<3>線性混合範例視窗【效果圖】", dstImage );
+	moveWindow( "<3>線性混合範例視窗【效果圖】", 300,300 );
 
 	return true;
 
@@ -132,8 +138,8 @@ bool  ROI_LinearBlending()
 {
 
 	//【1】讀取圖像
-	Mat srcImage4= imread("dota_pa.jpg",1);
-	Mat logoImage= imread("dota_logo.jpg");
+	Mat srcImage4= imread("/home/peter/opencv-2.4.11/samples/cpp/mao/dota_pa.jpg",1);
+	Mat logoImage= imread("/home/peter/opencv-2.4.11/samples/cpp/mao/dota_logo.jpg");
 
 	if( !srcImage4.data ) { printf("讀取srcImage4錯誤~！ \n"); return false; }
 	if( !logoImage.data ) { printf("讀取logoImage錯誤~！ \n"); return false; }
@@ -150,6 +156,7 @@ bool  ROI_LinearBlending()
 
 	//【4】顯示結果
 	imshow("<4>區域線性圖像混合範例視窗",srcImage4);
+	moveWindow("<4>區域線性圖像混合範例視窗",400,400);
 
 	return true;
 }

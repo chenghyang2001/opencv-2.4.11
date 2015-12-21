@@ -36,6 +36,7 @@ int main( )
 	//【1】建立原始圖並顯示
 	Mat srcImage = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");  
 	imshow("原始圖像",srcImage);  
+	moveWindow("原始圖像",100,100);  
 
 	//【2】按原始圖的參數規格來建立建立效果圖
 	Mat dstImage;
@@ -55,6 +56,7 @@ int main( )
 
 	//【6】顯示效果圖
 	imshow("效果圖",dstImage);  
+	moveWindow("效果圖",200,200);  
 	waitKey(0);  
 }  
 

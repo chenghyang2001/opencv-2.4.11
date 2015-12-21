@@ -117,7 +117,10 @@ static void ContrastAndBright(int, void *)
 
 	// 顯示圖像
 	imshow("【原始圖視窗】", g_srcImage);
+	moveWindow("【原始圖視窗】", 100,100 );
+
 	imshow("【效果圖視窗】", g_dstImage);
+	moveWindow("【效果圖視窗】", 200,200);
 }
 
 
