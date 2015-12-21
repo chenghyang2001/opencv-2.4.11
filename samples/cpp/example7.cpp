@@ -1,4 +1,4 @@
-//  file : /home/peter/opencv-2.4.11/samples/cpp/example4.cpp
+//  file : /home/peter/opencv-2.4.11/samples/cpp/example7.cpp
 
 #include <opencv2/opencv.hpp>  // full path ~/opencv-2.4.11/include/opencv2/opencv.hpp
 #include <iostream>
@@ -15,13 +15,9 @@ using namespace std;
 int main( int argc, char** argv )
 {
 
-    cout <<" example4  " << endl;
+    cout <<" example7  " << endl;
 
-#if 1
-    // comment out to try "Example 2-7"
-    cout <<" Example2 7 " << endl;
-
-    Mat img_rgb = cv::imread("lena.jpg"); 
+    Mat img_rgb = cv::imread("/home/peter/lena.jpg"); 
 
     if( img_rgb.empty() ) {
 	cout << " missing parameter. " << endl;
@@ -41,7 +37,7 @@ int main( int argc, char** argv )
     namedWindow( "Example Canny", cv::WINDOW_AUTOSIZE ); 
     imshow( "Example Gray", img_gry ); 
 
-//    Canny( img_gry, img_cny, 10, 100, 3, true ); 
+    Canny( img_gry, img_cny, 10, 100, 3, true ); 
     Canny( img_pyr2, img_cny, 10, 100, 3, true ); 
 
     imshow( "Example Canny", img_cny ); 
@@ -60,15 +56,11 @@ int main( int argc, char** argv )
     x /= 4; y /= 4; 
 
     cout << "Pyramid2 pixel there is: " << (unsigned int)img_pyr2.at<uchar>(x, y) << std::endl; 
-
     // Example 2-9 show values. <<
-
-
 
     waitKey(0); 
     destroyWindow( "Example Gray" ); 
     destroyWindow( "Example Canny" ); 
 
-#endif 
 
 }

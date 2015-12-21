@@ -19,7 +19,7 @@ int main( int argc, char** argv )
     namedWindow( "Example2_5-in", cv::WINDOW_AUTOSIZE ); 
     namedWindow( "Example2_5-out", cv::WINDOW_AUTOSIZE ); 
 
-    Mat img = imread( "lena.jpg", -1 ); 
+    Mat img = imread( "/home/peter/lena.jpg", -1 ); 
 
     if( img.empty() ) {
 	cout << " missing parameter. " << endl;
@@ -36,8 +36,8 @@ int main( int argc, char** argv )
     pyrDown( img, out ); 
 
     // comment out to try "A Simple Transformation" 
-//    GaussianBlur( img, out, cv::Size(5,5), 3, 3); 
-//    GaussianBlur( out, out, cv::Size(5,5), 3, 3); 
+    GaussianBlur( img, out, cv::Size(5,5), 3, 3); 
+    GaussianBlur( out, out, cv::Size(5,5), 3, 3); 
 
     imshow( "Example2_5-out", out ); 
 

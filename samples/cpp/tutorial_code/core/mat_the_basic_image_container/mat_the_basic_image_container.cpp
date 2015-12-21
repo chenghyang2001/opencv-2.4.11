@@ -24,7 +24,7 @@ int main(int,char**)
 {
     help();
 
-#if 0
+#if 1
     // create by using the constructor
 //    Mat M(2,2, CV_8UC3, Scalar(0,0,255));
     Mat M(2,2, CV_8UC3, Scalar(10,20,30));

@@ -28,18 +28,13 @@ int main( int argc, char** argv )
 {
 
     cout <<" example4  " << endl;
-#if 1
  cv::namedWindow( "Example2_4", cv::WINDOW_AUTOSIZE ); 
-// g_cap.open( "cube4.avi"  ); 
  g_cap.open( "/home/peter/cube4.avi"  ); 
 
  int frames = (int) g_cap.get(CV_CAP_PROP_FRAME_COUNT); 
  int tmpw   = (int) g_cap.get(CV_CAP_PROP_FRAME_WIDTH); 
  int tmph   = (int) g_cap.get(CV_CAP_PROP_FRAME_HEIGHT); 
  cout << "Video has " << frames << " frames of dimensions(" << tmpw << ", " << tmph << ")." << endl; 
-
-// g_cap.set( 1024);  // peter. 01:41  20151219  not work.
-
  cv::createTrackbar("Position", "Example2_4", &g_slider_position, frames, onTrackbarSlide); 
 
  cv::Mat frame; 
@@ -62,6 +57,5 @@ int main( int argc, char** argv )
      if( (c == 27) || ( c=='q') ) // ESC key or q key
 	 break; 
  }
-#endif 
 
 }

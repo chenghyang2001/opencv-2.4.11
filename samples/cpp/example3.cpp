@@ -16,7 +16,6 @@ int main( int argc, char** argv )
 {
 
     cout <<" example3  " << endl;
-#if 1
 //    cv::namedWindow( "example 2-3", cv::WINDOW_AUTOSIZE ); 
 //
 //    namedWindow( "Example3", WINDOW_AUTOSIZE ); 
@@ -40,5 +39,4 @@ int main( int argc, char** argv )
 	if( cv::waitKey(33) >= 0 ) break; 
     }
 
-#endif 
 }
