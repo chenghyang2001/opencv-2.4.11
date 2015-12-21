@@ -87,7 +87,8 @@ int main()
 	Mat frame;
 	Mat result;
 
-	VideoCapture capture("1.avi");
+//        VideoCapture capture("1.avi");
+	VideoCapture capture("/home/peter/opencv-2.4.11/samples/cpp/mao/1.avi");
 
 	help();
 	if(capture.isOpened())	// 攝影機讀取文件開關
