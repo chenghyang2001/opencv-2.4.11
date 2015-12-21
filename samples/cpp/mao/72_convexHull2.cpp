@@ -60,7 +60,7 @@ int main(  )
 	ShowHelpText();
 
 	// 加載源圖像
-	g_srcImage = imread( "/home/peter/1.jpg", 1 );
+	g_srcImage = imread( "/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg", 1 );
 
 	// 將原圖轉換成灰度圖並進行模糊降噪
 	cvtColor( g_srcImage, g_grayImage, CV_BGR2GRAY );

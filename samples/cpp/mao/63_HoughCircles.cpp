@@ -26,7 +26,7 @@ using namespace cv;
 int main( )
 {
 	//【1】載入原始圖、Mat變數定義   
-	Mat srcImage = imread("/home/peter/1.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
+	Mat srcImage = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
 	Mat midImage,dstImage;//臨時變數和目標圖的定義
 
 	//【2】顯示原始圖

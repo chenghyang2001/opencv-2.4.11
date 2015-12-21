@@ -52,7 +52,7 @@ int main( int argc, char** argv )
 	ShowHelpText( );
 
 	//【1】載入原圖並顯示，初始化掩膜和灰度圖
-	g_srcImage = imread("/home/peter/1.jpg", 1);
+	g_srcImage = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg", 1);
 	imshow( WINDOW_NAME1, g_srcImage );
 	Mat srcImage,grayImage;
 	g_srcImage.copyTo(srcImage);

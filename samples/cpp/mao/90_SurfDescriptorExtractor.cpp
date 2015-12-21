@@ -44,7 +44,7 @@ int main(  )
 	ShowHelpText( );
 
 	//【1】載入素材圖
-	Mat srcImage1 = imread("/home/peter/1.jpg",1);
+	Mat srcImage1 = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg",1);
 	Mat srcImage2 = imread("2.jpg",1);
 	if( !srcImage1.data || !srcImage2.data )
 	{ printf("讀取圖形錯誤，請確定目錄下是否有imread函數指定的圖形存在~！ \n"); return false; }  

@@ -26,7 +26,7 @@ using namespace cv;
 //----------------------------------------------------------------------------------------------- 
 int main( )
 {    
-	Mat src = imread("/home/peter/1.jpg"); 
+	Mat src = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg"); 
 	imshow("【原始圖】",src);
 	Rect ccomp;
 	floodFill(src, Point(50,300), Scalar(155, 255,55), &ccomp, Scalar(20, 20, 20),Scalar(20, 20, 20));

@@ -42,7 +42,7 @@ int main( )
 
 	//【1】載入源圖，轉化為HSV顏色模型
 	Mat srcImage, hsvImage;
-	srcImage=imread("/home/peter/1.jpg");
+	srcImage=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");
 	cvtColor(srcImage,hsvImage, CV_BGR2HSV);
 
 	system("color 2F");

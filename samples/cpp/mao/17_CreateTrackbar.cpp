@@ -81,7 +81,7 @@ int main( int argc, char** argv )
 	ShowHelpText();
 
 	//加載圖像 (兩圖像的尺寸需相同)
-	g_srcImage1 = imread("/home/peter/1.jpg");
+	g_srcImage1 = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");
 	g_srcImage2 = imread("2.jpg");
 	if( !g_srcImage1.data ) { printf("讀取第一幅圖形錯誤，請確定目錄下是否有imread函數指定圖形存在~！ \n"); return -1; }
 	if( !g_srcImage2.data ) { printf("讀取第二幅圖形錯誤，請確定目錄下是否有imread函數指定圖形存在~！\n"); return -1; }

@@ -50,7 +50,7 @@ int main( )
 	ShowHelpText();
 
 	//【1】讀取源圖像，並轉換到 HSV 空間
-	g_srcImage = imread( "/home/peter/1.jpg", 1 );
+	g_srcImage = imread( "/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg", 1 );
 	if(!g_srcImage.data ) { printf("讀取圖形錯誤，請確定目錄下是否有imread函數指定圖形存在~！ \n"); return false; } 
 	cvtColor( g_srcImage, g_hsvImage, CV_BGR2HSV );
 

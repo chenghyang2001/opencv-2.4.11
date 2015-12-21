@@ -61,7 +61,7 @@ int main( int argc, char** argv )
 	ShowHelpText( );
 
 	// 加載源圖像
-	g_srcImage = imread( "/home/peter/1.jpg", 1 );
+	g_srcImage = imread( "/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg", 1 );
 	if(!g_srcImage.data ) { printf("讀取圖形錯誤，請確定目錄下是否有imread函數指定的圖形存在~！ \n"); return false; } 
 
 	// 轉成灰度並模糊化降噪

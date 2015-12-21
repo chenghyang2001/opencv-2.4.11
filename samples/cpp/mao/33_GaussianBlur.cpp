@@ -27,7 +27,7 @@ using namespace cv;
 int main( )
 { 
 	// 載入原圖
-	Mat image=imread("/home/peter/1.jpg"); 
+	Mat image=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg"); 
 
 	//建立視窗
 	namedWindow( "高斯濾波【原圖】" ); 

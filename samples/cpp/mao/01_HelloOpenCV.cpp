@@ -20,11 +20,15 @@ using namespace cv; //包含cv命名空間
 int main()
 {
 	// 【1】讀入一張圖形 
-	Mat img=imread("/home/peter/1.jpg");
-//        Mat img=imread("/home/peter/1.jpg");
+	Mat img=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");
+//        Mat img=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");
 	// 【2】在視窗中顯示載入的圖形
 	imshow("【載入的圖形】",img);
 	moveWindow("【載入的圖形】",100,100);
 	// 【3】等待6000 ms後視窗自動關閉
 	waitKey(6000);
 }
+
+
+
+// "/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg";

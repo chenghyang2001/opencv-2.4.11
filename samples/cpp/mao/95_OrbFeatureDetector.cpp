@@ -54,7 +54,7 @@ int main(	)
 	ShowHelpText();
 
 	//【0】載入源圖，顯示並轉化為灰度圖
-	Mat srcImage = imread("/home/peter/1.jpg");
+	Mat srcImage = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");
 	imshow("原始圖",srcImage);
 	Mat grayImage;
 	cvtColor(srcImage, grayImage, CV_BGR2GRAY);

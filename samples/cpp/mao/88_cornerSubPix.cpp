@@ -124,7 +124,7 @@ int main(  )
 	ShowHelpText();
 
 	//【1】載入源圖像並將其轉換為灰度圖
-	g_srcImage = imread("/home/peter/1.jpg", 1 );
+	g_srcImage = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg", 1 );
 	cvtColor( g_srcImage, g_grayImage, CV_BGR2GRAY );
 
 	//【2】建立視窗和滑動條，並進行顯示和回調函數初始化

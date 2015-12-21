@@ -38,7 +38,7 @@ int main( )
 	Mat abs_grad_x, abs_grad_y,dst;
 
 	//【1】載入原始圖  
-	Mat src = imread("/home/peter/1.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
+	Mat src = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
 
 	//【2】顯示原始圖 
 	imshow("【原始圖】sobel邊緣檢測", src); 

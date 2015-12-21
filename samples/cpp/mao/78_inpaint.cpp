@@ -97,7 +97,7 @@ int main( int argc, char** argv )
 	ShowHelpText();
 
 	//載入原始圖並進行掩膜的初始化
-	Mat srcImage = imread("/home/peter/1.jpg", -1);
+	Mat srcImage = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg", -1);
 	if(!srcImage.data ) { printf("讀取圖形錯誤，請確定目錄下是否有imread函數指定圖形存在~！ \n"); return false; } 
 	srcImage0 = srcImage.clone();
 	srcImage1 = srcImage.clone();

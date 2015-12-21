@@ -31,7 +31,7 @@ using namespace cv;
 int main( )
 {
 	//載入原始圖   
-	Mat image = imread("/home/peter/1.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
+	Mat image = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
 	//建立視窗   
 	namedWindow("【原始圖】形態學梯度");  
 	namedWindow("【效果圖】形態學梯度");  

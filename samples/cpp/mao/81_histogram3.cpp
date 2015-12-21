@@ -42,7 +42,7 @@ int main(  )
 
 	//【1】載入素材圖並顯示
 	Mat srcImage;
-	srcImage=imread("/home/peter/1.jpg");
+	srcImage=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");
 	imshow( "素材圖", srcImage );
 
 	system("color 3F");

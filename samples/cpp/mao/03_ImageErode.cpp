@@ -28,7 +28,7 @@ using namespace cv;
 int main(   )
 {
 	//載入原圖  
-	Mat srcImage = imread("/home/peter/1.jpg");
+	Mat srcImage = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");
 	//顯示原圖
 	imshow("【原圖】腐蝕操作", srcImage);
 	//進行腐蝕操作 
