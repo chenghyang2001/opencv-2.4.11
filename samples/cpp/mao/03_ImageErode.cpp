@@ -37,6 +37,7 @@ int main(   )
 	erode(srcImage, dstImage, element);
 	//顯示效果圖 
 	imshow("【效果圖】腐蝕操作", dstImage);
+	moveWindow("【效果圖】腐蝕操作", 100,100);
 	waitKey(0); 
 
 	return 0;

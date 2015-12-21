@@ -20,6 +20,7 @@ int main( )
 	Mat srcImage = imread("/home/peter/1.jpg");
 	// 【2】顯示載入的圖形
 	imshow("【原始圖】",srcImage);
+	moveWindow("【原始圖】",100,100);
 	// 【3】等待任意按鍵按下
 	waitKey(0);
 }  
