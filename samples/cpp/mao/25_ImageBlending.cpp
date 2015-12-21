@@ -120,7 +120,7 @@ bool  LinearBlending()
 
 	// 【3】顯示原圖視窗
 	imshow( "<2>線性混合範例視窗【原圖】", srcImage2 );
-	moveWindow( "<2>線性混合範例視窗【原圖】", 200,200 );
+	moveWindow( "<2>線性混合範例視窗【原圖】", 1000,100 );
 
 	imshow( "<3>線性混合範例視窗【效果圖】", dstImage );
 	moveWindow( "<3>線性混合範例視窗【效果圖】", 300,300 );

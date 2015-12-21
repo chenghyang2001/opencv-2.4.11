@@ -137,7 +137,7 @@ bool  MultiChannelBlending()
 	//【6】顯示效果圖
 	namedWindow("<2>游戲原畫+logo綠色通道");
 	imshow("<2>游戲原畫+logo綠色通道",srcImage);
-	moveWindow("<2>游戲原畫+logo綠色通道",200,200);
+	moveWindow("<2>游戲原畫+logo綠色通道",1000,100);
 
 
 

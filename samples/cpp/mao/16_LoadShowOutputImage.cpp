@@ -38,7 +38,7 @@ int main( )
 	//載入後先顯示
 	namedWindow("【2】原畫圖");
 	imshow("【2】原畫圖",image);
-	moveWindow("【2】原畫圖",200,200);
+	moveWindow("【2】原畫圖",1000,100);
 
 	namedWindow("【3】logo圖");
 	imshow("【3】logo圖",logo);

@@ -120,7 +120,7 @@ static void ContrastAndBright(int, void *)
 	moveWindow("【原始圖視窗】", 100,100 );
 
 	imshow("【效果圖視窗】", g_dstImage);
-	moveWindow("【效果圖視窗】", 200,200);
+	moveWindow("【效果圖視窗】", 1000,100);
 }
 
 

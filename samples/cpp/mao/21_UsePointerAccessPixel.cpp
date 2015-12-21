@@ -54,7 +54,7 @@ int main( )
 
 	//【6】顯示效果圖
 	imshow("效果圖",dstImage);  
-	moveWindow("效果圖",200,200);  
+	moveWindow("效果圖",1000,100);  
 	waitKey(0);  
 }  
 

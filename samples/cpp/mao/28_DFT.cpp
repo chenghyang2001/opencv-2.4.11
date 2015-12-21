@@ -99,7 +99,7 @@ int main( )
 
 	//【9】顯示效果圖
 	imshow("頻譜幅值", magnitudeImage);    
-	moveWindow("頻譜幅值", 200,200);    
+	moveWindow("頻譜幅值", 1000,100);    
 	waitKey();
 
 	return 0;
