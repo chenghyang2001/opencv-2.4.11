@@ -65,6 +65,7 @@ int main( int argc, char** argv )
 		srcImage.copyTo(tempImage);//拷貝源圖到臨時變數
 		if( g_bDrawingBox ) DrawRectangle( tempImage, g_rectangle );//當進行繪製的標識表為真，則進行繪製
 		imshow( WINDOW_NAME, tempImage );
+		moveWindow( WINDOW_NAME, 100,100 );
 		if( waitKey( 10 ) == 27 ) break;//按下ESC鍵，程序退出
 	}
 	return 0;
