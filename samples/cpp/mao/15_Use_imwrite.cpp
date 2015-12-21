@@ -67,10 +67,10 @@ int main( )
 
 	//顯示圖形
 //        try{
-//                imwrite("透明Alpha值圖.png", mat, compression_params);
-//                imshow("產生的png圖",mat);
-//                fprintf(stdout,"PNG圖形文件的alpha資料儲存完畢~\n可以在專案目錄下查看由imwrite函數產生的圖形\n");
-//                waitKey(0);
+		imwrite("透明Alpha值圖.png", mat, compression_params);
+		imshow("產生的png圖",mat);
+		fprintf(stdout,"PNG圖形文件的alpha資料儲存完畢~\n可以在專案目錄下查看由imwrite函數產生的圖形\n");
+		waitKey(0);
 //        }
 //        catch(runtime_error& ex) {
 //                fprintf(stderr,"圖像轉換成PNG格式發生錯誤：%s\n", ex.what());

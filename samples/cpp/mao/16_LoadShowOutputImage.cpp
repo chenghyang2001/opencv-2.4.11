@@ -22,7 +22,8 @@ int main( )
 	//	描述：以下三行程式碼用于完成圖像的載入和顯示
 	//--------------------------------------------------------------------------------------------------
 
-	Mat girl=imread("girl.jpg"); //載入圖像到Mat
+//        Mat girl=imread("girl.jpg"); //載入圖像到Mat
+	Mat girl=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/girl.jpg"); //載入圖像到Mat
 	namedWindow("【1】動漫圖"); //建立一個名為 "【1】動漫圖"的視窗  
 	imshow("【1】動漫圖",girl);//顯示名為 "【1】動漫圖"的視窗  
 
@@ -30,8 +31,8 @@ int main( )
 	//	描述：二、初級圖像混合
 	//--------------------------------------------------------------------------------------------------
 	//載入圖形
-	Mat image= imread("dota.jpg",199);
-	Mat logo= imread("dota_logo.jpg");
+	Mat image= imread("/home/peter/opencv-2.4.11/samples/cpp/mao/dota.jpg",199);
+	Mat logo= imread("/home/peter/opencv-2.4.11/samples/cpp/mao/dota_logo.jpg");
 
 	//載入後先顯示
 	namedWindow("【2】原畫圖");
