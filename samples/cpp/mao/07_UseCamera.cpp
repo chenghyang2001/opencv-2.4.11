@@ -30,6 +30,7 @@ int main( )
 		Mat frame;  //定義一個Mat變數，用于存儲每一幅的圖像
 		capture>>frame;  //讀取現在幅
 		imshow("讀取視訊",frame);  //顯示現在幅
+		moveWindow("讀取視訊",100,100);  //顯示現在幅
 		waitKey(30);  //延時30ms
 	}  
 	return 0;     
