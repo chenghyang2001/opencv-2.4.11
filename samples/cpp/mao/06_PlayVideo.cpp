@@ -24,7 +24,8 @@ using namespace cv;
 int main( )  
 {  
 	//【1】讀入視訊
-	VideoCapture capture("1.avi");
+//        VideoCapture capture("1.avi");
+	VideoCapture capture("/home/peter/1.avi");
 
 	//【2】循環顯示每一幅
 	while(1)  

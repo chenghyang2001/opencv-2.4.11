@@ -41,6 +41,7 @@ int main( )
 
 	//【5】顯示效果圖 
 	imshow("【效果圖】Canny邊緣檢測", edge); 
+	moveWindow("【效果圖】Canny邊緣檢測", 100,100); 
 
 	waitKey(0); 
 

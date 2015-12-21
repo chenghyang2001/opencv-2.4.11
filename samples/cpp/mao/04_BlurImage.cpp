@@ -35,6 +35,7 @@ int main( )
 
 	//【4】顯示效果圖
 	imshow( "均值濾波【效果圖】" ,dstImage ); 
+	moveWindow( "均值濾波【效果圖】" ,100,100 ); 
 
 	waitKey( 0 );     
 } 
