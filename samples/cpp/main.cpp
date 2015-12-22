@@ -12,7 +12,8 @@
 #include "utils.h"
 #include <stdio.h>
 
-#define USE_VIDEO 1
+//#define USE_VIDEO 1
+#define USE_VIDEO 0
 
 #undef MIN
 #undef MAX
@@ -518,13 +519,12 @@ const std::string currentDateTime() {
 int main(void)
 {
 
-#ifdef USE_VIDEO
-    //        CvCapture *input_video = cvCreateFileCapture("MOV_07.AVI");
-    //        CvCapture *input_video = cvCreateFileCapture("cube4.avi");
-    CvCapture *input_video = cvCreateFileCapture("/home/peter/cube4.avi");
-#else
+//#ifdef USE_VIDEO
+//    CvCapture *input_video = cvCreateFileCapture("/home/peter/cube4.avi");
+//#else
+//    CvCapture *input_video = cvCaptureFromCAM(0);
+//#endif
     CvCapture *input_video = cvCaptureFromCAM(0);
-#endif
 
     if (input_video == NULL) {
 	fprintf(stderr, "Error: Can't open video\n");
@@ -541,14 +541,23 @@ int main(void)
     printf("video height = %d \n", video_size.height );
     printf("video width = %d \n", video_size.width );
 
+    cvSetCaptureProperty(input_video, CV_CAP_PROP_FRAME_WIDTH, 1024 );
+    cvSetCaptureProperty(input_video, CV_CAP_PROP_FRAME_HEIGHT, 768 );
+
+//    video_size.width  = 1024 ;
+//    video_size.height = 768 ;
+
 
     long current_frame = 0;
     int    key_pressed = 0;
     IplImage *frame    = NULL;
 
     CvSize frame_size    = cvSize(video_size.width, video_size.height/2);
+
     IplImage *temp_frame = cvCreateImage(frame_size, IPL_DEPTH_8U, 3);
+
     IplImage *grey       = cvCreateImage(frame_size, IPL_DEPTH_8U, 1);
+
     IplImage *edges      = cvCreateImage(frame_size, IPL_DEPTH_8U, 1);
     IplImage *half_frame = cvCreateImage(cvSize(video_size.width/2, video_size.height/2), IPL_DEPTH_8U, 3);
 
@@ -557,6 +566,8 @@ int main(void)
     CvHaarClassifierCascade* cascade = (CvHaarClassifierCascade*)cvLoad("cars3.xml");
 
     static int count = 0 ;
+    CvSize frame_size_2    = cvSize(1024, 768);
+    IplImage *grey2       = cvCreateImage(frame_size_2, IPL_DEPTH_8U, 1);
 
     //cvSetCaptureProperty(input_video, CV_CAP_PROP_POS_FRAMES, current_frame);
     while(key_pressed != 27) {
@@ -598,14 +609,22 @@ int main(void)
 	// show middle line
 	cvLine(temp_frame, cvPoint(frame_size.width/2,0), cvPoint(frame_size.width/2,frame_size.height), CV_RGB(255, 255, 0), 1);
 
-	cvShowImage("Grey",  grey);
-	cvMoveWindow("Grey",  0, 0); 
 
+        cvResize (grey, grey2, CV_INTER_LINEAR);
+	
+//        cvShowImage("Grey",  grey);
+	cvShowImage("Grey",  grey2);
+	cvMoveWindow("Grey",  0, 0); 
+//        cvResizeWindow("Grey",  1024, 768); 
+
+
+#if 0
 	cvShowImage("Edges", edges);
 	cvMoveWindow("Edges", 0, frame_size.height+25);
 
 	cvShowImage("Color", temp_frame);
 	cvMoveWindow("Color", 0, 2*(frame_size.height+25)); 
+#endif
 
 	key_pressed = cvWaitKey(15);
 
