@@ -31,6 +31,7 @@ int main( )
 
 	//【2】顯示原始圖
 	imshow("【原始圖】", srcImage);  
+	moveWindow("【原始圖】", 100,100);  
 
 	//【3】轉為灰度圖並進行圖像平滑
 	cvtColor(srcImage,midImage, CV_BGR2GRAY);//轉化邊緣檢測後的圖為灰度圖
@@ -54,6 +55,7 @@ int main( )
 
 	//【6】顯示效果圖  
 	imshow("【效果圖】", srcImage);  
+	moveWindow("【效果圖】", 1000, 1000);  
 
 	waitKey(0);  
 

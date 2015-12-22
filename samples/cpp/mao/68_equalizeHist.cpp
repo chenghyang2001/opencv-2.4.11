@@ -32,12 +32,14 @@ int main( )
 	// 【2】轉為灰度圖並顯示出來
 	cvtColor( srcImage, srcImage, CV_BGR2GRAY );
 	imshow( "原始圖", srcImage );
+	moveWindow( "原始圖", 100,100 );
 
 	// 【3】進行直條圖均衡化
 	equalizeHist( srcImage, dstImage );
 
 	// 【4】顯示結果
 	imshow( "經過直條圖均衡化後的圖", dstImage );
+	moveWindow( "經過直條圖均衡化後的圖", 1000,100 );
 
 	// 等待用戶按鍵退出程式
 	waitKey(0);

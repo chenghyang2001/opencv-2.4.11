@@ -81,6 +81,7 @@ static void On_Mouse( int event, int x, int y, int flags, void* )
 		line( srcImage1, previousPoint, pt, Scalar::all(255), 5, 8, 0 );
 		previousPoint = pt;
 		imshow(WINDOW_NAME1, srcImage1);
+		moveWindow(WINDOW_NAME1, 1000,1000 );
 	}
 }
 
@@ -105,8 +106,12 @@ int main( int argc, char** argv )
 
 	//顯示原始圖參考
 	imshow(WINDOW_NAME0, srcImage0);
+	moveWindow(WINDOW_NAME0, 100,100);
+
 	//顯示原始圖
 	imshow(WINDOW_NAME1, srcImage1);
+	moveWindow(WINDOW_NAME1, 1000,100);
+
 	//設定滑鼠回調訊息
 	setMouseCallback( WINDOW_NAME1, On_Mouse, 0 );
 

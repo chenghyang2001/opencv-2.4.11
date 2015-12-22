@@ -44,6 +44,7 @@ int main()
 	//【1】載入原圖並顯示
 	Mat srcImage = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg", 0);
 	imshow("原圖",srcImage);
+	moveWindow("原圖",100,100);
 	if(!srcImage.data) {cout << "fail to load image" << endl; 	return 0;}
 
 	system("color 1F");
@@ -76,6 +77,7 @@ int main()
 		rectangle(dstImage,Point(i*scale, size - 1), Point((i+1)*scale - 1, size - realValue), Scalar(255));
 	}
 	imshow("一維直條圖", dstImage);
+	moveWindow("一維直條圖", 1000,100);
 	waitKey(0);
 	return 0;
 }

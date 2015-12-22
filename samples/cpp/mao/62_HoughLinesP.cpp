@@ -48,12 +48,15 @@ int main( )
 
 	//【5】顯示原始圖  
 	imshow("【原始圖】", srcImage);  
+	moveWindow("【原始圖】", 100, 100 );  
 
 	//【6】邊緣檢測後的圖 
 	imshow("【邊緣檢測後的圖】", midImage);  
+	moveWindow("【邊緣檢測後的圖】", 1000,1000);  
 
 	//【7】顯示效果圖  
 	imshow("【效果圖】", dstImage);  
+	moveWindow("【效果圖】", 100,1000);  
 
 	waitKey(0);  
 

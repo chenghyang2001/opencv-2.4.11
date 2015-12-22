@@ -53,6 +53,7 @@ int main( )
 
 	//顯示原始圖  
 	imshow("【原始圖】", g_srcImage);  
+	moveWindow("【原始圖】", 100,100 );  
 
 	//建立捲軸
 	namedWindow("【效果圖】",1);
@@ -68,6 +69,7 @@ int main( )
 
 	//顯示效果圖  
 	imshow("【效果圖】", g_dstImage);  
+	moveWindow("【效果圖】", 1000,1000 );  
 
 
 	waitKey(0);  

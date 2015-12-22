@@ -96,7 +96,10 @@ int main( )
 
 		//【6】顯示效果圖
 		imshow( "素材圖", srcImage );
+		moveWindow( "素材圖", 100,100 );
+
 		imshow( "H-S 直條圖", histImg );
+		moveWindow( "H-S 直條圖", 1000,100 );
 
 		waitKey();
 }

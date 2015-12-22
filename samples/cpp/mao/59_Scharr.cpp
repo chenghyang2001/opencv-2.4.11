@@ -38,22 +38,26 @@ int main( )
 
 	//【2】顯示原始圖 
 	imshow("【原始圖】Scharr濾波器", src); 
+	moveWindow("【原始圖】Scharr濾波器", 100,100 ); 
 
 	//【3】求 X方向梯度
 	Scharr( src, grad_x, CV_16S, 1, 0, 1, 0, BORDER_DEFAULT );
 	convertScaleAbs( grad_x, abs_grad_x );
 	imshow("【效果圖】 X方向Scharr", abs_grad_x); 
+	moveWindow("【效果圖】 X方向Scharr", 1000,100); 
 
 	//【4】求Y方向梯度
 	Scharr( src, grad_y, CV_16S, 0, 1, 1, 0, BORDER_DEFAULT );
 	convertScaleAbs( grad_y, abs_grad_y );
 	imshow("【效果圖】Y方向Scharr", abs_grad_y); 
+	moveWindow("【效果圖】Y方向Scharr", 100,1000); 
 
 	//【5】合並梯度(近似)
 	addWeighted( abs_grad_x, 0.5, abs_grad_y, 0.5, 0, dst );
 
 	//【6】顯示效果圖
 	imshow("【效果圖】合並梯度後Scharr", dst); 
+	moveWindow("【效果圖】合並梯度後Scharr", 1000, 1000 ); 
 
 	waitKey(0); 
 	return 0; 

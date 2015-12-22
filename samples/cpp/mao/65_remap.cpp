@@ -34,6 +34,7 @@ int main(  )
 	srcImage = imread( "/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg", 1 );
 	if(!srcImage.data ) { printf("讀取圖形錯誤，請確定目錄下是否有imread函數指定的圖形存在~！ \n"); return false; }  
 	imshow("原始圖",srcImage);
+	moveWindow("原始圖",100, 100);
 
 	//【2】建立和原始圖一樣的效果圖，x重映射圖，y重映射圖
 	dstImage.create( srcImage.size(), srcImage.type() );
@@ -56,6 +57,7 @@ int main(  )
 
 	//【5】顯示效果圖
 	imshow( "【程式視窗】", dstImage );
+	moveWindow( "【程式視窗】", 1000,100 );
 	waitKey();
 
 	return 0;

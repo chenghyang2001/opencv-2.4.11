@@ -92,8 +92,13 @@ int main(  )
 
 	//【7】顯示結果
 	imshow( WINDOW_NAME1, srcImage );
+	moveWindow( WINDOW_NAME1, 100,100 );
+
 	imshow( WINDOW_NAME2, dstImage_warp );
+	moveWindow( WINDOW_NAME2, 1000,100 );
+
 	imshow( WINDOW_NAME3, dstImage_warp_rotate );
+	moveWindow( WINDOW_NAME3, 1000,1000 );
 
 	// 等待用戶按任意按鍵退出程序
 	waitKey(0);

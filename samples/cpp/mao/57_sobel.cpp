@@ -42,20 +42,24 @@ int main( )
 
 	//【2】顯示原始圖 
 	imshow("【原始圖】sobel邊緣檢測", src); 
+	moveWindow("【原始圖】sobel邊緣檢測", 100,100); 
 
 	//【3】求 X方向梯度
 	Sobel( src, grad_x, CV_16S, 1, 0, 3, 1, 1, BORDER_DEFAULT );
 	convertScaleAbs( grad_x, abs_grad_x );
 	imshow("【效果圖】 X方向Sobel", abs_grad_x); 
+	moveWindow("【效果圖】 X方向Sobel", 1000,100); 
 
 	//【4】求Y方向梯度
 	Sobel( src, grad_y, CV_16S, 0, 1, 3, 1, 1, BORDER_DEFAULT );
 	convertScaleAbs( grad_y, abs_grad_y );
 	imshow("【效果圖】Y方向Sobel", abs_grad_y); 
+	moveWindow("【效果圖】Y方向Sobel", 1000,1000); 
 
 	//【5】合並梯度(近似)
 	addWeighted( abs_grad_x, 0.5, abs_grad_y, 0.5, 0, dst );
 	imshow("【效果圖】整體方向Sobel", dst); 
+	moveWindow("【效果圖】整體方向Sobel", 100,1000); 
 
 	waitKey(0); 
 	return 0; 

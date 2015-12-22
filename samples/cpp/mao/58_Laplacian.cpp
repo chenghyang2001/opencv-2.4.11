@@ -34,6 +34,7 @@ int main( )
 
 	//【2】顯示原始圖 
 	imshow("【原始圖】圖像Laplace變換", src); 
+	moveWindow("【原始圖】圖像Laplace變換", 100,100); 
 
 	//【3】使用高斯濾波消除噪聲
 	GaussianBlur( src, src, Size(3,3), 0, 0, BORDER_DEFAULT );
@@ -49,6 +50,7 @@ int main( )
 
 	//【7】顯示效果圖
 	imshow( "【效果圖】圖像Laplace變換", abs_dst );
+	moveWindow( "【效果圖】圖像Laplace變換", 1000,1000 );
 
 	waitKey(0); 
 
