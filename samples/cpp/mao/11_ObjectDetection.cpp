@@ -29,9 +29,6 @@
 using namespace std;
 using namespace cv;
 
-
-
-
 void detectAndDisplay( Mat frame );
 
 //--------------------------------【全局變數宣告】----------------------------------------------
@@ -39,15 +36,8 @@ void detectAndDisplay( Mat frame );
 //-------------------------------------------------------------------------------------------------
 //注意，需要把"haarcascade_frontalface_alt.xml"和"haarcascade_eye_tree_eyeglasses.xml"這兩個文件復制到專案路徑下
 
-//String face_cascade_name = "/home/peter/haarcascade_frontalface_alt.xml";
-//String eyes_cascade_name = "/home/peter/haarcascade_eye_tree_eyeglasses.xml";
-
 String face_cascade_name = "/home/peter/opencv-2.4.11/samples/cpp/mao/haarcascade_frontalface_alt.xml";
 String eyes_cascade_name = "/home/peter/opencv-2.4.11/samples/cpp/mao/haarcascade_eye_tree_eyeglasses.xml";
-
-
-//String face_cascade_name = "haarcascade_frontalface_alt.xml";
-//String eyes_cascade_name = "haarcascade_eye_tree_eyeglasses.xml";
 
 CascadeClassifier face_cascade;
 CascadeClassifier eyes_cascade;
@@ -97,7 +87,7 @@ int main( void )
        { printf(" --(!) No captured frame -- Break!"); break; }
 
       int c = waitKey(10);
-      if( (char)c == 'c' ) { break; }
+      if( (char)c == 'q' ) { break; }
 
     }
   }

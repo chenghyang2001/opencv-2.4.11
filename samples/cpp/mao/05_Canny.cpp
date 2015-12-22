@@ -25,8 +25,9 @@ int main( )
 	//【0】載入原始圖  
 	Mat srcImage = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
 	imshow("【原始圖】Canny邊緣檢測", srcImage); 	//顯示原始圖 
-	Mat dstImage,edge,grayImage;	//參數定義
+	moveWindow("【原始圖】Canny邊緣檢測", 100,100); 	//顯示原始圖 
 
+	Mat dstImage,edge,grayImage;	//參數定義
 	//【1】建立與src同類別型和大小的矩陣(dst)
 	dstImage.create( srcImage.size(), srcImage.type() );
 
@@ -41,7 +42,7 @@ int main( )
 
 	//【5】顯示效果圖 
 	imshow("【效果圖】Canny邊緣檢測", edge); 
-	moveWindow("【效果圖】Canny邊緣檢測", 100,100); 
+	moveWindow("【效果圖】Canny邊緣檢測", 1000,100); 
 
 	waitKey(0); 
 
