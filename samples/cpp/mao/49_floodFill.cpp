@@ -28,9 +28,11 @@ int main( )
 {    
 	Mat src = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg"); 
 	imshow("【原始圖】",src);
+	moveWindow("【原始圖】",100,100);
 	Rect ccomp;
 	floodFill(src, Point(50,300), Scalar(155, 255,55), &ccomp, Scalar(20, 20, 20),Scalar(20, 20, 20));
 	imshow("【效果圖】",src);
+	moveWindow("【效果圖】",1000,100);
 	waitKey(0);
 	return 0;    
 }  

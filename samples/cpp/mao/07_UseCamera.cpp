@@ -23,8 +23,8 @@ using namespace std;
 int main( )  
 {  
 	//【1】從攝影機讀入視訊
-	VideoCapture capture(0);
-//        VideoCapture capture("/home/peter/opencv-2.4.11/samples/cpp/mao/1.avi");
+//        VideoCapture capture(0);
+	VideoCapture capture("/home/peter/opencv-2.4.11/samples/cpp/mao/1.avi");
 
 
 	//【2】循環顯示每一幅
