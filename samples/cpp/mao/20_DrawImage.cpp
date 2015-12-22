@@ -101,8 +101,9 @@ int main( void )
 	// ---------------------------<3>顯示繪製出的圖像------------------------
 	imshow( WINDOW_NAME1, atomImage );
 	moveWindow( WINDOW_NAME1, 0, 200 );
+
 	imshow( WINDOW_NAME2, rookImage );
-	moveWindow( WINDOW_NAME2, WINDOW_WIDTH, 200 );
+	moveWindow( WINDOW_NAME2, WINDOW_WIDTH+50, 200 );
 
 	waitKey( 0 );
 	return(0);

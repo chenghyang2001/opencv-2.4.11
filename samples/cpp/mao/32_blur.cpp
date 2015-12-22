@@ -33,7 +33,9 @@ int main( )
 
 	//【3】進行均值濾波操作
 	Mat dstImage; 
-	blur( srcImage, dstImage, Size(7, 7)); 
+//        blur( srcImage, dstImage, Size(7, 7)); 
+//        blur( srcImage, dstImage, Size(2, 2)); 
+	blur( srcImage, dstImage, Size(5, 5)); 
 
 	//【4】顯示效果圖
 	imshow( "均值濾波【效果圖】" ,dstImage ); 

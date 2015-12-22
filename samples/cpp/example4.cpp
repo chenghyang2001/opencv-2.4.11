@@ -35,6 +35,7 @@ int main( int argc, char** argv )
  int tmpw   = (int) g_cap.get(CV_CAP_PROP_FRAME_WIDTH); 
  int tmph   = (int) g_cap.get(CV_CAP_PROP_FRAME_HEIGHT); 
  cout << "Video has " << frames << " frames of dimensions(" << tmpw << ", " << tmph << ")." << endl; 
+
  cv::createTrackbar("Position", "Example2_4", &g_slider_position, frames, onTrackbarSlide); 
 
  cv::Mat frame; 

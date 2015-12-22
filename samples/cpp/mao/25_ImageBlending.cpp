@@ -121,7 +121,7 @@ bool  LinearBlending()
 	moveWindow( "<2>線性混合範例視窗【原圖】", 1000,100 );
 
 	imshow( "<3>線性混合範例視窗【效果圖】", dstImage );
-	moveWindow( "<3>線性混合範例視窗【效果圖】", 300,300 );
+	moveWindow( "<3>線性混合範例視窗【效果圖】", 100,700 );
 
 	return true;
 
@@ -154,7 +154,7 @@ bool  ROI_LinearBlending()
 
 	//【4】顯示結果
 	imshow("<4>區域線性圖像混合範例視窗",srcImage4);
-	moveWindow("<4>區域線性圖像混合範例視窗",400,400);
+	moveWindow("<4>區域線性圖像混合範例視窗",1000,700);
 
 	return true;
 }

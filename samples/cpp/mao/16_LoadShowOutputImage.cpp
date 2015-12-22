@@ -22,7 +22,6 @@ int main( )
 	//	描述：以下三行程式碼用于完成圖像的載入和顯示
 	//--------------------------------------------------------------------------------------------------
 
-//        Mat girl=imread("girl.jpg"); //載入圖像到Mat
 	Mat girl=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/girl.jpg"); //載入圖像到Mat
 	namedWindow("【1】動漫圖"); //建立一個名為 "【1】動漫圖"的視窗  
 	imshow("【1】動漫圖",girl);//顯示名為 "【1】動漫圖"的視窗  
@@ -42,7 +41,7 @@ int main( )
 
 	namedWindow("【3】logo圖");
 	imshow("【3】logo圖",logo);
-	moveWindow("【3】logo圖",300,300);
+	moveWindow("【3】logo圖",100,700);
 
 	// 定義一個Mat類別型，用于存放，圖像的ROI
 	Mat imageROI;
@@ -57,7 +56,7 @@ int main( )
 	//顯示結果
 	namedWindow("【4】原畫+logo圖");
 	imshow("【4】原畫+logo圖",image);
-	moveWindow("【4】原畫+logo圖",400,400);
+	moveWindow("【4】原畫+logo圖",1000,400);
 
 	//-----------------------------------【三、圖像的輸出】--------------------------------------
 	//	描述：將一個Mat圖像輸出到圖像文件

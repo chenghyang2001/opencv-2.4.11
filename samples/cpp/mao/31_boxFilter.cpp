@@ -36,9 +36,42 @@ int main( )
 	imshow( "方框濾波【原圖】", image ); 
 	moveWindow( "方框濾波【原圖】", 100, 100 ); 
 
-	//進行方框濾波操作
 	Mat out; 
-	boxFilter( image, out, -1,Size(5, 5)); 
+
+	//進行方框濾波操作
+//        boxFilter( image, out, -1,Size(5, 5)); 
+//        boxFilter( image, out, -1,Size(1, 1)); 
+//        boxFilter( image, out, -1,Size(3, 3)); 
+
+	//【3】進行均值濾波操作
+//        blur( image, out, Size(5, 5)); 
+
+	//進行高斯濾波操作
+//        GaussianBlur( image, out, Size( 5, 5 ), 0, 0 ); 
+
+	//進行中值濾波操作
+//        medianBlur ( image, out, 7);
+
+	//進行雙邊濾波操作
+//        bilateralFilter ( image, out, 25, 25*2, 25/2 ); 
+
+
+	//進行膨脹操作 
+//        Mat element = getStructuringElement(MORPH_RECT, Size(15, 15));
+//        dilate(image, out, element);
+
+	//進行腐蝕操作 
+//        Mat element = getStructuringElement(MORPH_RECT, Size(15, 15));
+//        erode(image, out, element);
+
+
+	//進行形態學操作
+	Mat element = getStructuringElement(MORPH_RECT, Size(15, 15));  
+//        morphologyEx(image, out, MORPH_OPEN, element);
+//        morphologyEx(image, out, MORPH_CLOSE, element);
+	morphologyEx(image, out, MORPH_GRADIENT, element);
+//        morphologyEx(image, out, MORPH_TOPHAT, element);
+//        morphologyEx(image, out, MORPH_BLACKHAT, element);
 
 	//顯示效果圖
 	imshow( "方框濾波【效果圖】" ,out ); 

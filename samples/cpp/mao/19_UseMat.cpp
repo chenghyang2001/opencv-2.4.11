@@ -57,7 +57,7 @@ int main(int,char**)
 	system("color 8F"); 
 
 	//顯示說明文字
-	ShowHelpText();
+//        ShowHelpText();
 
 	Mat I = Mat::eye(4, 4, CV_64F);
 	I.at<double>(1,1) = CV_PI;
@@ -71,8 +71,8 @@ int main(int,char**)
 	cout << "r (Python風格) = " << format(r,"python") << ";" << endl << endl;
 	cout << "r (Numpy風格) = " << format(r,"numpy") << ";" << endl << endl;
 	cout << "r (逗號分隔風格) = " << format(r,"csv") << ";" << endl<< endl;
-#endif
 	cout << "r (C語言風格) = " << format(r,"C") << ";" << endl << endl;
+#endif
 
 #if 0
 	Point2f p(6, 2);

@@ -43,7 +43,8 @@ RNG g_rng(12345);
 int main( int argc, char** argv ) 
 {
 	//【0】改變console字體顏色
-	system("color 9F"); 
+//        system("color 9F"); 
+	system("color 1F"); 
 
 	//【0】顯示歡迎和說明文字
 	ShowHelpText();

@@ -32,10 +32,12 @@ int main(   )
 	//顯示原圖
 	imshow("【原圖】腐蝕操作", srcImage);
 	moveWindow("【原圖】腐蝕操作", 100,100);
+	
 	//進行腐蝕操作 
 	Mat element = getStructuringElement(MORPH_RECT, Size(15, 15));
 	Mat dstImage;
 	erode(srcImage, dstImage, element);
+
 	//顯示效果圖 
 	imshow("【效果圖】腐蝕操作", dstImage);
 	moveWindow("【效果圖】腐蝕操作", 1000,100);
