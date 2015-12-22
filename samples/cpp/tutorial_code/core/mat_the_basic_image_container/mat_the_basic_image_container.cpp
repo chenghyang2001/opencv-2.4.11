@@ -24,10 +24,20 @@ int main(int,char**)
 {
     help();
 
-#if 1
+#if 0
     // create by using the constructor
+
+//    Mat M(2,2, CV_8UC1, Scalar(10,20,30));  // only 10 got in since one channel
+//    Mat M(2,2, CV_8UC2, Scalar(10,20,30));    // (10,20) got in since two channels
+//    Mat M(2,1, CV_8UC2, Scalar(10,20,30));    // (10,20) got in since two channels
+//    Mat M(1,1, CV_8UC2, Scalar(10,20,30));    // (10,20) got in since two channels
+    Mat M(1,2, CV_8UC2, Scalar(10,20,30));    // (10,20) got in since two channels
+
 //    Mat M(2,2, CV_8UC3, Scalar(0,0,255));
-    Mat M(2,2, CV_8UC3, Scalar(10,20,30));
+//    Mat M(2,2, CV_8UC3, Scalar(10,20,30));
+//    Mat M(2,2, CV_8UC3);  // 8bit unsign integer, three channels.
+//    Mat M(2,2, CV_8UC1);  // 8bit unsign integer, one channel
+//    Mat M(2,2, CV_8UC2);    // 8bit unsign integer, two channels
     cout << "M = " << endl << " " << M << endl << endl;
 #endif
 
@@ -58,39 +68,48 @@ int main(int,char**)
     // Cannot print via operator <<
 
     // Create using MATLAB style eye, ones or zero matrix
-    Mat E = Mat::eye(4, 4, CV_64F);
+//    Mat E = Mat::eye(4, 4, CV_64F);
+    Mat E = Mat::eye(2, 4, CV_64F);
     cout << "E = " << endl << " " << E << endl << endl;
 #endif 
 
 #if 0
-    Mat O = Mat::ones(2, 2, CV_32F);
+//    Mat O = Mat::ones(2, 2, CV_32F);
+//    Mat O = Mat::ones(4, 2, CV_32F);
+    Mat O = Mat::ones(4, 2, CV_16U);
     cout << "O = " << endl << " " << O << endl << endl;
+#endif
 
-    Mat Z = Mat::zeros(3,3, CV_8UC1);
+#if 0
+//    Mat Z = Mat::zeros(3,3, CV_8UC1);  // one channel.  
+    Mat Z = Mat::zeros(3,3, CV_8UC2);    // two channels
     cout << "Z = " << endl << " " << Z << endl << endl;
 #endif 
 
 #if 0
     // create a 3x3 double-precision identity matrix
-    Mat C = (Mat_<double>(3,3) << 0, -1, 0, -1, 5, -1, 0, -1, 0);
+//    Mat C = (Mat_<double>(3,3) << 0, -1, 0, -1, 5, -1, 0, -1, 0);
+    Mat C = (Mat_<double>(3,3) << 0, -1, 0, -1, 5 );
     cout << "C = " << endl << " " << C << endl << endl;
-#endif 
-#if 0
+
     Mat RowClone = C.row(1).clone();
     cout << "RowClone = " << endl << " " << RowClone << endl << endl;
 #endif
 
-#if 0
+#if 1
     // Fill a matrix with random values
-    Mat R = Mat(3, 2, CV_8UC3);
+//    Mat R = Mat(3, 2, CV_8UC3);
+    Mat R = Mat(2, 2, CV_8UC1);
     randu(R, Scalar::all(0), Scalar::all(255));
 
     // Demonstrate the output formating options
     cout << "R (default) = " << endl <<        R           << endl << endl;
+    cout << "R (c)       = " << endl << format(R,"C"     ) << endl << endl;
+#if 0
     cout << "R (python)  = " << endl << format(R,"python") << endl << endl;
     cout << "R (numpy)   = " << endl << format(R,"numpy" ) << endl << endl;
     cout << "R (csv)     = " << endl << format(R,"csv"   ) << endl << endl;
-    cout << "R (c)       = " << endl << format(R,"C"     ) << endl << endl;
+#endif
 
 #endif
 
