@@ -68,6 +68,7 @@ int main( int argc, char** argv )
 	//顯示原始圖
 	namedWindow("【原始圖】");
 	imshow("【原始圖】", g_srcImage);
+	moveWindow("【原始圖】", 100,100 );
 
 	// 建立與src同類別型和大小的矩陣(dst)
 	g_dstImage.create( g_srcImage.size(), g_srcImage.type() );
@@ -133,6 +134,7 @@ void on_Canny(int, void*)
 
 	//顯示效果圖
 	imshow( "【效果圖】Canny邊緣檢測", g_dstImage );
+	moveWindow( "【效果圖】Canny邊緣檢測", 1000,100 );
 }
 
 
@@ -155,6 +157,7 @@ void on_Sobel(int, void*)
 
 	//顯示效果圖
 	imshow("【效果圖】Sobel邊緣檢測", g_dstImage); 
+	moveWindow("【效果圖】Sobel邊緣檢測", 1000,1000); 
 
 }
 
@@ -177,4 +180,5 @@ void Scharr( )
 
 	//顯示效果圖
 	imshow("【效果圖】Scharr濾波器", g_dstImage); 
+	moveWindow("【效果圖】Scharr濾波器", 100,1000); 
 }

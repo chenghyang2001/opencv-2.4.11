@@ -29,17 +29,23 @@ int main( )
 {
 	//載入原始圖   
 	Mat image = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
+	
 	//建立視窗   
 	namedWindow("【原始圖】腐蝕");  
 	namedWindow("【效果圖】腐蝕");  
+	
 	//顯示原始圖  
 	imshow("【原始圖】腐蝕", image);  
+	moveWindow("【原始圖】腐蝕", 100,100);  
+
+	//進行形態學操作
 	//定義核
 	Mat element = getStructuringElement(MORPH_RECT, Size(15, 15));  
-	//進行形態學操作
 	morphologyEx(image, image, MORPH_ERODE, element);
+
 	//顯示效果圖  
 	imshow("【效果圖】腐蝕", image);  
+	moveWindow("【效果圖】腐蝕", 1000, 100 );  
 
 	waitKey(0);  
 

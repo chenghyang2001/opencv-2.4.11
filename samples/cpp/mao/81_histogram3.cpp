@@ -44,6 +44,7 @@ int main(  )
 	Mat srcImage;
 	srcImage=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");
 	imshow( "素材圖", srcImage );
+	moveWindow( "素材圖", 100,100  );
 
 	system("color 3F");
 	ShowHelpText();
@@ -115,6 +116,7 @@ int main(  )
 
 	//在視窗中顯示出繪製好的直條圖
 	imshow( "圖像的RGB直條圖", histImage );
+	moveWindow( "圖像的RGB直條圖", 1000,100  );
 	waitKey(0);
 	return 0;
 }

@@ -31,6 +31,7 @@ int main( )
 
 	//顯示原始圖  
 	imshow("【原始圖】", srcImage);  
+	moveWindow("【原始圖】", 100,100);  
 
 	//進行尺寸調整操作
 	resize(tmpImage,dstImage1,Size( tmpImage.cols/2, tmpImage.rows/2 ),(0,0),(0,0),3);
@@ -38,7 +39,10 @@ int main( )
 
 	//顯示效果圖  
 	imshow("【效果圖】之一", dstImage1);  
+	moveWindow("【效果圖】之一", 1000,100);  
+
 	imshow("【效果圖】之二", dstImage2);  
+	moveWindow("【效果圖】之二", 100,1000);  
 
 	waitKey(0);  
 	return 0;  

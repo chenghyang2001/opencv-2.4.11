@@ -66,6 +66,7 @@ int main( )
 
 	//【4】顯示效果圖
 	imshow( WINDOW_NAME1 , g_srcImage );
+	moveWindow( WINDOW_NAME1 , 100,100  );
 
 	// 等待用戶按鍵
 	waitKey(0);
@@ -94,6 +95,7 @@ void on_BinChange(int, void* )
 
 	//【4】顯示反向投影
 	imshow( "反向投影圖", backproj );
+	moveWindow( "反向投影圖", 1000,100  );
 
 	//【5】繪製直條圖的參數準備
 	int w = 400; int h = 400;
@@ -106,6 +108,7 @@ void on_BinChange(int, void* )
 
 	//【7】顯示直條圖視窗
 	imshow( "直條圖", histImg );
+	moveWindow( "直條圖", 1000, 1000  );
 }
 
 

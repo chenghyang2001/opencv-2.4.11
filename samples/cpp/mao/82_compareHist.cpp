@@ -59,8 +59,13 @@ int main( )
 	srcImage_test2 = imread( "3.jpg", 1 );
 	//顯示載入的3張影像
 	imshow("基準影像",srcImage_base);
+	moveWindow("基準影像",100,100);
+
 	imshow("測試影像1",srcImage_test1);
+	moveWindow("測試影像1",1000,100);
+
 	imshow("測試影像2",srcImage_test2);
+	moveWindow("測試影像2",1000, 1000 );
 
 	// 【3】將影像由BGR色彩空間轉換到 HSV色彩空間
 	cvtColor( srcImage_base, hsvImage_base, CV_BGR2HSV );
