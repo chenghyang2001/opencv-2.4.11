@@ -46,8 +46,9 @@ int main( int argc, char** argv )
 	vector<Vec4i> hierarchy;
 
 	//【5】查詢輪廓
-	findContours( srcImage, contours, hierarchy,
-		CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE );
+//        findContours( srcImage, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_TC89_L1 );
+//        findContours( srcImage, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE );
+	findContours( srcImage, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE );
 
 	// 【6】瀏覽所有頂層的輪廓， 以隨機顏色繪製出每個連接組件顏色
 	int index = 0;
