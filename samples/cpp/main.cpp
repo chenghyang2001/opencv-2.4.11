@@ -508,12 +508,12 @@ const std::string currentDateTime() {
 }
 
 
-long long getMilliCount2(){
-    struct timeval tp;
-    gettimeofday(&tp, NULL);
-    long long mslong = (long long) tp.tv_sec * 1000L + tp.tv_usec / 1000; //get current timestamp in milliseconds
-    return mslong ;
-}
+//long long getMilliCount2(){
+//    struct timeval tp;
+//    gettimeofday(&tp, NULL);
+//    long long mslong = (long long) tp.tv_sec * 1000L + tp.tv_usec / 1000; //get current timestamp in milliseconds
+//    return mslong ;
+//}
 
 int main(void)
 {
@@ -557,21 +557,13 @@ int main(void)
     CvHaarClassifierCascade* cascade = (CvHaarClassifierCascade*)cvLoad("cars3.xml");
 
     static int count = 0 ;
-    long long ms_start = 0 ; 
-    long long ms_end = 0 ;
 
     //cvSetCaptureProperty(input_video, CV_CAP_PROP_POS_FRAMES, current_frame);
     while(key_pressed != 27) {
 
-	double t;
-	t = (double)getTickCount();
-
 	count = count + 1; 
+	double t = (double)getTickCount();
 
-	ms_start = getMilliCount2() ;    
-
-
-//        std::cout << "currentDateTime() = " << currentDateTime() << std::endl;
 
 	frame = cvQueryFrame(input_video);
 	if (frame == NULL) {
@@ -609,17 +601,15 @@ int main(void)
 	cvShowImage("Grey",  grey);
 	cvMoveWindow("Grey",  0, 0); 
 
-//        cvShowImage("Edges", edges);
-//        cvMoveWindow("Edges", 0, frame_size.height+25);
+	cvShowImage("Edges", edges);
+	cvMoveWindow("Edges", 0, frame_size.height+25);
 
-//        cvShowImage("Color", temp_frame);
-//        cvMoveWindow("Color", 0, 2*(frame_size.height+25)); 
+	cvShowImage("Color", temp_frame);
+	cvMoveWindow("Color", 0, 2*(frame_size.height+25)); 
 
 	key_pressed = cvWaitKey(15);
 
-	ms_end = getMilliCount2() ;    
 	t = 1000*((double)getTickCount() - t)/getTickFrequency();
-//        std::cout << " count = " << count << " start = "  << ms_start <<  " end = " << ms_end << " eclipsed = "  << (ms_end - ms_start)  << std::endl;
 	std::cout << " count = " << count << " t  = "  << t  << " milliseconds."  << std::endl;
 
     }

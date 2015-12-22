@@ -25,6 +25,7 @@ int main( )
 {  
 	//【1】讀入視訊
 	VideoCapture capture("/home/peter/opencv-2.4.11/samples/cpp/mao/1.avi");
+//        VideoCapture capture("/home/peter/opencv-2.4.11/samples/cpp/mao/cube4.avi");
 
 	//【2】循環顯示每一幅
 	while(1)  
