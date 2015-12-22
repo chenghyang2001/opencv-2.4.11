@@ -97,6 +97,7 @@ int main( )
 
 		//顯示效果圖
 		imshow("凸包檢測範例", image);
+		moveWindow("凸包檢測範例", 100,100);
 
 		//按下ESC,Q,或者q，程序退出
 		key = (char)waitKey();

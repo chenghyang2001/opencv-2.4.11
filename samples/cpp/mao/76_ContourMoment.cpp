@@ -66,6 +66,7 @@ int main( int argc, char** argv )
 	// 建立新視窗
 	namedWindow( WINDOW_NAME1, CV_WINDOW_AUTOSIZE );
 	imshow( WINDOW_NAME1, g_srcImage );
+	moveWindow( WINDOW_NAME1, 100,100 );
 
 	//建立捲軸並進行初始化
 	createTrackbar( " 閾值", WINDOW_NAME1, &g_nThresh, g_nMaxThresh, on_ThreshChange );
@@ -108,6 +109,7 @@ void on_ThreshChange(int, void* )
 	// 顯示到視窗中
 	namedWindow( WINDOW_NAME2, CV_WINDOW_AUTOSIZE );
 	imshow( WINDOW_NAME2, drawing );
+	moveWindow( WINDOW_NAME2, 1000,100 );
 
 	// 透過m00計算輪廓面積並且和OpenCV函數比較
 	printf("\t 輸出內容: 面積和輪廓長度\n");

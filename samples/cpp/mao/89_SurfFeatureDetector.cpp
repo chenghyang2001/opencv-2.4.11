@@ -45,7 +45,10 @@ int main( int argc, char** argv )
 	if( !srcImage1.data || !srcImage2.data )//檢測是否讀取成功
 	{ printf("讀取圖形錯誤，請確定目錄下是否有imread函數指定名稱的圖形存在~！ \n"); return false; } 
 	imshow("原始圖1",srcImage1);
+	moveWindow("原始圖1",100,100);
+
 	imshow("原始圖2",srcImage2);
+	moveWindow("原始圖2",1000,100);
 
 	//【2】定義需要用到的變數和類別
 	int minHessian = 400;//定義SURF中的hessian閾值特徵點檢測算子
@@ -65,7 +68,10 @@ int main( int argc, char** argv )
 
 	//【5】顯示效果圖
 	imshow("特徵點檢測效果圖1", img_keypoints_1 );
+	moveWindow("特徵點檢測效果圖1", 1000,1000 );
+
 	imshow("特徵點檢測效果圖2", img_keypoints_2 );
+	moveWindow("特徵點檢測效果圖2", 100,700 );
 
 	waitKey(0);
 	return 0;

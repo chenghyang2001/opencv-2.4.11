@@ -71,6 +71,7 @@ int main( int argc, char** argv )
 	// 建立視窗
 	namedWindow( WINDOW_NAME1, CV_WINDOW_AUTOSIZE );
 	imshow( WINDOW_NAME1, g_srcImage );
+	moveWindow( WINDOW_NAME1, 100,100 );
 
 	//建立捲軸並初始化
 	createTrackbar( "canny閾值", WINDOW_NAME1, &g_nThresh, g_nThresh_max, on_ThreshChange );

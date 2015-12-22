@@ -85,6 +85,7 @@ int main(  )
 
 		//顯示視窗
 		imshow( "圓形包圍範例", image );
+		moveWindow( "圓形包圍範例", 100,100 );
 
 		//按下ESC,Q,或者q，程序退出
 		char key = (char)waitKey();

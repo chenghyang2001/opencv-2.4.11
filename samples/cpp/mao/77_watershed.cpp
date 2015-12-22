@@ -54,6 +54,7 @@ int main( int argc, char** argv )
 	//【1】載入原圖並顯示，初始化掩膜和灰度圖
 	g_srcImage = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg", 1);
 	imshow( WINDOW_NAME1, g_srcImage );
+	moveWindow( WINDOW_NAME1, 100,100 );
 	Mat srcImage,grayImage;
 	g_srcImage.copyTo(srcImage);
 	cvtColor(g_srcImage, g_maskImage, COLOR_BGR2GRAY);
@@ -79,6 +80,7 @@ int main( int argc, char** argv )
 			g_maskImage = Scalar::all(0);
 			srcImage.copyTo(g_srcImage);
 			imshow( "image", g_srcImage );
+			moveWindow( "image", 1000,100 );
 		}
 
 		//若檢測到按鍵值為1或者空格，則進行處理
@@ -142,6 +144,7 @@ int main( int argc, char** argv )
 				//混合灰度圖和分水嶺效果圖並顯示最終的視窗
 				watershedImage = watershedImage*0.5 + grayImage*0.5;
 				imshow( WINDOW_NAME2, watershedImage );
+				moveWindow( WINDOW_NAME2, 1000,1000 );
 		}
 	}
 
@@ -174,6 +177,7 @@ static void on_Mouse( int event, int x, int y, int flags, void* )
 		line( g_srcImage, prevPt, pt, Scalar::all(255), 5, 8, 0 );
 		prevPt = pt;
 		imshow(WINDOW_NAME1, g_srcImage);
+		moveWindow(WINDOW_NAME1, 1000,700);
 	}
 }
 

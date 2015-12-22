@@ -57,6 +57,7 @@ int main( int argc, char** argv )
 	g_srcImage = imread( "/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg", 1 );
 	if(!g_srcImage.data ) { printf("讀取圖形錯誤，請確定目錄下是否有imread函數指定的圖形存在~！ \n"); return false; }  
 	imshow("原始圖",g_srcImage);
+	moveWindow("原始圖",100,100);
 	g_srcImage1=g_srcImage.clone( );
 
 	//【2】存留一張灰度圖
@@ -111,7 +112,10 @@ void on_CornerHarris( int, void* )
 	}
 	//---------------------------【4】顯示最終效果---------------------------------
 	imshow( WINDOW_NAME1, g_srcImage1 );
+	moveWindow( WINDOW_NAME1, 1000,100 );
+
 	imshow( WINDOW_NAME2, scaledImage );
+	moveWindow( WINDOW_NAME2, 1000,1000 );
 
 }
 

@@ -69,6 +69,7 @@ int main(  )
 	// 建立原圖視窗並顯示
 	namedWindow( WINDOW_NAME1, CV_WINDOW_AUTOSIZE );
 	imshow( WINDOW_NAME1, g_srcImage );
+	moveWindow( WINDOW_NAME1, 100,100 );
 
 	//建立捲軸
 	createTrackbar( " 閾值:", WINDOW_NAME1, &g_nThresh, g_maxThresh, on_ThreshChange );
@@ -107,6 +108,7 @@ void on_ThreshChange(int, void* )
 
 	// 顯示效果圖
 	imshow( WINDOW_NAME2, drawing );
+	moveWindow( WINDOW_NAME2, 1000,100 );
 }
 
 

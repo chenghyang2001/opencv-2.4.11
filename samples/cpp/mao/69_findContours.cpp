@@ -31,6 +31,7 @@ int main( int argc, char** argv )
 	// 【1】載入原始圖，且必須以二值圖模式載入
 	Mat srcImage=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg", 0);
 	imshow("原始圖",srcImage);
+	moveWindow("原始圖",100,100);
 
 	//【2】初始化結果圖
 	Mat dstImage = Mat::zeros(srcImage.rows, srcImage.cols, CV_8UC3);
@@ -38,6 +39,7 @@ int main( int argc, char** argv )
 	//【3】srcImage取大于閾值119的那部分
 	srcImage = srcImage > 119;
 	imshow( "取閾值後的原始圖", srcImage );
+	moveWindow( "取閾值後的原始圖", 1000,100 );
 
 	//【4】定義輪廓和層次結構
 	vector<vector<Point> > contours;
@@ -57,6 +59,7 @@ int main( int argc, char** argv )
 
 	//【7】顯示最後的輪廓圖
 	imshow( "輪廓圖", dstImage );
+	moveWindow( "輪廓圖", 1000,1000 );
 
 	waitKey(0);
 
