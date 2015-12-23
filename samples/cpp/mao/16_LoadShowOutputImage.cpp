@@ -3,7 +3,10 @@
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
+#include <iostream>
+
 using namespace cv;
+using namespace std;
 
 
 int main( )
@@ -48,7 +51,21 @@ int main( )
 //        addWeighted(imageROI, 1.0, logo, 0.3, 0., imageROI);
 //        addWeighted(imageROI, 0.0, logo, 1.0, 0., imageROI);
 //        addWeighted(imageROI, 0.0, logo, 0.5, 0., imageROI);
+
+
 	addWeighted(imageROI, 0.5, logo, 0.5, 0., imageROI);
+
+	cout << " imageROI rows = " << imageROI.rows << endl ;
+	cout << " logo     rows = " << logo.rows << endl ;
+
+	cout << " imageROI cols = " << imageROI.cols << endl ;
+	cout << " logo     cols = " << logo.cols << endl ;
+
+	cout << " imageROI channel = " << imageROI.channels() << endl ;
+	cout << " logo     channel = " << logo.channels() << endl ;
+
+
+
 
 	//顯示結果
 	namedWindow("【4】原畫+logo圖");

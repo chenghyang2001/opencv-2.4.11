@@ -21,7 +21,8 @@
 using namespace cv;
 using namespace std;
 
-#define aaa cout << "MO: [aaaaaaaaa] FILE= " <<  __FILE__  <<  " FUNCTION= " <<  __FUNCTION__ <<  " LINE=" <<  __LINE__ << std::endl ;
+//#define aaa cout << "MO: [aaaaaaaaa] FILE= " <<  __FILE__  <<  " FUNCTION= " <<  __FUNCTION__ <<  " LINE=" <<  __LINE__ << std::endl ;
+#define aaa cout << "MO: [aaaaaaaaa]  FUNCTION= " <<  __FUNCTION__ <<  " LINE=" <<  __LINE__ << std::endl ;
 
 //-----------------------------------【巨集定義部分】-------------------------------------------- 
 //  描述：定義一些輔助巨集 
@@ -54,7 +55,7 @@ void on_Trackbar( int, void* )
 	//求出現在alpha值相對於最大值的比例
 	g_dAlphaValue = (double) g_nAlphaValueSlider/g_nMaxAlphaValue ;
 
-      cout << " g_dAlphaValue = " << g_dAlphaValue << endl ;
+       cout << " g_dAlphaValue = " << g_dAlphaValue << endl ;
        
 
 	//則beta值為1減去alpha值
@@ -66,10 +67,25 @@ void on_Trackbar( int, void* )
 	
 	cout << " g_srcImage1 rows = " << g_srcImage1.rows << endl ;
 	cout << " g_srcImage2 rows = " << g_srcImage2.rows << endl ;
-	cout << " g_dstImage rows = "  << g_dstImage.rows << endl ;
+
+	cout << " g_srcImage1 cols = " << g_srcImage1.cols << endl ;
+	cout << " g_srcImage2 cols = " << g_srcImage2.cols << endl ;
+
+
+	cout << " g_srcImage1 channel = " << g_srcImage1.channels() << endl ;
+	cout << " g_srcImage2 channel = " << g_srcImage2.channels() << endl ;
+	cout << " g_dstImage channel = "  << g_dstImage.channels() << endl ;
 	 
+	Mat imageROI;
+	//方法一
+//        imageROI= image(Rect(800,350,logo.cols,logo.rows));
+	imageROI= g_srcImage1(Rect(100,100,g_srcImage2.cols,g_srcImage2.rows));
+
+
+//         addWeighted( g_srcImage1, g_dAlphaValue, g_srcImage2, g_dBetaValue, 0, g_srcImage1);
+	 addWeighted( imageROI, g_dAlphaValue, g_srcImage2, g_dBetaValue, 0.5, imageROI);
 //         addWeighted( g_srcImage1, g_dAlphaValue, g_srcImage2, g_dBetaValue, 0, g_dstImage);
-	 addWeighted( g_srcImage1, g_dAlphaValue, g_srcImage1, g_dBetaValue, 0, g_dstImage);
+//         addWeighted( g_srcImage1, g_dAlphaValue, g_srcImage1, g_dBetaValue, 0, g_dstImage);
 
 	//顯示效果圖
 	imshow( WINDOW_NAME, g_srcImage1 );
@@ -109,10 +125,12 @@ int main( int argc, char** argv )
 	ShowHelpText();
 
 	//加載圖像 (兩圖像的尺寸需相同) 
-	g_srcImage1 = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");
+//        g_srcImage1 = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");
+	g_srcImage1 = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/dota.jpg",199);
 	if( !g_srcImage1.data ) { printf("讀取第一幅圖形錯誤，請確定目錄下是否有imread函數指定圖形存在~！ \n"); return -1; }
 
-	g_srcImage2 = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/2.jpg");
+//        g_srcImage2 = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/2.jpg");
+	g_srcImage2 = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/dota_logo.jpg");
 	if( !g_srcImage2.data ) { printf("讀取第二幅圖形錯誤，請確定目錄下是否有imread函數指定圖形存在~！\n"); return -1; }
 
 	//設定滑動條初值為70
@@ -121,9 +139,11 @@ int main( int argc, char** argv )
 	//建立視窗
 	namedWindow(WINDOW_NAME, 1);
 
+	g_dstImage.create( g_srcImage1.size(), g_srcImage1.type() );  // peter
+
 	//在建立的視窗中建立一個滑動條控制項
 	char TrackbarName[50];
-	sprintf( TrackbarName, "透明值 %d", g_nMaxAlphaValue );
+	sprintf( TrackbarName, "peter 透明值 %d", g_nMaxAlphaValue );
 
 	createTrackbar( TrackbarName, WINDOW_NAME, &g_nAlphaValueSlider, g_nMaxAlphaValue, on_Trackbar );
 

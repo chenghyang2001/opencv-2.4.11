@@ -43,7 +43,8 @@ int main(  )
 
 	//【1】載入原影像和範本塊
 	g_srcImage = imread( "/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg", 1 );
-	g_templateImage = imread( "2.jpg", 1 );
+	g_templateImage = imread( "/home/peter/opencv-2.4.11/samples/cpp/mao/2.jpg", 1 );
+//        g_templateImage = imread( "2.jpg", 1 );
 
 	//【2】建立視窗
 	namedWindow( WINDOW_NAME1, CV_WINDOW_AUTOSIZE );

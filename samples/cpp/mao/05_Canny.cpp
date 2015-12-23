@@ -13,25 +13,27 @@ using namespace cv;
 int main( )
 {
 	//【0】載入原始圖  
-	Mat srcImage = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
-	imshow("【原始圖】Canny邊緣檢測", srcImage); 	//顯示原始圖 
+	Mat imageSrc = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
+	imshow("【原始圖】Canny邊緣檢測", imageSrc); 	//顯示原始圖 
 	moveWindow("【原始圖】Canny邊緣檢測", 100,100); 	//顯示原始圖 
 
-	Mat dstImage,edge,grayImage;	//參數定義
+	Mat imageDst ; 
 	//【1】建立與src同類別型和大小的矩陣(dst)
-	dstImage.create( srcImage.size(), srcImage.type() );
+	imageDst.create( imageSrc.size(), imageSrc.type() );
 
 	//【2】將原圖像轉換為灰度圖像
-	cvtColor( srcImage, grayImage, CV_BGR2GRAY );
+	Mat imageGray;	//參數定義
+	cvtColor( imageSrc, imageGray, CV_BGR2GRAY );
 
 	//【3】先用使用 3x3核心來降噪
-	blur( grayImage, edge, Size(3,3) );
+	Mat imageEdge ;
+	blur( imageGray, imageEdge, Size(3,3) );
 
 	//【4】執行Canny算子
-	Canny( edge, edge, 3, 9,3 );
+	Canny( imageEdge, imageEdge, 3, 9,3 );
 
 	//【5】顯示效果圖 
-	imshow("【效果圖】Canny邊緣檢測", edge); 
+	imshow("【效果圖】Canny邊緣檢測", imageEdge); 
 	moveWindow("【效果圖】Canny邊緣檢測", 1000,100); 
 
 	waitKey(0); 
