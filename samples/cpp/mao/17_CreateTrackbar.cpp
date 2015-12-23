@@ -16,9 +16,9 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
-#include <iostream>
-
 using namespace cv;
+
+#include <iostream>
 using namespace std;
 
 //#define aaa cout << "MO: [aaaaaaaaa] FILE= " <<  __FILE__  <<  " FUNCTION= " <<  __FUNCTION__ <<  " LINE=" <<  __LINE__ << std::endl ;
@@ -49,9 +49,12 @@ Mat g_dstImage;
 //-----------------------------------【on_Trackbar( )函數】--------------------------------
 //		描述：響應滑動條的回調函數
 //------------------------------------------------------------------------------------------
-void on_Trackbar( int, void* )
+void on_Trackbar( int pos, void* )
 {
  aaa
+     cout << " pos = " << pos << endl ;
+     cout << " g_nAlphaValueSlider = " << g_nAlphaValueSlider << endl ;
+
 	//求出現在alpha值相對於最大值的比例
 	g_dAlphaValue = (double) g_nAlphaValueSlider/g_nMaxAlphaValue ;
 

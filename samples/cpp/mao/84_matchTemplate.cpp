@@ -9,6 +9,10 @@
 #include "opencv2/imgproc/imgproc.hpp"
 using namespace cv;
 
+#include <iostream>
+using namespace std;
+
+#define aaa cout << "MO: [aaaaaaaaa]  FUNCTION= " <<  __FUNCTION__ <<  " LINE=" <<  __LINE__ << std::endl ;
 
 //-----------------------------------【巨集定義部分】-------------------------------------------- 
 //  描述：定義一些輔助巨集 
@@ -20,7 +24,7 @@ using namespace cv;
 //          描述：全局變數的宣告
 //-----------------------------------------------------------------------------------------------
 Mat g_srcImage; Mat g_templateImage; Mat g_resultImage;
-int g_nMatchMethod;
+int g_nMatchMethod = 2;
 int g_nMaxTrackbarNum = 5;
 
 //-----------------------------------【全局函數宣告部分】--------------------------------------
@@ -43,7 +47,11 @@ int main(  )
 
 	//【1】載入原影像和範本塊
 	g_srcImage = imread( "/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg", 1 );
+//        g_srcImage = imread( "/home/peter/opencv-2.4.11/samples/cpp/mao/mogu.jpg", 1 );
+
 	g_templateImage = imread( "/home/peter/opencv-2.4.11/samples/cpp/mao/2.jpg", 1 );
+//        g_templateImage = imread( "/home/peter/opencv-2.4.11/samples/cpp/mao/rain.jpg", 1 );
+
 //        g_templateImage = imread( "2.jpg", 1 );
 
 	//【2】建立視窗
@@ -65,33 +73,37 @@ int main(  )
 void on_Matching( int, void* )
 {
 	//【1】給局部變數初始化
-	Mat srcImage;
-	g_srcImage.copyTo( srcImage );
-
-	//【2】初始化用于結果輸出的矩陣
-	int resultImage_cols =  g_srcImage.cols - g_templateImage.cols + 1;
-	int resultImage_rows = g_srcImage.rows - g_templateImage.rows + 1;
-	g_resultImage.create( resultImage_cols, resultImage_rows, CV_32FC1 );
-
-	//【3】進行比對和標準化
-	matchTemplate( g_srcImage, g_templateImage, g_resultImage, g_nMatchMethod );
-	normalize( g_resultImage, g_resultImage, 0, 1, NORM_MINMAX, -1, Mat() );
-
-	//【4】通過函數 minMaxLoc 定位最比對的位置
-	double minValue; double maxValue; Point minLocation; Point maxLocation;
-	Point matchLocation;
-	minMaxLoc( g_resultImage, &minValue, &maxValue, &minLocation, &maxLocation, Mat() );
+aaa 	Mat srcImage;
+aaa 	g_srcImage.copyTo( srcImage );
+aaa 
+aaa 	//【2】初始化用于結果輸出的矩陣
+aaa 	int resultImage_cols =  g_srcImage.cols - g_templateImage.cols + 1;
+aaa 	int resultImage_rows = g_srcImage.rows - g_templateImage.rows + 1;
+aaa 	g_resultImage.create( resultImage_cols, resultImage_rows, CV_32FC1 );
+aaa 
+aaa 	//【3】進行比對和標準化
+aaa 	matchTemplate( g_srcImage, g_templateImage, g_resultImage, g_nMatchMethod );
+aaa 	normalize( g_resultImage, g_resultImage, 0, 1, NORM_MINMAX, -1, Mat() );
+aaa 
+aaa 	//【4】通過函數 minMaxLoc 定位最比對的位置
+aaa 	double minValue; double maxValue; Point minLocation; Point maxLocation;
+aaa 	Point matchLocation;
+aaa 	minMaxLoc( g_resultImage, &minValue, &maxValue, &minLocation, &maxLocation, Mat() );
 
 	//【5】對於方法 SQDIFF 和 SQDIFF_NORMED, 越小的數值有著更高的比對結果. 而其余的方法, 數值越大比對效果越好
-	if( g_nMatchMethod  == CV_TM_SQDIFF || g_nMatchMethod == CV_TM_SQDIFF_NORMED )
-	{ matchLocation = minLocation; }
-	else
-	{ matchLocation = maxLocation; }
+	if( g_nMatchMethod  == CV_TM_SQDIFF || g_nMatchMethod == CV_TM_SQDIFF_NORMED ) { 
+	    aaa
+	    matchLocation = minLocation; 
+	}
+	else { 
+	    aaa
+	    matchLocation = maxLocation; 
+	}
 
 	//【6】繪製出矩形，並顯示最終結果
-	rectangle( srcImage, matchLocation, Point( matchLocation.x + g_templateImage.cols , matchLocation.y + g_templateImage.rows ), Scalar(0,0,255), 2, 8, 0 );
-	rectangle( g_resultImage, matchLocation, Point( matchLocation.x + g_templateImage.cols , matchLocation.y + g_templateImage.rows ), Scalar(0,0,255), 2, 8, 0 );
-
+aaa 	rectangle( srcImage, matchLocation, Point( matchLocation.x + g_templateImage.cols , matchLocation.y + g_templateImage.rows ), Scalar(0,0,255), 2, 8, 0 );
+aaa 	rectangle( g_resultImage, matchLocation, Point( matchLocation.x + g_templateImage.cols , matchLocation.y + g_templateImage.rows ), Scalar(0,0,255), 2, 8, 0 );
+aaa 
 	imshow( WINDOW_NAME1, srcImage );
 	moveWindow( WINDOW_NAME1, 100,100 );
 

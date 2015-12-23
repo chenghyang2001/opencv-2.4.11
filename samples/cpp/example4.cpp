@@ -17,10 +17,11 @@ int g_run = 1, g_dontset = 0; //start out in single step mode
 cv::VideoCapture g_cap; 
 
 void onTrackbarSlide( int pos, void *) { 
- g_cap.set( CV_CAP_PROP_POS_FRAMES, pos ); 
- if( !g_dontset ) 
- g_run = 1; 
- g_dontset = 0; 
+
+    g_cap.set( CV_CAP_PROP_POS_FRAMES, pos ); 
+    if( !g_dontset ) 
+	g_run = 1; 
+    g_dontset = 0; 
 } 
 
 

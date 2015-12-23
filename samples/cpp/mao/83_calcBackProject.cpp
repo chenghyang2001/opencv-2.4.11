@@ -100,7 +100,7 @@ void on_BinChange(int, void* )
 
 	//【7】顯示直條圖視窗
 	imshow( "直條圖", histImg );
-	moveWindow( "直條圖", 1000, 1000  );
+	moveWindow( "直條圖", 1000, 500  );
 }
 
 
