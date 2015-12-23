@@ -42,7 +42,7 @@ int main( )
 
 	//【7】顯示效果圖
 	imshow( "【效果圖】圖像Laplace變換", abs_dst );
-	moveWindow( "【效果圖】圖像Laplace變換", 1000,1000 );
+	moveWindow( "【效果圖】圖像Laplace變換", 1000,100 );
 
 	waitKey(0); 
 

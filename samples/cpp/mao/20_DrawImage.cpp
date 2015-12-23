@@ -84,10 +84,10 @@ int main( void )
 		8 );
 
 	// 【2.3】繪製一些線段
-	DrawLine( rookImage, Point( 0, 15*WINDOW_WIDTH/16 ), Point( WINDOW_WIDTH, 15*WINDOW_WIDTH/16 ) );
-	DrawLine( rookImage, Point( WINDOW_WIDTH/4, 7*WINDOW_WIDTH/8 ), Point( WINDOW_WIDTH/4, WINDOW_WIDTH ) );
-	DrawLine( rookImage, Point( WINDOW_WIDTH/2, 7*WINDOW_WIDTH/8 ), Point( WINDOW_WIDTH/2, WINDOW_WIDTH ) );
-	DrawLine( rookImage, Point( 3*WINDOW_WIDTH/4, 7*WINDOW_WIDTH/8 ), Point( 3*WINDOW_WIDTH/4, WINDOW_WIDTH ) );
+	DrawLine( rookImage, Point( 0               , 15*WINDOW_WIDTH/16 )  , Point( WINDOW_WIDTH     , 15*WINDOW_WIDTH/16 ) );
+	DrawLine( rookImage, Point( WINDOW_WIDTH/4  , 7*WINDOW_WIDTH/8   )  , Point( WINDOW_WIDTH/4   , WINDOW_WIDTH )       );
+	DrawLine( rookImage, Point( WINDOW_WIDTH/2  , 7*WINDOW_WIDTH/8   )  , Point( WINDOW_WIDTH/2   , WINDOW_WIDTH )       );
+	DrawLine( rookImage, Point( 3*WINDOW_WIDTH/4, 7*WINDOW_WIDTH/8   )  , Point( 3*WINDOW_WIDTH/4 , WINDOW_WIDTH )       );
 
 	// ---------------------------<3>顯示繪製出的圖像------------------------
 	imshow( WINDOW_NAME1, atomImage );

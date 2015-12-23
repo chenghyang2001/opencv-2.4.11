@@ -43,7 +43,7 @@ int main( )
 
 	//【2】按原始圖的參數規格來建立建立效果圖
 	Mat dstImage;
-	dstImage.create(srcImage.rows,srcImage.cols,srcImage.type());//效果圖的大小、類別別型與原圖形相同 
+	dstImage.create( srcImage.rows, srcImage.cols, srcImage.type() );//效果圖的大小、類別別型與原圖形相同 
 
 	ShowHelpText();
 
@@ -55,6 +55,7 @@ int main( )
 
 	//【5】計算執行時間並輸出
 	time0 = ((double)getTickCount() - time0)/getTickFrequency();
+
 	cout<<"此方法執行時間為： "<<time0<<"秒"<<endl;  //輸出執行時間
 
 	//【6】顯示效果圖
@@ -74,7 +75,7 @@ void colorReduce(Mat& inputImage, Mat& outputImage, int div)
 	//參數準備
 	outputImage = inputImage.clone();  //拷貝實參到臨時變數
 	//取得疊代器
-	Mat_<Vec3b>::iterator it = outputImage.begin<Vec3b>();  //初始位置的疊代器
+	Mat_<Vec3b>::iterator it    = outputImage.begin<Vec3b>();  //初始位置的疊代器
 	Mat_<Vec3b>::iterator itend = outputImage.end<Vec3b>();  //終止位置的疊代器
 
 	//存取彩色圖像像素

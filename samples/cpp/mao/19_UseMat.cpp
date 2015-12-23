@@ -54,12 +54,16 @@ int main(int,char**)
 	I.at<double>(1,1) = CV_PI;
 	cout << "\nI = " << I << ";\n" << endl;
 
-	Mat r = Mat(10, 3, CV_8UC3);
+//        Mat r = Mat(10, 3, CV_8UC3);
+//        Mat r = Mat(2, 3, CV_8UC3);
+	Mat r = Mat(2, 3, CV_8UC1);
+//        Mat r = Mat(2, 1, CV_8UC1);
 	randu(r, Scalar::all(0), Scalar::all(255));
 
-	cout << "r (OpenCV預設風格) = " << r << ";" << endl << endl;
+	cout << "r (OpenCV預設風格) = " << endl << r                         << ";" << endl << endl;
+	cout << "r (Python風格) = "     << endl << format(r,"python") << ";" << endl << endl;  // python is most comfortable format, easily understood.
+
 #if 0
-	cout << "r (Python風格) = " << format(r,"python") << ";" << endl << endl;
 	cout << "r (Numpy風格) = " << format(r,"numpy") << ";" << endl << endl;
 	cout << "r (逗號分隔風格) = " << format(r,"csv") << ";" << endl<< endl;
 	cout << "r (C語言風格) = " << format(r,"C") << ";" << endl << endl;
