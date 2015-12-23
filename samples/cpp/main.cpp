@@ -13,12 +13,54 @@
 #include <stdio.h>
 
 //#define USE_VIDEO 1
-#define USE_VIDEO 0
 
 #undef MIN
 #undef MAX
 #define MAX(a,b) ((a)<(b)?(b):(a))
 #define MIN(a,b) ((a)>(b)?(b):(a))
+
+struct Lane {
+    Lane(){}
+    Lane(CvPoint a, CvPoint b, float angle, float kl, float bl): p0(a),p1(b),angle(angle),
+    votes(0),visited(false),found(false),k(kl),b(bl) { }
+
+    CvPoint p0, p1;
+    int votes;
+    bool visited, found;
+    float angle, k, b;
+};
+
+
+void crop(IplImage* src,  IplImage* dest, CvRect rect) {
+    cvSetImageROI(src, rect); 
+    cvCopy(src, dest); 
+    cvResetImageROI(src); 
+}
+
+
+struct Status {
+    Status():reset(true),lost(0){}
+    ExpMovingAverage k, b;
+    bool reset;
+    int lost;
+};
+
+struct Vehicle {
+    CvPoint bmin, bmax;
+    int symmetryX;
+    bool valid;
+    unsigned int lastUpdate;
+};
+
+struct VehicleSample {
+    CvPoint center;
+    float radi;
+    unsigned int frameDetected;
+    int vehicleIndex;
+};
+
+
+
 
 #define GREEN  CV_RGB(0,255,0)
 #define RED    CV_RGB(255,0,0)
@@ -30,7 +72,6 @@
 #define MAX_LOST_FRAMES 30
 
 using namespace cv; 
-using namespace std;
 
 Status laneR, laneL;
 std::vector<Vehicle> vehicles;
@@ -519,12 +560,12 @@ const std::string currentDateTime() {
 int main(void)
 {
 
-//#ifdef USE_VIDEO
-//    CvCapture *input_video = cvCreateFileCapture("/home/peter/cube4.avi");
-//#else
-//    CvCapture *input_video = cvCaptureFromCAM(0);
-//#endif
+#ifdef USE_VIDEO
+//    CvCapture *input_video = cvCreateFileCapture("MOV_07.AVI");
+    CvCapture *input_video = cvCreateFileCapture("/home/peter/cube4.avi");
+#else
     CvCapture *input_video = cvCaptureFromCAM(0);
+#endif
 
     if (input_video == NULL) {
 	fprintf(stderr, "Error: Can't open video\n");
@@ -538,26 +579,13 @@ int main(void)
     video_size.height = (int) cvGetCaptureProperty(input_video, CV_CAP_PROP_FRAME_HEIGHT);
     video_size.width  = (int) cvGetCaptureProperty(input_video, CV_CAP_PROP_FRAME_WIDTH);
 
-    printf("video height = %d \n", video_size.height );
-    printf("video width = %d \n", video_size.width );
-
-    cvSetCaptureProperty(input_video, CV_CAP_PROP_FRAME_WIDTH, 1024 );
-    cvSetCaptureProperty(input_video, CV_CAP_PROP_FRAME_HEIGHT, 768 );
-
-//    video_size.width  = 1024 ;
-//    video_size.height = 768 ;
-
-
     long current_frame = 0;
     int    key_pressed = 0;
     IplImage *frame    = NULL;
 
     CvSize frame_size    = cvSize(video_size.width, video_size.height/2);
-
     IplImage *temp_frame = cvCreateImage(frame_size, IPL_DEPTH_8U, 3);
-
     IplImage *grey       = cvCreateImage(frame_size, IPL_DEPTH_8U, 1);
-
     IplImage *edges      = cvCreateImage(frame_size, IPL_DEPTH_8U, 1);
     IplImage *half_frame = cvCreateImage(cvSize(video_size.width/2, video_size.height/2), IPL_DEPTH_8U, 3);
 
@@ -565,8 +593,8 @@ int main(void)
     CvMemStorage* haarStorage        = cvCreateMemStorage(0);
     CvHaarClassifierCascade* cascade = (CvHaarClassifierCascade*)cvLoad("cars3.xml");
 
-    static int count = 0 ;
-    CvSize frame_size_2    = cvSize(1024, 768);
+    int count = 0 ;
+    CvSize frame_size_2   = cvSize(1024, 768);
     IplImage *grey2       = cvCreateImage(frame_size_2, IPL_DEPTH_8U, 1);
 
     //cvSetCaptureProperty(input_video, CV_CAP_PROP_POS_FRAMES, current_frame);
@@ -581,6 +609,8 @@ int main(void)
 	    fprintf(stderr, "Error: null frame received\n");
 	    return -1;
 	}
+
+	double t_per_line  = (double)getTickCount();
 
 	cvPyrDown(frame, half_frame, CV_GAUSSIAN_5x5); // Reduce the image by 2  
 	//cvCvtColor(temp_frame, grey, CV_BGR2GRAY); // convert to grayscale
@@ -609,14 +639,15 @@ int main(void)
 	// show middle line
 	cvLine(temp_frame, cvPoint(frame_size.width/2,0), cvPoint(frame_size.width/2,frame_size.height), CV_RGB(255, 255, 0), 1);
 
+	t_per_line = 1000*((double)getTickCount() - t)/getTickFrequency();
+	printf("\t time taken per processing one line = %lf milliseconds.\n", t_per_line );
+
 
         cvResize (grey, grey2, CV_INTER_LINEAR);
 	
 //        cvShowImage("Grey",  grey);
 	cvShowImage("Grey",  grey2);
 	cvMoveWindow("Grey",  0, 0); 
-//        cvResizeWindow("Grey",  1024, 768); 
-
 
 #if 0
 	cvShowImage("Edges", edges);
@@ -629,7 +660,7 @@ int main(void)
 	key_pressed = cvWaitKey(15);
 
 	t = 1000*((double)getTickCount() - t)/getTickFrequency();
-	std::cout << " count = " << count << " t  = "  << t  << " milliseconds."  << std::endl;
+	printf("\tcount = %d  time taken per frame = %lf milliseconds.\n\n", count, t );
 
     }
 
