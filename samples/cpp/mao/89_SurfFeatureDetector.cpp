@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdio.h>
 //:read /home/peter/mao/89_SurfFeatureDetector.cpp
 //--------------------------------------【程序說明】-------------------------------------------
 //		程序說明：《OpenCV3程式設計入門》OpenCV2版書本配套範例程序89

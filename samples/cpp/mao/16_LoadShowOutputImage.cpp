@@ -1,15 +1,5 @@
-#include <stdio.h>
-//:read /home/peter/mao/16_LoadShowOutputImage.cpp
-//--------------------------------------【程序說明】-------------------------------------------
-//		程序說明：《OpenCV3程式設計入門》OpenCV2版書本配套範例程序16
-//		程序描述：圖像的載入、顯示和輸出範例
-//		開發測試所用操作系統： Windows 7 64bit
-//		開發測試所用IDE版本：Visual Studio 2010
-//		開發測試所用OpenCV版本：	2.4.9
-//		2014年03月 Created by @淺墨_毛星云
-//		2014年11月 Revised by @淺墨_毛星云
-//------------------------------------------------------------------------------------------------
 
+#include <stdio.h>
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
