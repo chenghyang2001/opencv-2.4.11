@@ -12,6 +12,7 @@
 #include <opencv2/imgproc/imgproc.hpp>
 using namespace cv;
 
+using namespace std;
 
 
 //-----------------------------------【main( )函數】--------------------------------------------
@@ -20,7 +21,9 @@ using namespace cv;
 int main( )
 {
 	//【1】載入原始圖和Mat變數定義   
-	Mat srcImage = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
+//        Mat srcImage = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
+//        Mat srcImage = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/rain.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
+	Mat srcImage = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/mogu.jpg");  //專案目錄下應該有一張名為1.jpg的素材圖
 	Mat midImage,dstImage;//臨時變數和目標圖的定義
 
 	//【2】進行邊緣檢測和轉化為灰度圖
@@ -31,11 +34,23 @@ int main( )
 	vector<Vec4i> lines;//定義一個矢量結構lines用于存放得到的線段矢量集合
 	HoughLinesP(midImage, lines, 1, CV_PI/180, 80, 50, 10 );
 
+	cout << "line sizes = " << lines.size()  << endl ;
+
 	//【4】依次在圖中繪製出每條線段
 	for( size_t i = 0; i < lines.size(); i++ )
 	{
 		Vec4i l = lines[i];
-		line( dstImage, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(186,88,255), 1, CV_AA);
+		cout << " i = " << i << " l = " << l << endl ;
+		if ( i == 0 ) {
+		    line( dstImage, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(0,0,255), 1, CV_AA);
+		    line( dstImage, Point(100,100), Point(295,304), Scalar(0,0,255), 1, CV_AA);
+		}
+		else {
+		    line( dstImage, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(0,255,0), 1, CV_AA);
+
+		}
+//                line( dstImage, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(186,88,255), 1, CV_AA);
+//                line( dstImage, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255,0,0), 1, CV_AA);
 	}
 
 	//【5】顯示原始圖  
