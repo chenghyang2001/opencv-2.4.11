@@ -597,7 +597,7 @@ int main(void)
     CvSize frame_size_2   = cvSize(1024, 768);
     IplImage *grey2       = cvCreateImage(frame_size_2, IPL_DEPTH_8U, 1);
     IplImage *edges2       = cvCreateImage(frame_size_2, IPL_DEPTH_8U, 1);
-    IplImage *temp_frame2 = cvCreateImage(frame_size_2, IPL_DEPTH_8U, 1);
+    IplImage *temp_frame2 = cvCreateImage(frame_size_2, IPL_DEPTH_8U, 3);
 
     //cvSetCaptureProperty(input_video, CV_CAP_PROP_POS_FRAMES, current_frame);
     while(key_pressed != 27) {
@@ -650,17 +650,15 @@ int main(void)
 	cvShowImage("Grey",  grey2);
 	cvMoveWindow("Grey",  0, 0); 
 
-#if 1
 	cvResize (edges, edges2, CV_INTER_LINEAR);
 //        cvShowImage("Edges", edges);
 	cvShowImage("Edges", edges2);
 	cvMoveWindow("Edges", 0, frame_size.height+25);
 
-//        cvResize (temp_frame, temp_frame2, CV_INTER_LINEAR);
+	cvResize (temp_frame, temp_frame2, CV_INTER_LINEAR);
 //        cvShowImage("Color", temp_frame);
-//        cvShowImage("Color", temp_frame2);
-//        cvMoveWindow("Color", 0, 2*(frame_size.height+25)); 
-#endif
+	cvShowImage("Color", temp_frame2);
+	cvMoveWindow("Color", 100, 2*(frame_size.height+25)); 
 
 	key_pressed = cvWaitKey(15);
 
