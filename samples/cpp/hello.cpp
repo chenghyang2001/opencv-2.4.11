@@ -6,8 +6,7 @@
 #include <sys/timeb.h>
 #include <sys/time.h>
 
-
-#define aaa cout << "MO: [aaaaaaaaa] FILE=%s " <<  __FILE__  <<  " FUNCTION=%s " <<  __FUNCTION__ <<  " LINE=%d" <<  __LINE__ << endl ;
+#define aaa cout << "MO: [aaaaaaaaa] FILE= " <<  __FILE__  <<  " FUNCTION= " <<  __FUNCTION__ <<  " LINE=" <<  __LINE__ << std::endl ;
 
 using namespace cv; 
 using namespace std;
@@ -42,8 +41,11 @@ long long getMilliCount2(){
 int main( int argc, char** argv )
 {
 
+ aaa
     double t;
     t = (double)getTickCount();
+
+     cout << " t = " << t << endl ;
 
 #if 1
 

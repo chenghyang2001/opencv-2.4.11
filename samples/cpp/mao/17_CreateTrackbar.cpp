@@ -15,12 +15,20 @@
 //-------------------------------------------------------------------------------------------------
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui/highgui.hpp>
+
+#include <iostream>
+
 using namespace cv;
+using namespace std;
+
+#define aaa cout << "MO: [aaaaaaaaa] FILE= " <<  __FILE__  <<  " FUNCTION= " <<  __FUNCTION__ <<  " LINE=" <<  __LINE__ << std::endl ;
 
 //-----------------------------------【巨集定義部分】-------------------------------------------- 
 //  描述：定義一些輔助巨集 
 //------------------------------------------------------------------------------------------------ 
-#define WINDOW_NAME "【滑動條的建立&線性混合範例】"        //為視窗標題定義的巨集 
+#define WINDOW_NAME  "【滑動條的建立&線性混合範例】"        //為視窗標題定義的巨集 
+#define WINDOW_NAME2 "【滑動條的建立&線性混合範例】2"        //為視窗標題定義的巨集 
+#define WINDOW_NAME3 "【滑動條的建立&線性混合範例】3"        //為視窗標題定義的巨集 
 
 
 //-----------------------------------【全局變數宣告部分】--------------------------------------
@@ -42,20 +50,36 @@ Mat g_dstImage;
 //------------------------------------------------------------------------------------------
 void on_Trackbar( int, void* )
 {
-
+ aaa
 	//求出現在alpha值相對於最大值的比例
 	g_dAlphaValue = (double) g_nAlphaValueSlider/g_nMaxAlphaValue ;
+
+      cout << " g_dAlphaValue = " << g_dAlphaValue << endl ;
+       
+
 	//則beta值為1減去alpha值
 	g_dBetaValue = ( 1.0 - g_dAlphaValue );
 
+	cout << " g_dBetaValue = " << g_dBetaValue << endl ;
+	 
 	//根據alpha和beta值進行線性混合
-// 	addWeighted( g_srcImage1, g_dAlphaValue, g_srcImage2, g_dBetaValue, 0.0, g_dstImage);
+	
+	cout << " g_srcImage1 rows = " << g_srcImage1.rows << endl ;
+	cout << " g_srcImage2 rows = " << g_srcImage2.rows << endl ;
+	cout << " g_dstImage rows = "  << g_dstImage.rows << endl ;
+	 
+//         addWeighted( g_srcImage1, g_dAlphaValue, g_srcImage2, g_dBetaValue, 0, g_dstImage);
+	 addWeighted( g_srcImage1, g_dAlphaValue, g_srcImage1, g_dBetaValue, 0, g_dstImage);
 
 	//顯示效果圖
-//        imshow( WINDOW_NAME, g_dstImage );
 	imshow( WINDOW_NAME, g_srcImage1 );
 	moveWindow( WINDOW_NAME, 100,100 );
 
+	imshow( WINDOW_NAME2, g_srcImage2 );
+	moveWindow( WINDOW_NAME2, 1000,100 );
+
+	imshow( WINDOW_NAME3, g_dstImage );
+	moveWindow( WINDOW_NAME3, 1000,1000 );
 }
 
 
@@ -88,8 +112,8 @@ int main( int argc, char** argv )
 	g_srcImage1 = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");
 	if( !g_srcImage1.data ) { printf("讀取第一幅圖形錯誤，請確定目錄下是否有imread函數指定圖形存在~！ \n"); return -1; }
 
-//        g_srcImage2 = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/2.jpg");
-//        if( !g_srcImage2.data ) { printf("讀取第二幅圖形錯誤，請確定目錄下是否有imread函數指定圖形存在~！\n"); return -1; }
+	g_srcImage2 = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/2.jpg");
+	if( !g_srcImage2.data ) { printf("讀取第二幅圖形錯誤，請確定目錄下是否有imread函數指定圖形存在~！\n"); return -1; }
 
 	//設定滑動條初值為70
 	g_nAlphaValueSlider = 70;
