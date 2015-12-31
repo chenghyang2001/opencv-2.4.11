@@ -60,7 +60,7 @@ int main( int argc, char** argv )
         {
             cvCalcOpticalFlowFarneback(prevgray, gray, flow, 0.5, 3, 15, 3, 5, 1.2, 0);
             cvCvtColor(prevgray, cflow, CV_GRAY2BGR);
-            drawOptFlowMap(flow, cflow, 16, 1.5, CV_RGB(0, 255, 0));
+	    drawOptFlowMap(flow, cflow, 16, 1.5, CV_RGB(0, 255, 0));
             cvShowImage("flow", cflow);
         }
         if(cvWaitKey(30)>=0)

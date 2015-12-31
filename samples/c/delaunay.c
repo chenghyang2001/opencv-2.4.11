@@ -197,7 +197,8 @@ static void run(void)
     printf("Delaunay triangulation will be build now interactively.\n"
            "To stop the process, press any key\n\n");
 
-    for( i = 0; i < 200; i++ )
+/*    for( i = 0; i < 200; i++ )*/
+    for( i = 0; i < 5; i++ )
     {
         CvPoint2D32f fp = cvPoint2D32f( (float)(rand()%(rect.width-10)+5),
                                         (float)(rand()%(rect.height-10)+5));
