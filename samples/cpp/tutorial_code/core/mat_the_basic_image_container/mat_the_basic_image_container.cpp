@@ -12,7 +12,7 @@ static void help()
     << "\n--------------------------------------------------------------------------" << endl
     << "This program shows how to create matrices(cv::Mat) in OpenCV and its serial"
     << " out capabilities"                                                            << endl
-    << "That is, cv::Mat M(...); M.create and cout << M. "                            << endl
+    << "Thjt is, cv::Mat M(...); M.create and cout << M. "                            << endl
     << "Shows how output can be formated to OpenCV, python, numpy, csv and C styles." << endl
     << "Usage:"                                                                       << endl
     << "./cvout_sample"                                                               << endl

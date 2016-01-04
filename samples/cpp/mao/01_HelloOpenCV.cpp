@@ -11,9 +11,9 @@ int main()
 	double time0 = static_cast<double>(getTickCount());  
 
 	// 【1】讀入一張圖形 
+	Mat img=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/rain.jpg");
 //        Mat img=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");
 //        Mat img=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/2.jpg");
-	Mat img=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/rain.jpg");
 
 	// 【2】在視窗中顯示載入的圖形
 	imshow("【載入的圖形】",img);
