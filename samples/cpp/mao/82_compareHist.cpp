@@ -56,7 +56,7 @@ int main( )
 	moveWindow("測試影像1",1000,100);
 
 	imshow("測試影像2",srcImage_test2);
-	moveWindow("測試影像2",1000, 1000 );
+	moveWindow("測試影像2",1000, 300 );
 
 	// 【3】將影像由BGR色彩空間轉換到 HSV色彩空間
 	cvtColor( srcImage_base, hsvImage_base, CV_BGR2HSV );

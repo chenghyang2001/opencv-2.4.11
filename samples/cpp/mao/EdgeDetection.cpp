@@ -126,7 +126,7 @@ void on_Canny(int, void*)
 
 	//顯示效果圖
 	imshow( "【效果圖】Canny邊緣檢測", g_dstImage );
-	moveWindow( "【效果圖】Canny邊緣檢測", 1000,100 );
+	moveWindow( "【效果圖】Canny邊緣檢測", 800,100 );
 }
 
 
@@ -149,7 +149,7 @@ void on_Sobel(int, void*)
 
 	//顯示效果圖
 	imshow("【效果圖】Sobel邊緣檢測", g_dstImage); 
-	moveWindow("【效果圖】Sobel邊緣檢測", 1000,1000); 
+	moveWindow("【效果圖】Sobel邊緣檢測", 800,800); 
 
 }
 

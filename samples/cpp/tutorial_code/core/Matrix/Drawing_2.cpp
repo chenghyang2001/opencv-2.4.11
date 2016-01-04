@@ -51,13 +51,14 @@ int main( void )
   Mat image = Mat::zeros( window_height, window_width, CV_8UC3 );
   /// Show it in a window during DELAY ms
   imshow( window_name, image );
+  moveWindow( window_name, 100,100 );
   waitKey( DELAY );
 
-#if 0
   /// Now, let's draw some lines
   c = Drawing_Random_Lines(image, window_name, rng);
   if( c != 0 ) return 0;
 
+#if 0
   /// Go on drawing, this time nice rectangles
   c = Drawing_Random_Rectangles(image, window_name, rng);
   if( c != 0 ) return 0;

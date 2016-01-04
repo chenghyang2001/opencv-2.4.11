@@ -105,14 +105,16 @@ void on_CornerHarris( int, void* )
 	moveWindow( WINDOW_NAME1, 1000,100 );
 
 	imshow( WINDOW_NAME2, scaledImage );
-	moveWindow( WINDOW_NAME2, 1000,1000 );
+	moveWindow( WINDOW_NAME2, 500,500 );
+	moveWindow( WINDOW_NAME2, 500,500 );
 
 }
 
 //-----------------------------------【ShowHelpText( )函數】----------------------------------
 //		描述：輸出一些說明訊息
 //----------------------------------------------------------------------------------------------
-static void ShowHelpText()
+//static void ShowHelpText()
+void ShowHelpText()
 {
 	//輸出歡迎訊息和OpenCV版本
 	printf("\n\n\t\t\t非常感謝購買《OpenCV3程式設計入門》一書！\n");

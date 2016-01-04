@@ -30,13 +30,15 @@ void cornerHarris_demo( int, void* );
 int main( int, char** argv )
 {
   /// Load source image and convert it to gray
-  src = imread( argv[1], 1 );
+//  src = imread( argv[1], 1 );
+  src = imread( "/home/peter/opencv-2.4.11/samples/cpp/mao/rain.jpg", 1 );
   cvtColor( src, src_gray, COLOR_BGR2GRAY );
 
   /// Create a window and a trackbar
   namedWindow( source_window, WINDOW_AUTOSIZE );
   createTrackbar( "Threshold: ", source_window, &thresh, max_thresh, cornerHarris_demo );
   imshow( source_window, src );
+  moveWindow( source_window, 100,100 );
 
   cornerHarris_demo( 0, 0 );
 
@@ -79,4 +81,5 @@ void cornerHarris_demo( int, void* )
   /// Showing the result
   namedWindow( corners_window, WINDOW_AUTOSIZE );
   imshow( corners_window, dst_norm_scaled );
+  moveWindow( corners_window, 1000,100 );
 }

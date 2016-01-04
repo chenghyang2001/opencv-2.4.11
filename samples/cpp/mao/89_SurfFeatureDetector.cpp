@@ -69,7 +69,8 @@ int main( int argc, char** argv )
 
 	//【5】顯示效果圖
 	imshow("特徵點檢測效果圖1", img_keypoints_1 );
-	moveWindow("特徵點檢測效果圖1", 1000,1000 );
+//        moveWindow("特徵點檢測效果圖1", 1000,1000 );
+	moveWindow("特徵點檢測效果圖1", 1000,300 );
 
 	imshow("特徵點檢測效果圖2", img_keypoints_2 );
 	moveWindow("特徵點檢測效果圖2", 100,700 );

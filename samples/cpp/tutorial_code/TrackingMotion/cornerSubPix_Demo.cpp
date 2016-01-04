@@ -31,7 +31,8 @@ void goodFeaturesToTrack_Demo( int, void* );
 int main( int, char** argv )
 {
   /// Load source image and convert it to gray
-  src = imread( argv[1], 1 );
+//  src = imread( argv[1], 1 );
+  src = imread( "/home/peter/opencv-2.4.11/samples/cpp/mao/rain.jpg", 1 );
   cvtColor( src, src_gray, COLOR_BGR2GRAY );
 
   /// Create Window
@@ -41,6 +42,7 @@ int main( int, char** argv )
   createTrackbar( "Max  corners:", source_window, &maxCorners, maxTrackbar, goodFeaturesToTrack_Demo );
 
   imshow( source_window, src );
+  moveWindow( source_window, 100,100 );
 
   goodFeaturesToTrack_Demo( 0, 0 );
 

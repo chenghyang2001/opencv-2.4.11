@@ -117,6 +117,7 @@ int main(  )
 
 	//顯示最終結果
 	imshow( "效果圖", img_matches );
+	moveWindow( "效果圖", 100,100 );
 
 	waitKey(0);
 	return 0;

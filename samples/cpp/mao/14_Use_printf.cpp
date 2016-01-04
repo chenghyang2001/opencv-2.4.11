@@ -12,7 +12,7 @@ int main( )
 	printf("\n\t%c,%c\n",a,b);//按字表型輸出
 	printf("\n\t結果為：a=%d,b=%d",a,b);//可以配合其他內容一同輸出
 	printf("\n\tCV version = " CV_VERSION);  //
-	printf("\n\tCV version = " CV_VERSION);  //
+//        printf("\n\tCV version = " CV_VERSION);  //
 	printf("\n");  
 	getchar();//等待讀入任意字表而結束，在此用于保持視窗顯示，直到任意按鍵按下
 }

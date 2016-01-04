@@ -24,7 +24,8 @@ static void help( char* progName)
 int main( int argc, char** argv )
 {
     help(argv[0]);
-    const char* imagename = argc > 1 ? argv[1] : "lena.jpg";
+//    const char* imagename = argc > 1 ? argv[1] : "lena.jpg";
+    const char* imagename = argc > 1 ? argv[1] : "/home/peter/opencv-2.4.11/samples/cpp/mao/rain.jpg";
 
 #ifdef DEMO_MIXED_API_USE
     Ptr<IplImage> IplI = cvLoadImage(imagename);      // Ptr<T> is safe ref-counting pointer class
@@ -50,7 +51,7 @@ int main( int argc, char** argv )
     vector<Mat> planes;    // Use the STL's vector structure to store multiple Mat objects
     split(I_YUV, planes);  // split the image into separate color planes (Y U V)
 
-#if 1 // change it to 0 if you want to see a blurred and noisy version of this processing
+#if 0 // change it to 0 if you want to see a blurred and noisy version of this processing
     // Mat scanning
     // Method 1. process Y plane using an iterator
     MatIterator_<uchar> it = planes[0].begin<uchar>(), it_end = planes[0].end<uchar>();
@@ -123,8 +124,10 @@ int main( int argc, char** argv )
     // this is to demonstrate that I and IplI really share the data - the result of the above
     // processing is stored in I and thus in IplI too.
     cvShowImage("image with grain", IplI);
+    moveWindow("image with grain", 100,100);
 #else
     imshow("image with grain", I); // the new MATLAB style function show
+    moveWindow("image with grain", 100,100 ); // the new MATLAB style function show
 #endif
     waitKey();
 

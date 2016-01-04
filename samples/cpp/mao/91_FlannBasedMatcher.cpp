@@ -33,8 +33,10 @@ int main( int argc, char** argv )
 	ShowHelpText();  
 
 	//【1】載入源圖形
+//        Mat img_1 = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/rain.jpg", 1 );
 	Mat img_1 = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg", 1 );
-	Mat img_2 = imread( "2.jpg", 1 );
+//        Mat img_2 = imread( "2.jpg", 1 );
+	Mat img_2 = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/2.jpg", 1 );
 	if( !img_1.data || !img_2.data ) { printf("讀取圖形image0錯誤~！ \n"); return false; }  
 
 	//【2】利用SURF檢測器檢測的關鍵點
@@ -87,6 +89,7 @@ int main( int argc, char** argv )
 
 	//【9】顯示效果圖
 	imshow( "比對效果圖", img_matches );
+	moveWindow( "比對效果圖", 100,100 );
 
 	//按任意鍵退出程式
 	waitKey(0);

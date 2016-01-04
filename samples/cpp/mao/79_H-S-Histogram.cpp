@@ -34,7 +34,8 @@ int main( )
 
 	//【1】載入源圖，轉化為HSV顏色模型
 	Mat srcImage, hsvImage;
-	srcImage=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");
+//        srcImage=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");
+	srcImage=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/rain.jpg");
 	cvtColor(srcImage,hsvImage, CV_BGR2HSV);
 
 	system("color 2F");
@@ -86,12 +87,12 @@ int main( )
 				CV_FILLED );
 		}
 
-		//【6】顯示效果圖
-		imshow( "素材圖", srcImage );
-		moveWindow( "素材圖", 100,100 );
+	//【6】顯示效果圖
+	imshow( "素材圖", srcImage );
+	moveWindow( "素材圖", 100,100 );
 
-		imshow( "H-S 直條圖", histImg );
-		moveWindow( "H-S 直條圖", 1000,100 );
+	imshow( "H-S 直條圖", histImg );
+	moveWindow( "H-S 直條圖", 500,300 );
 
-		waitKey();
+	waitKey();
 }

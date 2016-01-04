@@ -129,6 +129,7 @@ int main( int argc, char** argv )
 			Mat inpaintedImage;
 			inpaint(srcImage1, inpaintMask, inpaintedImage, 3, CV_INPAINT_TELEA);
 			imshow(WINDOW_NAME2, inpaintedImage);
+			moveWindow(WINDOW_NAME2, 500,500);
 		}
 	}
 

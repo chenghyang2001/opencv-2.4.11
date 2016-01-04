@@ -35,6 +35,7 @@ int main( int argc, char* argv[])
     namedWindow("Output", WINDOW_AUTOSIZE);
 
     imshow("Input", I);
+    moveWindow("Input", 100,100);
     double t = (double)getTickCount();
 
     Sharpen(I, J);
@@ -43,6 +44,7 @@ int main( int argc, char* argv[])
     cout << "Hand written function times passed in seconds: " << t << endl;
 
     imshow("Output", J);
+    moveWindow("Output", 700,100);
     waitKey(0);
 
     Mat kern = (Mat_<char>(3,3) <<  0, -1,  0,
@@ -54,6 +56,7 @@ int main( int argc, char* argv[])
     cout << "Built-in filter2D time passed in seconds:      " << t << endl;
 
     imshow("Output", K);
+    moveWindow("Output", 700, 100);
 
     waitKey(0);
     return 0;

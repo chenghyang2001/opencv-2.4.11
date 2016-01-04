@@ -69,29 +69,29 @@ int main()
 				image.at<Vec3b>(j, i)  = blue;
 		}
 
-		//顯示訓練資料 （Show the training data）
-		int thickness = -1;
-		int lineType = 8;
-		circle( image, Point(501,  10), 5, Scalar(  0,   0,   0), thickness, lineType);
-		circle( image, Point(255,  10), 5, Scalar(255, 255, 255), thickness, lineType);
-		circle( image, Point(501, 255), 5, Scalar(255, 255, 255), thickness, lineType);
-		circle( image, Point( 10, 501), 5, Scalar(255, 255, 255), thickness, lineType);
+	//顯示訓練資料 （Show the training data）
+	int thickness = -1;
+	int lineType = 8;
+	circle( image, Point(501,  10), 5, Scalar(  0,   0,   0), thickness, lineType);
+	circle( image, Point(255,  10), 5, Scalar(255, 255, 255), thickness, lineType);
+	circle( image, Point(501, 255), 5, Scalar(255, 255, 255), thickness, lineType);
+	circle( image, Point( 10, 501), 5, Scalar(255, 255, 255), thickness, lineType);
 
-		//顯示支持向量 （Show support vectors）
-		thickness = 2;
-		lineType  = 8;
-		int c     = SVM.get_support_vector_count();
+	//顯示支持向量 （Show support vectors）
+	thickness = 2;
+	lineType  = 8;
+	int c     = SVM.get_support_vector_count();
 
-		for (int i = 0; i < c; ++i)
-		{
-			const float* v = SVM.get_support_vector(i);
-			circle( image,  Point( (int) v[0], (int) v[1]),   6,  Scalar(128, 128, 128), thickness, lineType);
-		}
+	for (int i = 0; i < c; ++i)
+	{
+	    const float* v = SVM.get_support_vector(i);
+	    circle( image,  Point( (int) v[0], (int) v[1]),   6,  Scalar(128, 128, 128), thickness, lineType);
+	}
 
-		imwrite("result.png", image);        // 儲存圖像
+	imwrite("result.png", image);        // 儲存圖像
 
-		imshow("SVM Simple Example", image); // 顯示圖像
-		moveWindow("SVM Simple Example", 100, 100 ); // 顯示圖像
-		waitKey(0);
+	imshow("SVM Simple Example", image); // 顯示圖像
+	moveWindow("SVM Simple Example", 100, 100 ); // 顯示圖像
+	waitKey(0);
 
 }

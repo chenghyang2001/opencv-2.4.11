@@ -74,7 +74,9 @@ int main(int argc, char ** argv)
                                             // viewable image form (float between values 0 and 1).
 
     imshow("Input Image"       , I   );    // Show the result
+    moveWindow("Input Image"       , 100,100);    // Show the result
     imshow("spectrum magnitude", magI);
+    moveWindow("spectrum magnitude", 800,100);
     waitKey();
 
     return 0;

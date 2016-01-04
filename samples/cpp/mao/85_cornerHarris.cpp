@@ -12,7 +12,8 @@ using namespace cv;
 int main()  
 {  
 	//以灰度模式載入圖像並顯示
-	Mat srcImage = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg", 0);  // must use grayscale one
+	Mat srcImage = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/rain.jpg", 0);  // must use grayscale one
+//        Mat srcImage = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg", 0);  // must use grayscale one
 //        Mat srcImage = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");    // can not use color one
 	imshow("原始圖", srcImage);  
 	moveWindow("原始圖", 100,100);  

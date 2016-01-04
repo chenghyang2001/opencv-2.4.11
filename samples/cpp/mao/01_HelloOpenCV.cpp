@@ -12,7 +12,8 @@ int main()
 
 	// 【1】讀入一張圖形 
 //        Mat img=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");
-	Mat img=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/2.jpg");
+//        Mat img=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/2.jpg");
+	Mat img=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/rain.jpg");
 
 	// 【2】在視窗中顯示載入的圖形
 	imshow("【載入的圖形】",img);
@@ -21,14 +22,15 @@ int main()
 	// 【3】等待6000 ms後視窗自動關閉
 	cout << " rows =  " << img.rows   << endl ; 
 	cout << " cols =  " << img.cols   << endl ; 
-	cout << " type =  " << img.type() << endl ; 
+//        cout << " type =  " << img.type() << endl ; 
 	//【5】計算執行時間並輸出
 	time0 = ((double)getTickCount() - time0)/getTickFrequency();
 	cout<<"\t此方法執行時間為： "<<time0<<"秒"<<endl;  //輸出執行時間
 
 
 //        waitKey(6000);
-	waitKey(3000);
+//        waitKey(3000);
+	waitKey(0);
 }
 
 
