@@ -118,38 +118,39 @@ int main()
 			else if (response == 2)    I.at<Vec3b>(j, i)  = blue;
 		}
 
-		//----------------------- 5. 顯示訓練資料（training data） --------------------------------------------
-		int thick = -1;
-		int lineType = 8;
-		float px, py;
-		// Class 1
-		for (int i = 0; i < NTRAINING_SAMPLES; ++i)
-		{
-			px = trainData.at<float>(i,0);
-			py = trainData.at<float>(i,1);
-			circle(I, Point( (int) px,  (int) py ), 3, Scalar(0, 255, 0), thick, lineType);
-		}
-		// Class 2
-		for (int i = NTRAINING_SAMPLES; i <2*NTRAINING_SAMPLES; ++i)
-		{
-			px = trainData.at<float>(i,0);
-			py = trainData.at<float>(i,1);
-			circle(I, Point( (int) px, (int) py ), 3, Scalar(255, 0, 0), thick, lineType);
-		}
+	//----------------------- 5. 顯示訓練資料（training data） --------------------------------------------
+	int thick = -1;
+	int lineType = 8;
+	float px, py;
+	// Class 1
+	for (int i = 0; i < NTRAINING_SAMPLES; ++i)
+	{
+	    px = trainData.at<float>(i,0);
+	    py = trainData.at<float>(i,1);
+	    circle(I, Point( (int) px,  (int) py ), 3, Scalar(0, 255, 0), thick, lineType);
+	}
+	// Class 2
+	for (int i = NTRAINING_SAMPLES; i <2*NTRAINING_SAMPLES; ++i)
+	{
+	    px = trainData.at<float>(i,0);
+	    py = trainData.at<float>(i,1);
+	    circle(I, Point( (int) px, (int) py ), 3, Scalar(255, 0, 0), thick, lineType);
+	}
 
-		//------------------------- 6. 顯示支持向量（support vectors） --------------------------------------------
-		thick = 2;
-		lineType  = 8;
-		int x     = svm.get_support_vector_count();
+	//------------------------- 6. 顯示支持向量（support vectors） --------------------------------------------
+	thick = 2;
+	lineType  = 8;
+	int x     = svm.get_support_vector_count();
 
-		for (int i = 0; i < x; ++i)
-		{
-			const float* v = svm.get_support_vector(i);
-			circle( I,  Point( (int) v[0], (int) v[1]), 6, Scalar(128, 128, 128), thick, lineType);
-		}
+	for (int i = 0; i < x; ++i)
+	{
+	    const float* v = svm.get_support_vector(i);
+	    circle( I,  Point( (int) v[0], (int) v[1]), 6, Scalar(128, 128, 128), thick, lineType);
+	}
 
-		imwrite("result.png", I);                      //儲存圖像到文件
-		imshow("SVM for Non-Linear Training Data", I); // 顯示最終視窗
-		moveWindow("SVM for Non-Linear Training Data", 100, 100); // 顯示最終視窗
-		waitKey(0);
+	imwrite("result.png", I);                      //儲存圖像到文件
+	imshow("SVM for Non-Linear Training Data", I); // 顯示最終視窗
+	moveWindow("SVM for Non-Linear Training Data", 100, 100); // 顯示最終視窗
+	waitKey(0);
+
 }

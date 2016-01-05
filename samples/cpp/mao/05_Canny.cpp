@@ -27,7 +27,9 @@ int main( )
 
 	//【3】先用使用 3x3核心來降噪
 	Mat imageEdge ;
-	blur( imageGray, imageEdge, Size(3,3) );
+//        blur( imageGray, imageEdge, Size(3,3) );
+	blur( imageGray, imageEdge, Size(20,20) );
+//        blur( imageGray, imageEdge, Size(9,9) );
 
 	//【4】執行Canny算子
 	Canny( imageEdge, imageEdge, 3, 9,3 );

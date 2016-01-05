@@ -26,7 +26,13 @@ int main( )
 		capture>>frame;  //讀取現在幅
 		imshow("讀取視訊",frame);  //顯示現在幅
 		moveWindow("讀取視訊",100,100);  //顯示現在幅
-		waitKey(30);  //延時30ms
+//                waitKey(30);  //延時30ms
+
+//                char c = (char)waitKey(30);
+		char c = (char)waitKey(10);
+		if( c == 'q' )
+			break;
+
 	}  
 	return 0;     
 }  

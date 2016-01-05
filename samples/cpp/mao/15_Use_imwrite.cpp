@@ -45,12 +45,12 @@ void ShowHelpText()
 int main( )
 {
 	//建立帶alpha通道的Mat
-//        Mat mat(480, 640, CV_8UC4);
+	Mat mat(480, 640, CV_8UC4);
 //        Mat mat(4, 6, CV_8UC4);
 //        Mat mat(100, 100, CV_8UC4);
 //        Mat mat(100, 100, CV_8UC1);
 //        Mat mat(100, 100, CV_8UC3);
-	Mat mat(100, 100, CV_8UC4);
+//        Mat mat(100, 100, CV_8UC4);
 	createAlphaMat(mat);
 
 	ShowHelpText();
