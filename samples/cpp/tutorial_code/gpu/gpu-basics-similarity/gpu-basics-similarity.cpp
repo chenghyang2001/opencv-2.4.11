@@ -57,6 +57,9 @@ static void help()
 int main(int, char *argv[])
 {
     help();
+//    Mat I1 = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg");           // Read the two images
+//    Mat I2 = imread("/home/peter/opencv-2.4.11/samples/cpp/mao/2.jpg");
+
     Mat I1 = imread(argv[1]);           // Read the two images
     Mat I2 = imread(argv[2]);
 

@@ -12,7 +12,7 @@
 #include "utils.h"
 #include <stdio.h>
 
-#define USE_VIDEO 1
+//#define USE_VIDEO 1
 
 #undef MIN
 #undef MAX
