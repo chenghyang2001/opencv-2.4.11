@@ -21,7 +21,10 @@ using namespace cv;
 int main( int argc, char** argv )
 {
 	// 【1】載入原始圖，且必須以二值圖模式載入
-	Mat srcImage=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg", 0);
+//        Mat srcImage=imread("/home/peter/opencv-2.4.11/samples/cpp/mao/1.jpg", 0);
+//
+	Mat srcImage=imread("/home/peter/Downloads/image2.JPG", 0);
+
 	imshow("原始圖",srcImage);
 	moveWindow("原始圖",100,100);
 
@@ -48,7 +51,7 @@ int main( int argc, char** argv )
 	{
 		Scalar color( rand()&255, rand()&255, rand()&255 );
 		drawContours( dstImage, contours, index, color, CV_FILLED, 8, hierarchy );
-	}
+	} 
 
 	//【7】顯示最後的輪廓圖
 	imshow( "輪廓圖", dstImage );
